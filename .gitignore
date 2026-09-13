@@ -1,0 +1,14 @@
+# Ignora la cartella delle dipendenze locali di Vite
+node_modules/
+
+# Ignora la cartella della compilazione finale di produzione
+dist/
+
+# Ignora Repomix
+repomix-output.xml
+
+# Ignora i file di sistema del Mac
+.DS_Store
+
+# Ignora file temporanei e profili browser
+scratch/
