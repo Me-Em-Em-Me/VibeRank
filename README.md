@@ -29,24 +29,21 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
 
 ### 2. Cost & Operational Metrics
 
-- **Cost/Task**: Mean USD cost per task (session) on Arena measured across a rolling 14-day window (`costWindowDays = 14`). Set to `N/A` if `pricedSampleCount < 10` (or `< 30` for sparse models).
+- **Cost/Task**: Effective USD cost per task (session), prioritizing real-time OpenRouter rates when active routing differs from vendor list pricing, otherwise using the rolling 14-day Arena baseline. Displayed as a single clean figure. Features an intense **logarithmic diverging heatmap** ($f(c) = \log_{10}(c + 0.1)$) centered on the benchmark median cost ($1.46), scaling with full saturation (up to alpha 1.0) from intense green (cheapest) through unshaded neutral white at the median to intense red (highest cost), eliminating skew where lower-cost models would otherwise all cluster in green.
 - **Time/Task**: Estimated developer wall-clock duration per coding session, combining generation decode time with response latency (TTFT) overhead across turns:
   $$\text{Time/Task (min)} = \frac{\text{Decode Time (s)} + \text{Latency Overhead (s)}}{60}$$
   $$\text{Decode Time (s)} = \frac{\text{Arena meanMtok} \times 1{,}000{,}000}{\text{OpenRouter Mean Throughput (tok/s)}}$$
   $$\text{Latency Overhead (s)} = \left(\frac{\text{Arena observations}}{\text{Arena sessions}}\right) \times \text{OpenRouter Mean Latency (s)}$$
-  - **Arena Real Observed Tokens & Turns**: Uses actual observed mean output tokens (`meanMtok`) and average turns per task ($\text{observations} / \text{sessions}$).
-  - **OpenRouter Mean Speed & TTFT**: Uses the arithmetic mean throughput (tok/s) and mean latency (s) across all active providers for that model on OpenRouter.
+  - **Single-Line Integer Minute Display**: Displayed strictly in whole minutes (e.g. `87m`, `14m`). Secondary tokens and throughput line is omitted for maximum scannability, while complete decode/latency/provider breakdowns remain accessible via hover tooltip.
+  - **Diverging Heatmap**: Features an intense **linear diverging heatmap** centered on the benchmark median duration (25m), scaling with full saturation (up to alpha 1.0) from intense green (fastest) through unshaded neutral white at the median to intense red (slowest).
   - **Fastest First**: Clicking the `Time/Task` column header defaults to ascending order (shortest duration first).
-  - **Integer Minute Formatting**: Displayed strictly in whole minutes rounded to the nearest minute (e.g. `14m`, `88m`). Durations over an hour remain purely in minutes (e.g. `65m` rather than `1h 5m`).
-- **Score / $**: `max(Score, 0) / Cost/Task`, using the OpenRouter cost when that overlay is shown, otherwise the Arena mean. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`.
-- **Price $/M**: Vendor list price per million tokens (input / output) reported on Arena.
-- **OpenRouter Real-Time Overlay**: Where an active OpenRouter route exists, the effective cost is calculated and shown **first**:
+- **Score / $**: `max(Score, 0) / Cost/Task`, using the effective displayed Cost/Task. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`. Features an intense **logarithmic diverging heatmap** ($f(x) = \log_{10}(\max(0, x) + 0.1)$) dynamically centered on the geometric mean of positive efficiency models ($\approx 3.48$), scaling with full saturation (up to alpha 1.0) from intense green (high efficiency) through neutral white/unshaded at the geometric mean to intense red (lower efficiency down to 0.00).
+- **Price $/M**: Effective price per million tokens (input / output). Displays a single clean line.
+- **OpenRouter Real-Time Overrides & Blue Highlighting**: Where an active OpenRouter route exists with pricing differing from the Arena baseline, the effective cost and $/M rates are displayed in **Blue** (`.main.or-diff`), clearly differentiating routed models from Arena baselines without clashing with the green-to-red column heatmaps:
   $$\text{OR \$/task} = \text{Cost/Task} \times \frac{\text{OR}_{\text{blended}}}{\text{list}_{\text{blended}}}$$
   $$\text{blended} = 0.25 \times \text{input \$/M} + 0.75 \times \text{output \$/M}$$
-  - **Pricing Source**: Extracted directly from the primary "IN / OUT PRICE" hero box displayed on each model's OpenRouter page (representing the best available rate across active providers), falling back to the OpenRouter API catalog price.
-  - **Green (`.main.down`)**: OpenRouter is cheaper than vendor list price.
-  - **Red (`.main.up`)**: OpenRouter is more expensive than vendor list price.
-  - **Plain single line**: When OpenRouter matches vendor list price (to 2 decimals) or when OpenRouter data is unavailable.
+  - Full original Arena baseline metrics and provider multipliers are preserved on hover tooltips and via DOM data attributes (`data-arena-cost`, `data-arena-price`).
+- **Arena Baseline Data Persistence (`arena_data.json`)**: All raw Arena benchmark snapshots, rolling-window statistics, token volumes, and vendor list prices are permanently stored in [`arena_data.json`](file:///Volumes/SSDMarco/VibeCoding/AI-Leaderboard/arena_data.json) in the workspace root. The updater automatically updates this archive upon live fetch and seamlessly falls back to it when offline.
 - **General Rounding Rule**: ALL price and currency metrics (including Cost/Task, Price $/M, blended prices, and internal numerical `data-v` sorting attributes) MUST be rounded to at most 2 decimal places. No price or cost metric may expose 3 or more decimal places.
 
 ### 3. Concrete Scoring Example
@@ -80,7 +77,7 @@ When analyzing model behaviors for agentic vibe coding:
    - Click **Compare** to isolate selected models directly in the table (no secondary dialog or detached window).
    - Star selections persist across sessions using `localStorage["vibe-lb-pins"]`.
 3. **Boxed Score Column (`.score-col`)**: The primary Vibe Score is highlighted with a persistent 2px accent outline framing the header down to the last visible row.
-4. **Per-Column Dynamic Tinting**: Score and signal cells use pure linear green/red scales, normalized separately for each column and sign; Score / $ uses the same non-negative linear scale relative to the actual largest finite ratio, with no tint for zero.
+4. **Per-Column Dynamic Tinting**: Score and signal cells use pure linear green/red scales, normalized separately for each column and sign. Cost/Task features a logarithmic diverging heatmap centered on median cost ($1.46), Score / $ features a logarithmic diverging heatmap centered dynamically on the geometric mean of positive efficiencies (~3.48), Time/Task features a linear diverging heatmap centered on median duration (25m), and values at the median remain unshaded.
 
 ---
 
@@ -208,7 +205,7 @@ Before completing an update, verify each item:
 - [ ] Header metadata matches Arena live values (snapshot date, total model count, total session count, OpenRouter timestamp).
 - [ ] Models are sorted by `Score` descending, numbered $1 \dots N$.
 - [ ] Formula is computed accurately row by row: `0.30*CS + 0.30*Steer + 0.30*Praise + 0.10*Bash`.
-- [ ] OpenRouter price overlays are properly color-coded (green if cheaper, red if more expensive, neutral if identical or unmapped).
+- [ ] OpenRouter price overrides differing from Arena baseline are highlighted in Blue (`.main.or-diff`), with baseline details in hover tooltips.
 - [ ] General rule: ALL currency and price values without exception (Cost/Task, Price $/M, blended rates, and `data-v` attributes) are rounded to at most 2 decimal places.
 - [ ] Sorting functionality works across all columns; ties break on initial rank.
 - [ ] `score-col` styling is active and properly framed.

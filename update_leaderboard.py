@@ -13,6 +13,7 @@ import os
 import re
 import json
 import time
+import math
 import urllib.request
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor
@@ -98,6 +99,7 @@ KNOWN_LIST_PRICES = {
 }
 
 HTML_FILENAME = "AI_Leaderboard_for_Vibe_Coding.html"
+ARENA_DATA_FILENAME = "arena_data.json"
 
 def fetch_url(url, timeout=12):
     req = urllib.request.Request(
@@ -233,28 +235,33 @@ def format_price_dollars(v):
     return f"${v:.2f}"
 
 
-def fetch_openrouter_performance(model_map):
+def fetch_openrouter_performance(model_map, max_age_seconds=600):
     cache_file = "/tmp/or_perf_cache.json"
     now = time.time()
     cached_data = {}
+    cache_valid = False
     if os.path.isfile(cache_file):
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
                 cached = json.load(f)
-            if cached.get("_timestamp", 0) > now - 3600:
-                raw_cached = cached.get("data", {})
-                if any(v.get("provider_count", 0) > 0 for v in raw_cached.values()):
-                    cached_data = raw_cached
+            raw_cached = cached.get("data", {})
+            if any(v.get("provider_count", 0) > 0 for v in raw_cached.values()):
+                cached_data = raw_cached
+                if cached.get("_timestamp", 0) > now - max_age_seconds:
+                    cache_valid = True
         except Exception:
             cached_data = {}
 
     clean_ids = list(set([m_id.split(":")[0] for m_id in model_map.values()]))
-    needed_ids = [
-        cid for cid in clean_ids
-        if cid not in cached_data
-        or cached_data[cid].get("provider_count", 0) == 0
-        or cached_data[cid].get("box_in") is None
-    ]
+    if cache_valid:
+        needed_ids = [
+            cid for cid in clean_ids
+            if cid not in cached_data
+            or cached_data[cid].get("provider_count", 0) == 0
+            or cached_data[cid].get("box_in") is None
+        ]
+    else:
+        needed_ids = clean_ids
 
     if not needed_ids:
         return cached_data
@@ -285,12 +292,13 @@ def fetch_openrouter_performance(model_map):
                 "box_out": box_out
             }
         except Exception:
-            return clean_id, {"mean_tps": None, "mean_lat": None, "provider_count": 0, "box_in": None, "box_out": None}
+            return clean_id, None
 
     results = dict(cached_data)
     with ThreadPoolExecutor(max_workers=12) as executor:
         for clean_id, data in executor.map(fetch_one, needed_ids):
-            results[clean_id] = data
+            if data and data.get("provider_count", 0) > 0:
+                results[clean_id] = data
 
     if any(v.get("provider_count", 0) > 0 for v in results.values()):
         try:
@@ -437,17 +445,100 @@ def compute_column_extrema(processed):
             "pos_max": max(pos) if pos else 1.0,
             "neg_max": max(neg) if neg else 1.0
         }
+
+    # Cost extrema and median for logarithmic diverging scale
+    cost_vals = sorted([
+        p["or_cost"] if p["or_cost"] is not None else p["arena_cost"]
+        for p in processed
+        if (p["or_cost"] is not None or p["arena_cost"] is not None)
+    ])
+    if cost_vals:
+        c_min = min(cost_vals)
+        c_max = max(cost_vals)
+        c_mid = cost_vals[len(cost_vals) // 2]
+    else:
+        c_min, c_mid, c_max = 0.0, 1.0, 10.0
+
+    extrema["cost"] = {
+        "min": c_min,
+        "mid": c_mid,
+        "max": c_max
+    }
+
+    # Time extrema and median for linear diverging scale
+    time_vals = sorted([p["tot_min"] for p in processed if p["tot_min"] is not None])
+    if time_vals:
+        t_min = min(time_vals)
+        t_max = max(time_vals)
+        t_mid = time_vals[len(time_vals) // 2]
+    else:
+        t_min, t_mid, t_max = 0.0, 30.0, 120.0
+
+    extrema["time"] = {
+        "min": t_min,
+        "mid": t_mid,
+        "max": t_max
+    }
     return extrema
 
 def render_cell_color(val, col, extrema):
     if val == 0:
-        return ""
+        return "", ""
     if val > 0:
         alpha = max(0.05, min(1.0, val / extrema[col]["pos_max"]))
-        return f' style="background-color:hsl(125 49% 50% / {alpha:.3f})"'
+        style = f' style="background-color:hsl(125 49% 50% / {alpha:.3f})"'
     else:
         alpha = max(0.05, min(1.0, abs(val) / extrema[col]["neg_max"]))
-        return f' style="background-color:hsl(2 86% 63% / {alpha:.3f})"'
+        style = f' style="background-color:hsl(2 86% 63% / {alpha:.3f})"'
+    tint_class = " tint-strong" if alpha >= 0.5 else " tint-weak"
+    return style, tint_class
+
+def render_diverging_color(val, col, extrema):
+    if val is None or col not in extrema:
+        return "", ""
+    min_v = extrema[col]["min"]
+    mid_v = extrema[col]["mid"]
+    max_v = extrema[col]["max"]
+
+    if col == "cost":
+        # Logarithmic diverging scale centered on median cost to spread dense low-cost models
+        def f(c):
+            return math.log10(c + 0.1)
+
+        l_val = f(val)
+        l_min = f(min_v)
+        l_mid = f(mid_v)
+        l_max = f(max_v)
+
+        if round(val, 2) == round(mid_v, 2):
+            return "", ""
+        elif l_val < l_mid:
+            # Cheaper than median: green scale up to 1.0 alpha
+            ratio = (l_mid - l_val) / (l_mid - l_min) if l_mid > l_min else 0.0
+            alpha = max(0.05, min(1.0, ratio))
+            style = f' style="background-color:hsl(125 49% 50% / {alpha:.3f})"'
+        else:
+            # More expensive than median: red scale up to 1.0 alpha
+            ratio = (l_val - l_mid) / (l_max - l_mid) if l_max > l_mid else 0.0
+            alpha = max(0.05, min(1.0, ratio))
+            style = f' style="background-color:hsl(2 86% 63% / {alpha:.3f})"'
+    else:
+        # Linear diverging scale centered on median duration for Time/Task
+        if round(val, 1) == round(mid_v, 1):
+            return "", ""
+        elif val < mid_v:
+            # Faster than median: green scale up to 1.0 alpha
+            ratio = (mid_v - val) / (mid_v - min_v) if mid_v > min_v else 0.0
+            alpha = max(0.05, min(1.0, ratio))
+            style = f' style="background-color:hsl(125 49% 50% / {alpha:.3f})"'
+        else:
+            # Slower than median: red scale up to 1.0 alpha
+            ratio = (val - mid_v) / (max_v - mid_v) if max_v > mid_v else 0.0
+            alpha = max(0.05, min(1.0, ratio))
+            style = f' style="background-color:hsl(2 86% 63% / {alpha:.3f})"'
+
+    tint_class = " tint-strong" if alpha >= 0.5 else " tint-weak"
+    return style, tint_class
 
 def render_table_rows(processed, extrema):
     rows_html = []
@@ -462,11 +553,11 @@ def render_table_rows(processed, extrema):
         bash = p["bash"]
         
         # Color styles
-        s_style = render_cell_color(score, "score", extrema)
-        cs_style = render_cell_color(cs, "cs", extrema)
-        steer_style = render_cell_color(steer, "steer", extrema)
-        praise_style = render_cell_color(praise, "praise", extrema)
-        bash_style = render_cell_color(bash, "bash", extrema)
+        s_style, s_tint = render_cell_color(score, "score", extrema)
+        cs_style, cs_tint = render_cell_color(cs, "cs", extrema)
+        steer_style, steer_tint = render_cell_color(steer, "steer", extrema)
+        praise_style, praise_tint = render_cell_color(praise, "praise", extrema)
+        bash_style, bash_tint = render_cell_color(bash, "bash", extrema)
 
         # Numerical display strings
         s_sign = "+" if score > 0 else ""
@@ -491,35 +582,44 @@ def render_table_rows(processed, extrema):
             and round(ratio, 2) != 1.00
         )
 
+        eff_cost = or_cost if (has_overlay and or_cost is not None) else arena_cost
+        cost_style, cost_tint = render_diverging_color(eff_cost, "cost", extrema)
+
         if has_overlay:
-            direction = "down" if ratio < 1.0 else "up"
-            cost_title = f'OpenRouter real-time &times; {ratio:.3f} via {or_info["id"]} (no batch)'
+            cost_diff_class = " or-diff"
+            cost_title = f'OpenRouter: ${eff_cost:.2f} (Arena baseline: ${arena_cost:.2f}, &times;{ratio:.3f} via {or_info["id"]})'
             cost_cell = (
-                f'<td class="num" data-v="{or_cost:.2f}" title="{cost_title}">'
-                f'<div class="main {direction}">OR ${or_cost:.2f}</div>'
-                f'<div class="alt">Arena ${arena_cost:.2f}</div></td>'
+                f'<td class="num{cost_tint}" data-v="{eff_cost:.2f}" data-arena-cost="{arena_cost:.2f}" title="{cost_title}"{cost_style}>'
+                f'<div class="main{cost_diff_class}">${eff_cost:.2f}</div></td>'
             )
             
             or_in_str = format_price_dollars(or_info["prompt"])
             or_out_str = format_price_dollars(or_info["completion"])
             list_in_str = format_price_dollars(list_in)
             list_out_str = format_price_dollars(list_out)
-            
+            price_title = f'OpenRouter: {or_in_str} / {or_out_str} (Arena list: {list_in_str} / {list_out_str}, &times;{ratio:.3f} via {or_info["id"]})'
             price_cell = (
-                f'<td class="num" data-v="{or_info["blended"]:.2f}" title="{cost_title}">'
-                f'<div class="main {direction}">OR {or_in_str} / {or_out_str}</div>'
-                f'<div class="alt">list {list_in_str} / {list_out_str}</div></td>'
+                f'<td class="num" data-v="{or_info["blended"]:.2f}" data-arena-price="{list_in_str} / {list_out_str}" title="{price_title}">'
+                f'<div class="main or-diff">{or_in_str} / {or_out_str}</div></td>'
             )
         else:
             if arena_cost is not None:
-                cost_cell = f'<td class="num" data-v="{arena_cost:.2f}"><div class="main">${arena_cost:.2f}</div></td>'
+                cost_title = f'Arena: ${arena_cost:.2f}'
+                cost_cell = (
+                    f'<td class="num{cost_tint}" data-v="{arena_cost:.2f}" data-arena-cost="{arena_cost:.2f}" title="{cost_title}"{cost_style}>'
+                    f'<div class="main">${arena_cost:.2f}</div></td>'
+                )
             else:
                 cost_cell = '<td class="num"><div class="main">N/A</div></td>'
             
             if list_blended is not None:
                 p_in_str = format_price_dollars(list_in)
                 p_out_str = format_price_dollars(list_out)
-                price_cell = f'<td class="num" data-v="{list_blended:.2f}"><div class="main">{p_in_str} / {p_out_str}</div></td>'
+                price_title = f'Arena list: {p_in_str} / {p_out_str}'
+                price_cell = (
+                    f'<td class="num" data-v="{list_blended:.2f}" data-arena-price="{p_in_str} / {p_out_str}" title="{price_title}">'
+                    f'<div class="main">{p_in_str} / {p_out_str}</div></td>'
+                )
             else:
                 price_cell = '<td class="num"><div class="main">N/A</div></td>'
 
@@ -534,14 +634,13 @@ def render_table_rows(processed, extrema):
         provider_count = p.get("provider_count", 0)
         fallback_source = p.get("fallback_source")
 
+        time_style, time_tint = render_diverging_color(tot_min, "time", extrema)
+
         if tot_min is not None and dec_sec is not None and lat_sec is not None:
             mins = max(1, int(round(tot_min)))
             time_main = f"{mins}m"
 
             tok_k = int(round(output_tokens / 1000.0))
-            tps_int = int(round(mean_tps))
-            alt_ast = "*" if fallback_source else ""
-            time_alt = f"{tok_k}k{alt_ast} &middot; {tps_int} t/s"
             source_note = f" (via predecessor {fallback_source})" if fallback_source else ""
             time_title = (
                 f"Total: {time_main} | Decode: {dec_sec/60.0:.1f}m ({tok_k}k tok{source_note} @ {mean_tps:.1f} t/s) + "
@@ -549,9 +648,8 @@ def render_table_rows(processed, extrema):
                 f"across {provider_count} OR providers"
             )
             time_cell = (
-                f'<td class="num" data-v="{tot_min:.2f}" title="{time_title}">'
-                f'<div class="main">{time_main}</div>'
-                f'<div class="alt">{time_alt}</div></td>'
+                f'<td class="num{time_tint}" data-v="{tot_min:.2f}" title="{time_title}"{time_style}>'
+                f'<div class="main">{time_main}</div></td>'
             )
         else:
             time_cell = '<td class="num"><div class="main">N/A</div></td>'
@@ -560,11 +658,11 @@ def render_table_rows(processed, extrema):
             f'<tr>\n'
             f'<td class="num rank" data-v="{rank}">{rank}</td>\n'
             f'<td class="model" data-v="{model}">{model}</td>\n'
-            f'<td class="num score-col" data-v="{score:.2f}"{s_style}><div class="main">{s_sign}{score:.2f}</div></td>\n'
-            f'<td class="num" data-v="{cs:.2f}"{cs_style}><div class="main">{cs_sign}{cs:.2f}%</div></td>\n'
-            f'<td class="num" data-v="{steer:.2f}"{steer_style}><div class="main">{steer_sign}{steer:.2f}%</div></td>\n'
-            f'<td class="num" data-v="{praise:.2f}"{praise_style}><div class="main">{praise_sign}{praise:.2f}%</div></td>\n'
-            f'<td class="num" data-v="{bash:.2f}"{bash_style}><div class="main">{bash_sign}{bash:.2f}%</div></td>\n'
+            f'<td class="num{s_tint} score-col" data-v="{score:.2f}"{s_style}><div class="main">{s_sign}{score:.2f}</div></td>\n'
+            f'<td class="num{cs_tint}" data-v="{cs:.2f}"{cs_style}><div class="main">{cs_sign}{cs:.2f}%</div></td>\n'
+            f'<td class="num{steer_tint}" data-v="{steer:.2f}"{steer_style}><div class="main">{steer_sign}{steer:.2f}%</div></td>\n'
+            f'<td class="num{praise_tint}" data-v="{praise:.2f}"{praise_style}><div class="main">{praise_sign}{praise:.2f}%</div></td>\n'
+            f'<td class="num{bash_tint}" data-v="{bash:.2f}"{bash_style}><div class="main">{bash_sign}{bash:.2f}%</div></td>\n'
             f'{cost_cell}\n'
             f'{time_cell}\n'
             f'{price_cell}\n'
@@ -573,6 +671,8 @@ def render_table_rows(processed, extrema):
         rows_html.append(row)
 
     return "\n".join(rows_html)
+
+
 
 def update_html_file(html_path, snapshot, costs, rows_html):
     with open(html_path, "r", encoding="utf-8") as f:
@@ -685,6 +785,12 @@ def main():
         print(f"Error: Could not locate {html_path}", file=sys.stderr)
         sys.exit(1)
 
+    arena_data_path = os.path.join(workspace_dir, ARENA_DATA_FILENAME)
+    arena_html = None
+    or_raw_json = None
+    snapshot = None
+    costs = None
+
     print("Fetching live payloads from Arena and OpenRouter...")
     arena_url = "https://arena.ai/leaderboard/agent/code"
     or_url = "https://openrouter.ai/api/v1/models"
@@ -703,24 +809,53 @@ def main():
         except Exception:
             pass
     except Exception as e:
-        if os.path.isfile("/tmp/arena.html") and os.path.isfile("/tmp/or.json"):
-            print(f"Live fetch failed ({e}); falling back to cached /tmp payloads...", file=sys.stderr)
-            with open("/tmp/arena.html", "r", encoding="utf-8") as f:
-                arena_html = f.read()
+        print(f"Live network fetch notice ({e}); checking fallback payloads...", file=sys.stderr)
+        if not or_raw_json and os.path.isfile("/tmp/or.json"):
             with open("/tmp/or.json", "r", encoding="utf-8") as f:
                 or_raw_json = f.read()
+
+    # Parse or load Arena baseline data
+    if arena_html:
+        try:
+            snapshot, costs = parse_arena_payload(arena_html)
+            # Persist fresh baseline to arena_data.json
+            with open(arena_data_path, "w", encoding="utf-8") as f:
+                json.dump({
+                    "lastUpdated": snapshot.get("lastUpdated"),
+                    "totalSessions": snapshot.get("totalSessions"),
+                    "costWindowDays": costs.get("costWindowDays", 14),
+                    "snapshot": snapshot,
+                    "costs": costs
+                }, f, indent=2)
+        except Exception as e:
+            print(f"Failed to parse live Arena HTML: {e}", file=sys.stderr)
+
+    if snapshot is None or costs is None:
+        if os.path.isfile(arena_data_path):
+            print("Loading persistent Arena baseline from arena_data.json...")
+            with open(arena_data_path, "r", encoding="utf-8") as f:
+                saved = json.load(f)
+                snapshot = saved.get("snapshot")
+                costs = saved.get("costs")
+        elif os.path.isfile("/tmp/arena.html"):
+            print("Loading Arena baseline from /tmp/arena.html...")
+            with open("/tmp/arena.html", "r", encoding="utf-8") as f:
+                snapshot, costs = parse_arena_payload(f.read())
         else:
-            raise
+            raise RuntimeError("Could not retrieve Arena data from network, arena_data.json, or /tmp/arena.html")
+
+    if not or_raw_json:
+        raise RuntimeError("Could not retrieve OpenRouter payload from network or /tmp/or.json")
 
     t_fetch = time.time()
     print(f"Payloads ready in {t_fetch - t_start:.2f}s.")
 
     print("Parsing payloads and computing leaderboard scores...")
-    snapshot, costs = parse_arena_payload(arena_html)
     or_by_id = parse_openrouter_payload(or_raw_json)
     
     print("Fetching OpenRouter real-time performance profiles...")
-    perf_data = fetch_openrouter_performance(OPENROUTER_MAP)
+    force_refresh = "--refresh" in sys.argv or "--force" in sys.argv
+    perf_data = fetch_openrouter_performance(OPENROUTER_MAP, max_age_seconds=0 if force_refresh else 600)
     
     processed = compute_leaderboard_data(snapshot, costs, or_by_id, perf_data)
     extrema = compute_column_extrema(processed)

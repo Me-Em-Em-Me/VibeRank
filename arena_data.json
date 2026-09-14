@@ -1,0 +1,4767 @@
+{
+  "lastUpdated": "2026-09-13T14:00:00.000Z",
+  "totalSessions": 547194,
+  "costWindowDays": 14,
+  "snapshot": {
+    "lastUpdated": "2026-09-13T14:00:00.000Z",
+    "totalSessions": 547194,
+    "totalObservations": 63975911,
+    "modelCount": 43,
+    "rows": [
+      {
+        "rank": 1,
+        "contenderName": "contenders/claude-fable-5.1-max-agent",
+        "model": "Claude Fable 5.1 (Max)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+        "inputPricePerMillion": 10,
+        "outputPricePerMillion": 50,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 1,
+          "max": 4
+        },
+        "avgScore": {
+          "value": 0.15517312278747847,
+          "ci": 0.03050012372639957,
+          "pipelines": 5
+        },
+        "sessions": 4215,
+        "observations": 620120,
+        "signalScores": {
+          "task_outcome_explicit": 0.22098988824825538,
+          "praise_complaint": 0.3908696425371756,
+          "steerability": 0.041109913762513106,
+          "bash_recovery_steps": 0.11915482711892533,
+          "tool_hallucination": 0.003741342270522807
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04972055002845871,
+          "praise_complaint": 0.11910692672416923,
+          "steerability": 0.06798748387311572,
+          "bash_recovery_steps": 0.012632473567587676,
+          "tool_hallucination": 0.00041299517998366684
+        }
+      },
+      {
+        "rank": 2,
+        "contenderName": "contenders/gpt-6-astra-max-agent",
+        "model": "GPT 6 Astra (Max)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/gpt-6-astra/",
+        "inputPricePerMillion": 10,
+        "outputPricePerMillion": 50,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 1,
+          "max": 7
+        },
+        "avgScore": {
+          "value": 0.13141652281652424,
+          "ci": 0.04006189523305289,
+          "pipelines": 5
+        },
+        "sessions": 3472,
+        "observations": 357508,
+        "signalScores": {
+          "task_outcome_explicit": 0.21250429791598446,
+          "praise_complaint": 0.3598043211484939,
+          "steerability": 0.014193254600270766,
+          "bash_recovery_steps": 0.06683939814782525,
+          "tool_hallucination": 0.0037413422700467436
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.06873754819078838,
+          "praise_complaint": 0.14724453624349387,
+          "steerability": 0.09736284473632482,
+          "bash_recovery_steps": 0.01440678681589512,
+          "tool_hallucination": 0.00041299517998355864
+        }
+      },
+      {
+        "rank": 3,
+        "contenderName": "contenders/claude-opus-5-high-agent",
+        "model": "Claude Opus 5 (High)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-opus-5",
+        "inputPricePerMillion": 5,
+        "outputPricePerMillion": 25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 1,
+          "max": 7
+        },
+        "avgScore": {
+          "value": 0.11811194351598048,
+          "ci": 0.02307476028556988,
+          "pipelines": 5
+        },
+        "sessions": 7875,
+        "observations": 1878349,
+        "signalScores": {
+          "task_outcome_explicit": 0.12936786983629,
+          "praise_complaint": 0.2013114137190748,
+          "steerability": 0.141903459530778,
+          "bash_recovery_steps": 0.11489171898699135,
+          "tool_hallucination": 0.003085255506768192
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.05174144102291889,
+          "praise_complaint": 0.08183509621571888,
+          "steerability": 0.04257379899198768,
+          "bash_recovery_steps": 0.012886216620698554,
+          "tool_hallucination": 0.00048693551601704157
+        }
+      },
+      {
+        "rank": 4,
+        "contenderName": "contenders/claude-opus-5-max-agent",
+        "model": "Claude Opus 5 (Max)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-opus-5",
+        "inputPricePerMillion": 5,
+        "outputPricePerMillion": 25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 1,
+          "max": 8
+        },
+        "avgScore": {
+          "value": 0.10546322393505232,
+          "ci": 0.025247293007382557,
+          "pipelines": 5
+        },
+        "sessions": 6089,
+        "observations": 1462316,
+        "signalScores": {
+          "task_outcome_explicit": 0.11954870016997632,
+          "praise_complaint": 0.17189356077385043,
+          "steerability": 0.09886437922839897,
+          "bash_recovery_steps": 0.13348756911348447,
+          "tool_hallucination": 0.003521910389551408
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.05793839299309872,
+          "praise_complaint": 0.08759098656824976,
+          "steerability": 0.047325309831237256,
+          "bash_recovery_steps": 0.009145612466040093,
+          "tool_hallucination": 0.00046421501406436385
+        }
+      },
+      {
+        "rank": 5,
+        "contenderName": "contenders/claude-fable-5-agent",
+        "model": "Claude Fable 5 (High)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+        "inputPricePerMillion": 10,
+        "outputPricePerMillion": 50,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 2,
+          "max": 8
+        },
+        "avgScore": {
+          "value": 0.09753513014525589,
+          "ci": 0.01910676757640435,
+          "pipelines": 5
+        },
+        "sessions": 11370,
+        "observations": 1198464,
+        "signalScores": {
+          "task_outcome_explicit": 0.06871329415751182,
+          "praise_complaint": 0.17558222930610956,
+          "steerability": 0.14382157888041525,
+          "bash_recovery_steps": 0.09584434234526107,
+          "tool_hallucination": 0.003714206036981693
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04924727182177491,
+          "praise_complaint": 0.0660358072887832,
+          "steerability": 0.033701380167604406,
+          "bash_recovery_steps": 0.014541022767911874,
+          "tool_hallucination": 0.00041627254493751555
+        }
+      },
+      {
+        "rank": 6,
+        "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+        "model": "GPT 5.6 Sol (xHigh)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/gpt-5-6/",
+        "inputPricePerMillion": 4,
+        "outputPricePerMillion": 20,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 2,
+          "max": 12
+        },
+        "avgScore": {
+          "value": 0.08595326358727941,
+          "ci": 0.020541806320444833,
+          "pipelines": 5
+        },
+        "sessions": 9722,
+        "observations": 1961942,
+        "signalScores": {
+          "task_outcome_explicit": 0.03708778100007348,
+          "praise_complaint": 0.24675534663716037,
+          "steerability": 0.10289726655788689,
+          "bash_recovery_steps": 0.03928458147030578,
+          "tool_hallucination": 0.003741342270970449
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04822138630846126,
+          "praise_complaint": 0.07108006533898947,
+          "steerability": 0.03550622538151082,
+          "bash_recovery_steps": 0.012751179719253165,
+          "tool_hallucination": 0.0004129951799838351
+        }
+      },
+      {
+        "rank": 7,
+        "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+        "model": "Claude Opus 4.8 (High)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-opus-4-8",
+        "inputPricePerMillion": 5,
+        "outputPricePerMillion": 25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 2,
+          "max": 13
+        },
+        "avgScore": {
+          "value": 0.08358889262834791,
+          "ci": 0.01956365013017325,
+          "pipelines": 5
+        },
+        "sessions": 12243,
+        "observations": 1285902,
+        "signalScores": {
+          "task_outcome_explicit": 0.016645658602212787,
+          "praise_complaint": 0.17970737513757196,
+          "steerability": 0.14381143985326889,
+          "bash_recovery_steps": 0.0767753228173953,
+          "tool_hallucination": 0.0010046667312906266
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.047639890972223806,
+          "praise_complaint": 0.06579372180586068,
+          "steerability": 0.034647792395575056,
+          "bash_recovery_steps": 0.01750343649461232,
+          "tool_hallucination": 0.003396076710887987
+        }
+      },
+      {
+        "rank": 8,
+        "contenderName": "contenders/kivine-wxzc-agent",
+        "model": "Kimi K3 (Max)",
+        "modelOrganization": "Moonshot",
+        "license": "Kimi K3 license",
+        "provider": null,
+        "modelUrl": "https://platform.kimi.ai/docs/guide/kimi-k3-quickstart",
+        "inputPricePerMillion": 3,
+        "outputPricePerMillion": 15,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 6,
+          "max": 15
+        },
+        "avgScore": {
+          "value": 0.06898719207978464,
+          "ci": 0.009394176343001215,
+          "pipelines": 5
+        },
+        "sessions": 35405,
+        "observations": 5254339,
+        "signalScores": {
+          "task_outcome_explicit": 0.1349213389336399,
+          "praise_complaint": 0.13458447030559817,
+          "steerability": 0.027767895809835297,
+          "bash_recovery_steps": 0.04392091307860224,
+          "tool_hallucination": 0.003741342271247561
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.0224583408810951,
+          "praise_complaint": 0.03128676471591252,
+          "steerability": 0.01747376370757763,
+          "bash_recovery_steps": 0.0067890752952435435,
+          "tool_hallucination": 0.00041299517998381907
+        }
+      },
+      {
+        "rank": 9,
+        "contenderName": "contenders/claude-sonnet-5-agent",
+        "model": "Claude Sonnet 5 (High)",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-sonnet-5",
+        "inputPricePerMillion": 2,
+        "outputPricePerMillion": 10,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 4,
+          "max": 22
+        },
+        "avgScore": {
+          "value": 0.06524854059355228,
+          "ci": 0.025212466962185928,
+          "pipelines": 5
+        },
+        "sessions": 9462,
+        "observations": 1897847,
+        "signalScores": {
+          "task_outcome_explicit": 0.07968296079734394,
+          "praise_complaint": 0.10114536588348122,
+          "steerability": 0.06809470387790145,
+          "bash_recovery_steps": 0.075285276758708,
+          "tool_hallucination": 0.0020343956503268146
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.05736417403432298,
+          "praise_complaint": 0.0856840884825722,
+          "steerability": 0.0535928773234388,
+          "bash_recovery_steps": 0.012873102745181025,
+          "tool_hallucination": 0.001164714990887193
+        }
+      },
+      {
+        "rank": 10,
+        "contenderName": "contenders/phoenix-qcs2-agent",
+        "model": "Hy4 preview",
+        "modelOrganization": "Tencent",
+        "license": "Apache 2.0",
+        "provider": null,
+        "modelUrl": "https://hy.tencent.ai/research/hy4-preview",
+        "inputPricePerMillion": 0.834,
+        "outputPricePerMillion": 2.501,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 6,
+          "max": 17
+        },
+        "avgScore": {
+          "value": 0.06048215748478322,
+          "ci": 0.015349256215813522,
+          "pipelines": 5
+        },
+        "sessions": 10061,
+        "observations": 1244058,
+        "signalScores": {
+          "task_outcome_explicit": 0.13094966519990536,
+          "praise_complaint": 0.11124918024422636,
+          "steerability": -0.022991519113985587,
+          "bash_recovery_steps": 0.08035494456703729,
+          "tool_hallucination": 0.0028485165267326806
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.033323313422970846,
+          "praise_complaint": 0.05524944776485585,
+          "steerability": 0.03056541308917924,
+          "bash_recovery_steps": 0.007985826045582081,
+          "tool_hallucination": 0.0007495201269224145
+        }
+      },
+      {
+        "rank": 11,
+        "contenderName": "contenders/glm-5.2-agent",
+        "model": "GLM 5.2 (Max)",
+        "modelOrganization": "Z.ai",
+        "license": "MIT",
+        "provider": "SiliconFlow",
+        "modelUrl": "https://huggingface.co/zai-org/GLM-5.2",
+        "inputPricePerMillion": 1.4,
+        "outputPricePerMillion": 4.4,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 6,
+          "max": 17
+        },
+        "avgScore": {
+          "value": 0.05806210585278716,
+          "ci": 0.009855066252741573,
+          "pipelines": 5
+        },
+        "sessions": 24542,
+        "observations": 2891936,
+        "signalScores": {
+          "task_outcome_explicit": 0.11286479627798773,
+          "praise_complaint": 0.12757442481036807,
+          "steerability": 0.04506587068208351,
+          "bash_recovery_steps": 0.0010640952214602262,
+          "tool_hallucination": 0.0037413422720362632
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.02341149937584882,
+          "praise_complaint": 0.033659915028062676,
+          "steerability": 0.017024834622048804,
+          "bash_recovery_steps": 0.010048375350112526,
+          "tool_hallucination": 0.0004129951799840949
+        }
+      },
+      {
+        "rank": 12,
+        "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+        "model": "DeepSeek V4 Pro (High) (0813)",
+        "modelOrganization": "DeepSeek",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://api-docs.deepseek.com/updates/#date-2026-08-13",
+        "inputPricePerMillion": null,
+        "outputPricePerMillion": null,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 8,
+          "max": 22
+        },
+        "avgScore": {
+          "value": 0.050701610364037655,
+          "ci": 0.011908263966671884,
+          "pipelines": 5
+        },
+        "sessions": 15972,
+        "observations": 2498015,
+        "signalScores": {
+          "task_outcome_explicit": 0.10527063224157829,
+          "praise_complaint": 0.0888580601775536,
+          "steerability": 0.003910335330360282,
+          "bash_recovery_steps": 0.05190362818760974,
+          "tool_hallucination": 0.003565395883086353
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.027887991956099117,
+          "praise_complaint": 0.039852128850030914,
+          "steerability": 0.023208504729800145,
+          "bash_recovery_steps": 0.008803878232269705,
+          "tool_hallucination": 0.0004768401499346915
+        }
+      },
+      {
+        "rank": 13,
+        "contenderName": "contenders/gpt-5.5-xhigh-agent",
+        "model": "GPT 5.5 (xHigh)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/introducing-gpt-5-5/",
+        "inputPricePerMillion": 5,
+        "outputPricePerMillion": 30,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 7,
+          "max": 22
+        },
+        "avgScore": {
+          "value": 0.04946888063941161,
+          "ci": 0.014793595879459255,
+          "pipelines": 5
+        },
+        "sessions": 16412,
+        "observations": 1345866,
+        "signalScores": {
+          "task_outcome_explicit": -0.006823117424820779,
+          "praise_complaint": 0.07803226040032574,
+          "steerability": 0.08710635166276343,
+          "bash_recovery_steps": 0.08532134375390554,
+          "tool_hallucination": 0.0037075648048841003
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03994314879610775,
+          "praise_complaint": 0.04697290563971657,
+          "steerability": 0.026833258393782176,
+          "bash_recovery_steps": 0.014795554120321533,
+          "tool_hallucination": 0.0004180222406909562
+        }
+      },
+      {
+        "rank": 14,
+        "contenderName": "contenders/muse-spark-1-3-max-agent",
+        "model": "Muse Spark 1.3 (Max)",
+        "modelOrganization": "Meta",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://developer.meta.com/ai/models/muse-spark/",
+        "inputPricePerMillion": 1.25,
+        "outputPricePerMillion": 4.25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 8,
+          "max": 22
+        },
+        "avgScore": {
+          "value": 0.045913245430281614,
+          "ci": 0.014070835622745852,
+          "pipelines": 5
+        },
+        "sessions": 8621,
+        "observations": 1054040,
+        "signalScores": {
+          "task_outcome_explicit": 0.08673654419421484,
+          "praise_complaint": 0.06753298011149178,
+          "steerability": 0.010330966065515312,
+          "bash_recovery_steps": 0.06122439450960648,
+          "tool_hallucination": 0.0037413422705796506
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.035027073518683366,
+          "praise_complaint": 0.04428895829213192,
+          "steerability": 0.029404940893851664,
+          "bash_recovery_steps": 0.011779913791730101,
+          "tool_hallucination": 0.00041299517998366684
+        }
+      },
+      {
+        "rank": 15,
+        "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+        "model": "Deepseek V4.1 Flash (Max)",
+        "modelOrganization": "DeepSeek",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://www.deepseek.com/en/news/deepseek-v4-1-flash/",
+        "inputPricePerMillion": 0.3,
+        "outputPricePerMillion": 1.2,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 6,
+          "max": 26
+        },
+        "avgScore": {
+          "value": 0.04344654095765902,
+          "ci": 0.024420020278574064,
+          "pipelines": 5
+        },
+        "sessions": 3193,
+        "observations": 588752,
+        "signalScores": {
+          "task_outcome_explicit": 0.11348369415465809,
+          "praise_complaint": 0.01889205060758581,
+          "steerability": 0.0012729281351824828,
+          "bash_recovery_steps": 0.0817122626717044,
+          "tool_hallucination": 0.001871769219164321
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.06169343984203729,
+          "praise_complaint": 0.07505627978257225,
+          "steerability": 0.06225743087677679,
+          "bash_recovery_steps": 0.01212271328922647,
+          "tool_hallucination": 0.0014548357436388448
+        }
+      },
+      {
+        "rank": 16,
+        "contenderName": "contenders/grok-4.5-agent",
+        "model": "Grok 4.5",
+        "modelOrganization": "SpaceXAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://docs.x.ai/developers/models/grok-4.5",
+        "inputPricePerMillion": 2,
+        "outputPricePerMillion": 6,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 9,
+          "max": 23
+        },
+        "avgScore": {
+          "value": 0.039892806060426556,
+          "ci": 0.015550757931531796,
+          "pipelines": 5
+        },
+        "sessions": 12458,
+        "observations": 930898,
+        "signalScores": {
+          "task_outcome_explicit": 0.05347024754630059,
+          "praise_complaint": 0.012872387573279909,
+          "steerability": 0.07849066267645943,
+          "bash_recovery_steps": 0.05088939023555583,
+          "tool_hallucination": 0.003741342270537018
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03989714419089005,
+          "praise_complaint": 0.05027767889695764,
+          "steerability": 0.029798207185627187,
+          "bash_recovery_steps": 0.014813571227397779,
+          "tool_hallucination": 0.00041299517998367487
+        }
+      },
+      {
+        "rank": 17,
+        "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+        "model": "Grok 4.6 (xHigh)",
+        "modelOrganization": "SpaceXAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://docs.x.ai/developers/models/grok-4.6",
+        "inputPricePerMillion": null,
+        "outputPricePerMillion": null,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 9,
+          "max": 25
+        },
+        "avgScore": {
+          "value": 0.03482047704027894,
+          "ci": 0.015329007293732898,
+          "pipelines": 5
+        },
+        "sessions": 7827,
+        "observations": 1349136,
+        "signalScores": {
+          "task_outcome_explicit": 0.022557326969738112,
+          "praise_complaint": 0.02817289582857796,
+          "steerability": 0.06263407003991667,
+          "bash_recovery_steps": 0.05699675009239047,
+          "tool_hallucination": 0.003741342270771497
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04257537010390458,
+          "praise_complaint": 0.04639653055440371,
+          "steerability": 0.028330088604665196,
+          "bash_recovery_steps": 0.01402698972716315,
+          "tool_hallucination": 0.0004129951799837514
+        }
+      },
+      {
+        "rank": 18,
+        "contenderName": "contenders/glm-5.3-agent",
+        "model": "GLM 5.3 (Max)",
+        "modelOrganization": "Z.ai",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://z.ai/blog/glm-5.3",
+        "inputPricePerMillion": 1.4,
+        "outputPricePerMillion": 4.4,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 11,
+          "max": 23
+        },
+        "avgScore": {
+          "value": 0.03393286325930918,
+          "ci": 0.008648816550459378,
+          "pipelines": 5
+        },
+        "sessions": 26113,
+        "observations": 4007819,
+        "signalScores": {
+          "task_outcome_explicit": 0.11140551984130154,
+          "praise_complaint": 0.07293685636116509,
+          "steerability": 0.0059343055390702615,
+          "bash_recovery_steps": -0.024353707716913586,
+          "tool_hallucination": 0.0037413422719225764
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.02210033371412573,
+          "praise_complaint": 0.02804516660411198,
+          "steerability": 0.015227091560772094,
+          "bash_recovery_steps": 0.007952566914305001,
+          "tool_hallucination": 0.0004129951799839544
+        }
+      },
+      {
+        "rank": 19,
+        "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+        "model": "Deepseek V4 Flash (High) (20260731)",
+        "modelOrganization": "DeepSeek",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://api-docs.deepseek.com/updates/#date-2026-07-31",
+        "inputPricePerMillion": null,
+        "outputPricePerMillion": null,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 11,
+          "max": 25
+        },
+        "avgScore": {
+          "value": 0.031848620392395145,
+          "ci": 0.01009477754733816,
+          "pipelines": 5
+        },
+        "sessions": 20670,
+        "observations": 3978952,
+        "signalScores": {
+          "task_outcome_explicit": 0.09728036401838025,
+          "praise_complaint": 0.04672356130868027,
+          "steerability": -0.0008083642918034761,
+          "bash_recovery_steps": 0.012550257059251058,
+          "tool_hallucination": 0.0034972838674676154
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.02516261659520297,
+          "praise_complaint": 0.03345773281761355,
+          "steerability": 0.01908863279638849,
+          "bash_recovery_steps": 0.008145259605388637,
+          "tool_hallucination": 0.00047535930317480694
+        }
+      },
+      {
+        "rank": 20,
+        "contenderName": "contenders/paisley-n9x0",
+        "model": "Qwen3.8 Max",
+        "modelOrganization": "Alibaba",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://qwen.ai/blog?id=qwen3.8",
+        "inputPricePerMillion": 2,
+        "outputPricePerMillion": 6,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 11,
+          "max": 25
+        },
+        "avgScore": {
+          "value": 0.03184631768073591,
+          "ci": 0.012577499104550902,
+          "pipelines": 5
+        },
+        "sessions": 9724,
+        "observations": 1352306,
+        "signalScores": {
+          "task_outcome_explicit": 0.08675982251290992,
+          "praise_complaint": 0.027682379506897337,
+          "steerability": 0.022856269301987697,
+          "bash_recovery_steps": 0.031617139766679125,
+          "tool_hallucination": -0.009684022684794513
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03136471933415136,
+          "praise_complaint": 0.04045688967753225,
+          "steerability": 0.024520314064493398,
+          "bash_recovery_steps": 0.01180764676729739,
+          "tool_hallucination": 0.005264819241816987
+        }
+      },
+      {
+        "rank": 21,
+        "contenderName": "contenders/gpt-5.5-agent",
+        "model": "GPT 5.5",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/introducing-gpt-5-5/",
+        "inputPricePerMillion": 5,
+        "outputPricePerMillion": 30,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 11,
+          "max": 27
+        },
+        "avgScore": {
+          "value": 0.028998650283695606,
+          "ci": 0.012783192358034708,
+          "pipelines": 5
+        },
+        "sessions": 21942,
+        "observations": 1073092,
+        "signalScores": {
+          "task_outcome_explicit": -0.015543131948256073,
+          "praise_complaint": 0.04514022777078597,
+          "steerability": 0.0628602352047109,
+          "bash_recovery_steps": 0.048794578120792576,
+          "tool_hallucination": 0.0037413422704446475
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03471483882920112,
+          "praise_complaint": 0.03929170777554532,
+          "steerability": 0.02239950889330443,
+          "bash_recovery_steps": 0.014538527379517604,
+          "tool_hallucination": 0.0004129951799836454
+        }
+      },
+      {
+        "rank": 22,
+        "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+        "model": "GPT 5.6 Terra (xHigh)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/gpt-5-6/",
+        "inputPricePerMillion": 2,
+        "outputPricePerMillion": 12,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 11,
+          "max": 28
+        },
+        "avgScore": {
+          "value": 0.025416580191651442,
+          "ci": 0.016501290529359783,
+          "pipelines": 5
+        },
+        "sessions": 6474,
+        "observations": 666790,
+        "signalScores": {
+          "task_outcome_explicit": -0.031019515078314686,
+          "praise_complaint": 0.02900887192394641,
+          "steerability": 0.0975688590513159,
+          "bash_recovery_steps": 0.02778334279089334,
+          "tool_hallucination": 0.003741342270416226
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04609861357007308,
+          "praise_complaint": 0.05089136110649471,
+          "steerability": 0.030208608959698575,
+          "bash_recovery_steps": 0.015171685703086357,
+          "tool_hallucination": 0.0004129951799836378
+        }
+      },
+      {
+        "rank": 23,
+        "contenderName": "contenders/farris-ees5-agent",
+        "model": "Qwen3.8 Flash Next",
+        "modelOrganization": "Alibaba",
+        "license": "qwen-community-1.0",
+        "provider": null,
+        "modelUrl": "https://qwen.ai/blog?id=qwen3.8-flash-next",
+        "inputPricePerMillion": 0.16,
+        "outputPricePerMillion": 0.47,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 15,
+          "max": 28
+        },
+        "avgScore": {
+          "value": 0.015358592603417848,
+          "ci": 0.012529941481096284,
+          "pipelines": 5
+        },
+        "sessions": 16537,
+        "observations": 3138982,
+        "signalScores": {
+          "task_outcome_explicit": 0.11834740763559748,
+          "praise_complaint": -0.0071590900270901425,
+          "steerability": -0.026224303381972153,
+          "bash_recovery_steps": 0.0021134940732197016,
+          "tool_hallucination": -0.010284545282665647
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.029983555520613603,
+          "praise_complaint": 0.04062020549506696,
+          "steerability": 0.02598385475264458,
+          "bash_recovery_steps": 0.0067217657382711744,
+          "tool_hallucination": 0.0015542259960266598
+        }
+      },
+      {
+        "rank": 24,
+        "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+        "model": "GPT 5.4 (High)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://platform.openai.com/docs/models/gpt-5.4",
+        "inputPricePerMillion": 2.5,
+        "outputPricePerMillion": 15,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 17,
+          "max": 28
+        },
+        "avgScore": {
+          "value": 0.010655700077673958,
+          "ci": 0.012870376833138363,
+          "pipelines": 5
+        },
+        "sessions": 21237,
+        "observations": 1894945,
+        "signalScores": {
+          "task_outcome_explicit": -0.018691811153066284,
+          "praise_complaint": 0.001926548688117924,
+          "steerability": 0.03313914367571402,
+          "bash_recovery_steps": 0.03316327690721632,
+          "tool_hallucination": 0.003741342270387804
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.036470351009729514,
+          "praise_complaint": 0.03915440005374902,
+          "steerability": 0.023982997557450106,
+          "bash_recovery_steps": 0.012356944949667078,
+          "tool_hallucination": 0.0004129951799836289
+        }
+      },
+      {
+        "rank": 25,
+        "contenderName": "contenders/glm-5.3-flash-agent",
+        "model": "GLM 5.3 Flash",
+        "modelOrganization": "Z.ai",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://z.ai/blog/glm-5.3",
+        "inputPricePerMillion": 0.075,
+        "outputPricePerMillion": 0.25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 20,
+          "max": 28
+        },
+        "avgScore": {
+          "value": 0.009767592097213711,
+          "ci": 0.009488346454464391,
+          "pipelines": 5
+        },
+        "sessions": 14903,
+        "observations": 2458382,
+        "signalScores": {
+          "task_outcome_explicit": 0.11747159110632754,
+          "praise_complaint": -0.007437655650160968,
+          "steerability": -0.009944309624390218,
+          "bash_recovery_steps": -0.05499300761626613,
+          "tool_hallucination": 0.0037413422705583343
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.024502278131932648,
+          "praise_complaint": 0.027581020694629005,
+          "steerability": 0.019147015924701496,
+          "bash_recovery_steps": 0.009217056760025238,
+          "tool_hallucination": 0.00041299517998367053
+        }
+      },
+      {
+        "rank": 26,
+        "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+        "model": "GPT 5.6 Luna (xHigh)",
+        "modelOrganization": "OpenAI",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://openai.com/index/gpt-5-6/",
+        "inputPricePerMillion": 0.2,
+        "outputPricePerMillion": 1.2,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 17,
+          "max": 28
+        },
+        "avgScore": {
+          "value": 0.009673965088941873,
+          "ci": 0.013453344489108569,
+          "pipelines": 5
+        },
+        "sessions": 9005,
+        "observations": 1170943,
+        "signalScores": {
+          "task_outcome_explicit": -0.002458186852264954,
+          "praise_complaint": 0.000790260765359152,
+          "steerability": 0.018597450418538553,
+          "bash_recovery_steps": 0.02769895884196405,
+          "tool_hallucination": 0.0037413422711125577
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.035495950467702854,
+          "praise_complaint": 0.040748699200251544,
+          "steerability": 0.025770674927340788,
+          "bash_recovery_steps": 0.012647947225979957,
+          "tool_hallucination": 0.00041299517998385636
+        }
+      },
+      {
+        "rank": 27,
+        "contenderName": "contenders/qwen3.8-27b-code-agent",
+        "model": "Qwen 3.8 27B",
+        "modelOrganization": "Alibaba",
+        "license": "Apache 2.0",
+        "provider": null,
+        "modelUrl": "https://huggingface.co/Qwen/Qwen3.8-27B",
+        "inputPricePerMillion": 0.4,
+        "outputPricePerMillion": 3,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 22,
+          "max": 29
+        },
+        "avgScore": {
+          "value": 0.005186033224870762,
+          "ci": 0.010833611560879433,
+          "pipelines": 5
+        },
+        "sessions": 12455,
+        "observations": 2365765,
+        "signalScores": {
+          "task_outcome_explicit": 0.07665612084228757,
+          "praise_complaint": 0.0075132490823883735,
+          "steerability": -0.012864294063846843,
+          "bash_recovery_steps": -0.0441242150353478,
+          "tool_hallucination": -0.001250694701127486
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.028910981750735157,
+          "praise_complaint": 0.033645373020837026,
+          "steerability": 0.020301682716340072,
+          "bash_recovery_steps": 0.00959956514086454,
+          "tool_hallucination": 0.001344881562316966
+        }
+      },
+      {
+        "rank": 28,
+        "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+        "model": "DeepSeek V4 Pro",
+        "modelOrganization": "DeepSeek",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://api-docs.deepseek.com/news/news260424",
+        "inputPricePerMillion": 1.32,
+        "outputPricePerMillion": 3.96,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 21,
+          "max": 29
+        },
+        "avgScore": {
+          "value": 0.002640109579743494,
+          "ci": 0.014497931503946591,
+          "pipelines": 5
+        },
+        "sessions": 11477,
+        "observations": 1070927,
+        "signalScores": {
+          "task_outcome_explicit": 0.01844147685753006,
+          "praise_complaint": -0.03688820744568533,
+          "steerability": -0.002498682778335898,
+          "bash_recovery_steps": 0.03759121733237536,
+          "tool_hallucination": -0.0034452560671667243
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.040006866749947474,
+          "praise_complaint": 0.04648900338785768,
+          "steerability": 0.02658624760321255,
+          "bash_recovery_steps": 0.01175299970476592,
+          "tool_hallucination": 0.002082287215584752
+        }
+      },
+      {
+        "rank": 29,
+        "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+        "model": "Muse Spark 1.2 (xHigh)",
+        "modelOrganization": "Meta",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://developer.meta.com/ai/models/muse-spark/",
+        "inputPricePerMillion": 1.25,
+        "outputPricePerMillion": 4.25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 27,
+          "max": 32
+        },
+        "avgScore": {
+          "value": -0.01980988549965575,
+          "ci": 0.015393959850838256,
+          "pipelines": 5
+        },
+        "sessions": 10509,
+        "observations": 719474,
+        "signalScores": {
+          "task_outcome_explicit": -0.02351030985636704,
+          "praise_complaint": -0.06553262516504477,
+          "steerability": -0.09071914783084326,
+          "bash_recovery_steps": 0.07697131308362404,
+          "tool_hallucination": 0.003741342270352277
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04198373007407008,
+          "praise_complaint": 0.04406829993382119,
+          "steerability": 0.031224428770507615,
+          "bash_recovery_steps": 0.0158393578372186,
+          "tool_hallucination": 0.0004129951799836252
+        }
+      },
+      {
+        "rank": 30,
+        "contenderName": "contenders/claude-sonnet-4-6-agent",
+        "model": "Claude Sonnet 4.6",
+        "modelOrganization": "Anthropic",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://www.anthropic.com/news/claude-sonnet-4-6",
+        "inputPricePerMillion": 1.5,
+        "outputPricePerMillion": 7.5,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 29,
+          "max": 36
+        },
+        "avgScore": {
+          "value": -0.03319134389625165,
+          "ci": 0.017913913585723452,
+          "pipelines": 5
+        },
+        "sessions": 8893,
+        "observations": 789258,
+        "signalScores": {
+          "task_outcome_explicit": -0.09851987531743311,
+          "praise_complaint": -0.07395843121125156,
+          "steerability": -0.04919519497352609,
+          "bash_recovery_steps": 0.05328037033707855,
+          "tool_hallucination": 0.0024364116838739847
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.054083207990796356,
+          "praise_complaint": 0.04754626436128223,
+          "steerability": 0.033094004798324916,
+          "bash_recovery_steps": 0.02343311828974666,
+          "tool_hallucination": 0.0020683136502020836
+        }
+      },
+      {
+        "rank": 31,
+        "contenderName": "contenders/hy3-tencent-cloud-agent",
+        "model": "Hy3",
+        "modelOrganization": "Tencent",
+        "license": "Apache 2.0",
+        "provider": null,
+        "modelUrl": "https://huggingface.co/tencent/Hy3",
+        "inputPricePerMillion": 0.0825,
+        "outputPricePerMillion": 0.33,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 29,
+          "max": 36
+        },
+        "avgScore": {
+          "value": -0.03458925318933258,
+          "ci": 0.019550901114637198,
+          "pipelines": 5
+        },
+        "sessions": 8827,
+        "observations": 506123,
+        "signalScores": {
+          "task_outcome_explicit": -0.01628200528605639,
+          "praise_complaint": -0.03496506168870073,
+          "steerability": -0.027760828686777345,
+          "bash_recovery_steps": -0.0615104652962426,
+          "tool_hallucination": -0.032427904988885814
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04831368069510994,
+          "praise_complaint": 0.058138971108076004,
+          "steerability": 0.03726225475638767,
+          "bash_recovery_steps": 0.040554109849527814,
+          "tool_hallucination": 0.011170099244331518
+        }
+      },
+      {
+        "rank": 32,
+        "contenderName": "contenders/qwen3.7-max-agent",
+        "model": "Qwen3.7 Max",
+        "modelOrganization": "Alibaba",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": null,
+        "inputPricePerMillion": null,
+        "outputPricePerMillion": null,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 29,
+          "max": 36
+        },
+        "avgScore": {
+          "value": -0.03945272630584572,
+          "ci": 0.01264724795977011,
+          "pipelines": 5
+        },
+        "sessions": 12719,
+        "observations": 1063044,
+        "signalScores": {
+          "task_outcome_explicit": -0.04627904883181866,
+          "praise_complaint": -0.10465464033469174,
+          "steerability": -0.03993859525521476,
+          "bash_recovery_steps": -0.005418843087661607,
+          "tool_hallucination": -0.0009725040198418355
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03804769017540817,
+          "praise_complaint": 0.031764313040780146,
+          "steerability": 0.022292895942583227,
+          "bash_recovery_steps": 0.02196819186148548,
+          "tool_hallucination": 0.002294943040799936
+        }
+      },
+      {
+        "rank": 33,
+        "contenderName": "contenders/super-nova-ext-3tam-agent",
+        "model": "Muse Spark 1.1",
+        "modelOrganization": "Meta",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/",
+        "inputPricePerMillion": 1.25,
+        "outputPricePerMillion": 4.25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 30,
+          "max": 36
+        },
+        "avgScore": {
+          "value": -0.052210057799692934,
+          "ci": 0.008465436161013098,
+          "pipelines": 5
+        },
+        "sessions": 35272,
+        "observations": 2286283,
+        "signalScores": {
+          "task_outcome_explicit": -0.03147563155150279,
+          "praise_complaint": -0.11505710211899856,
+          "steerability": -0.08550380255951023,
+          "bash_recovery_steps": -0.03268085309745694,
+          "tool_hallucination": 0.0036671003290038584
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.0243239602917249,
+          "praise_complaint": 0.02113969266541938,
+          "steerability": 0.015942413816367684,
+          "bash_recovery_steps": 0.014608823340570789,
+          "tool_hallucination": 0.00041742168755141106
+        }
+      },
+      {
+        "rank": 34,
+        "contenderName": "contenders/minimax-m3-first-party",
+        "model": "Minimax M3",
+        "modelOrganization": "MiniMax",
+        "license": "MiniMax Community License",
+        "provider": null,
+        "modelUrl": "https://www.minimax.io/models/text/m3",
+        "inputPricePerMillion": 0.3,
+        "outputPricePerMillion": 1.2,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 30,
+          "max": 38
+        },
+        "avgScore": {
+          "value": -0.0538164978969665,
+          "ci": 0.013663122595324963,
+          "pipelines": 5
+        },
+        "sessions": 12675,
+        "observations": 1713849,
+        "signalScores": {
+          "task_outcome_explicit": -0.10613145826108905,
+          "praise_complaint": -0.10335847333590054,
+          "steerability": -0.08033668337932706,
+          "bash_recovery_steps": 0.020713314616942702,
+          "tool_hallucination": 3.081087454148701e-05
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04150372135258007,
+          "praise_complaint": 0.0366594954861314,
+          "steerability": 0.02613385901424152,
+          "bash_recovery_steps": 0.01157348656437713,
+          "tool_hallucination": 0.0015793010850802514
+        }
+      },
+      {
+        "rank": 35,
+        "contenderName": "contenders/mimo-v2.5-pro-agent",
+        "model": "Mimo V2.5 Pro",
+        "modelOrganization": "Xiaomi",
+        "license": "MIT",
+        "provider": null,
+        "modelUrl": "https://mimo.xiaomi.com/mimo-v2-5-pro/",
+        "inputPricePerMillion": 0.435,
+        "outputPricePerMillion": 0.87,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 30,
+          "max": 39
+        },
+        "avgScore": {
+          "value": -0.05750802996889661,
+          "ci": 0.012901990928575784,
+          "pipelines": 5
+        },
+        "sessions": 13013,
+        "observations": 1133022,
+        "signalScores": {
+          "task_outcome_explicit": -0.07697742903710525,
+          "praise_complaint": -0.10164802975824339,
+          "steerability": -0.04542740312336177,
+          "bash_recovery_steps": -0.055293571002073216,
+          "tool_hallucination": -0.008193716923699412
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.03943801275098893,
+          "praise_complaint": 0.033419761159451104,
+          "steerability": 0.023319465910388457,
+          "bash_recovery_steps": 0.02402449622458884,
+          "tool_hallucination": 0.003616890806369651
+        }
+      },
+      {
+        "rank": 36,
+        "contenderName": "contenders/qwen3.7-plus-agent",
+        "model": "Qwen3.7 Plus",
+        "modelOrganization": "Alibaba",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://qwen.ai/blog?id=qwen3.7-plus",
+        "inputPricePerMillion": 0.32,
+        "outputPricePerMillion": 1.28,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 30,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.06652590012260862,
+          "ci": 0.01867306777144767,
+          "pipelines": 5
+        },
+        "sessions": 6992,
+        "observations": 572763,
+        "signalScores": {
+          "task_outcome_explicit": -0.11665785244900262,
+          "praise_complaint": -0.12224355472022785,
+          "steerability": -0.040044968357243804,
+          "bash_recovery_steps": -0.047871311681544126,
+          "tool_hallucination": -0.0058118134050246795
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.055111747027342284,
+          "praise_complaint": 0.045103480215408887,
+          "steerability": 0.03399210874639802,
+          "bash_recovery_steps": 0.03578188436487806,
+          "tool_hallucination": 0.003730087825635999
+        }
+      },
+      {
+        "rank": 37,
+        "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+        "model": "Gemini 3.1 Pro Preview",
+        "modelOrganization": "Google",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
+        "inputPricePerMillion": 1,
+        "outputPricePerMillion": 6,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 34,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.07577158530007674,
+          "ci": 0.014027637408828234,
+          "pipelines": 5
+        },
+        "sessions": 22906,
+        "observations": 1604202,
+        "signalScores": {
+          "task_outcome_explicit": -0.10481041262717028,
+          "praise_complaint": -0.028935938736653677,
+          "steerability": -0.04606047225331572,
+          "bash_recovery_steps": -0.1970742974057611,
+          "tool_hallucination": -0.0019768054774829125
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.04073013829260544,
+          "praise_complaint": 0.037588323435101406,
+          "steerability": 0.022940417597240248,
+          "bash_recovery_steps": 0.023440093297530246,
+          "tool_hallucination": 0.0072223020788213955
+        }
+      },
+      {
+        "rank": 38,
+        "contenderName": "contenders/gemini-3.6-flash-agent",
+        "model": "Gemini 3.6 Flash (High)",
+        "modelOrganization": "Google",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+        "inputPricePerMillion": 0.75,
+        "outputPricePerMillion": 3.75,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 35,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.08365454922415204,
+          "ci": 0.01521870994994734,
+          "pipelines": 5
+        },
+        "sessions": 6763,
+        "observations": 651831,
+        "signalScores": {
+          "task_outcome_explicit": -0.11598012201821928,
+          "praise_complaint": -0.10618532701097716,
+          "steerability": -0.05463062401470467,
+          "bash_recovery_steps": -0.1446640097547487,
+          "tool_hallucination": 0.0031873366778896184
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.046168670600056666,
+          "praise_complaint": 0.03738934058999476,
+          "steerability": 0.02838540314461334,
+          "bash_recovery_steps": 0.025623524141457833,
+          "tool_hallucination": 0.0007646809361917953
+        }
+      },
+      {
+        "rank": 39,
+        "contenderName": "contenders/inkling-small",
+        "model": "Inkling Small",
+        "modelOrganization": "Thinky",
+        "license": "Apache 2.0",
+        "provider": null,
+        "modelUrl": "https://thinkingmachines.ai/news/inkling-small/",
+        "inputPricePerMillion": 0.5,
+        "outputPricePerMillion": 1.2,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 34,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.08554158750083325,
+          "ci": 0.021052360336594217,
+          "pipelines": 5
+        },
+        "sessions": 3803,
+        "observations": 215219,
+        "signalScores": {
+          "task_outcome_explicit": -0.21317750164511162,
+          "praise_complaint": -0.21644258872720035,
+          "steerability": -0.09708471380255221,
+          "bash_recovery_steps": 0.10536462299953309,
+          "tool_hallucination": -0.006367756328835128
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.07535347822395287,
+          "praise_complaint": 0.047214866653184695,
+          "steerability": 0.04706244774922663,
+          "bash_recovery_steps": 0.016471156227007108,
+          "tool_hallucination": 0.006044831577937284
+        }
+      },
+      {
+        "rank": 40,
+        "contenderName": "contenders/inkling-agent",
+        "model": "Inkling",
+        "modelOrganization": "Thinky",
+        "license": "Apache 2.0",
+        "provider": null,
+        "modelUrl": "https://thinkingmachines.ai/news/introducing-inkling/",
+        "inputPricePerMillion": 1,
+        "outputPricePerMillion": 4.05,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 36,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.0943392154013363,
+          "ci": 0.015335159608133836,
+          "pipelines": 5
+        },
+        "sessions": 12977,
+        "observations": 783595,
+        "signalScores": {
+          "task_outcome_explicit": -0.2086907959648726,
+          "praise_complaint": -0.220858450100194,
+          "steerability": -0.11902353681106459,
+          "bash_recovery_steps": 0.07530899923854872,
+          "tool_hallucination": 0.0015677066309010002
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.05397454771612521,
+          "praise_complaint": 0.03179581317925112,
+          "steerability": 0.0330410518370616,
+          "bash_recovery_steps": 0.013944710196507518,
+          "tool_hallucination": 0.0012756841816415191
+        }
+      },
+      {
+        "rank": 41,
+        "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+        "model": "Mistral Medium 3.5",
+        "modelOrganization": "Mistral",
+        "license": "Modified MIT",
+        "provider": null,
+        "modelUrl": "https://docs.mistral.ai/models/model-cards/mistral-medium-3-5-26-04",
+        "inputPricePerMillion": 0.75,
+        "outputPricePerMillion": 3.75,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 36,
+          "max": 41
+        },
+        "avgScore": {
+          "value": -0.10478353654096478,
+          "ci": 0.02119009308982106,
+          "pipelines": 5
+        },
+        "sessions": 3140,
+        "observations": 182780,
+        "signalScores": {
+          "task_outcome_explicit": -0.1599808258892348,
+          "praise_complaint": -0.14473685855676566,
+          "steerability": -0.09820299985837636,
+          "bash_recovery_steps": -0.09987451052774476,
+          "tool_hallucination": -0.021122487872702322
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.06264190627998167,
+          "praise_complaint": 0.054566760499656336,
+          "steerability": 0.0448621981310684,
+          "bash_recovery_steps": 0.030489962717189144,
+          "tool_hallucination": 0.010253556842409146
+        }
+      },
+      {
+        "rank": 42,
+        "contenderName": "contenders/deep-octo-first-party",
+        "model": "Minimax M2.7",
+        "modelOrganization": "MiniMax",
+        "license": "Modified MIT",
+        "provider": null,
+        "modelUrl": "https://www.minimax.io/news/minimax-m27-en",
+        "inputPricePerMillion": 0.3,
+        "outputPricePerMillion": 1.2,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 42,
+          "max": 43
+        },
+        "avgScore": {
+          "value": -0.14864251717379331,
+          "ci": 0.01861847645495754,
+          "pipelines": 5
+        },
+        "sessions": 11882,
+        "observations": 414430,
+        "signalScores": {
+          "task_outcome_explicit": -0.18086347434028704,
+          "praise_complaint": -0.1884967314848367,
+          "steerability": -0.13514022053888597,
+          "bash_recovery_steps": -0.2414459192572811,
+          "tool_hallucination": 0.0027337597523242607
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.055992165144681694,
+          "praise_complaint": 0.041525146084246345,
+          "steerability": 0.03765729978832094,
+          "bash_recovery_steps": 0.039781025776482015,
+          "tool_hallucination": 0.0012883879470917308
+        }
+      },
+      {
+        "rank": 43,
+        "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+        "model": "Gemini 3.5 Flash Lite",
+        "modelOrganization": "Google",
+        "license": "Proprietary",
+        "provider": null,
+        "modelUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+        "inputPricePerMillion": 0.15,
+        "outputPricePerMillion": 1.25,
+        "isPublic": true,
+        "rankSpread": {
+          "min": 42,
+          "max": 43
+        },
+        "avgScore": {
+          "value": -0.1742410758906439,
+          "ci": 0.019666346629687192,
+          "pipelines": 5
+        },
+        "sessions": 7347,
+        "observations": 341647,
+        "signalScores": {
+          "task_outcome_explicit": -0.18549243192207443,
+          "praise_complaint": -0.2128474762290331,
+          "steerability": -0.16973938061612065,
+          "bash_recovery_steps": -0.28283299019387287,
+          "tool_hallucination": -0.0202931004921183
+        },
+        "signalCi": {
+          "task_outcome_explicit": 0.06306448221408656,
+          "praise_complaint": 0.036798113303539104,
+          "steerability": 0.03708194959984884,
+          "bash_recovery_steps": 0.044628060615229226,
+          "tool_hallucination": 0.013196224556892412
+        }
+      }
+    ],
+    "signals": [
+      {
+        "name": "task_outcome_explicit",
+        "displayName": "Confirmed Success",
+        "description": "How often the model gets users to confirm the task is done.",
+        "weight": 1,
+        "observationCount": 410640,
+        "clusterCount": 334343,
+        "ambiguousPenalty": 1,
+        "failurePenalty": 1,
+        "entries": [
+          {
+            "contenderName": "contenders/claude-fable-5.1-max-agent",
+            "model": "Claude Fable 5.1 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.22098988824825538,
+            "ciLower": 0.17126933821979667,
+            "ciUpper": 0.2707104382767141,
+            "rank": 1
+          },
+          {
+            "contenderName": "contenders/gpt-6-astra-max-agent",
+            "model": "GPT 6 Astra (Max)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.21250429791598446,
+            "ciLower": 0.14376674972519607,
+            "ciUpper": 0.28124184610677283,
+            "rank": 2
+          },
+          {
+            "contenderName": "contenders/kivine-wxzc-agent",
+            "model": "Kimi K3 (Max)",
+            "modelOrganization": "Moonshot",
+            "license": "Kimi K3 license",
+            "isPublic": true,
+            "score": 0.1349213389336399,
+            "ciLower": 0.1124629980525448,
+            "ciUpper": 0.157379679814735,
+            "rank": 3
+          },
+          {
+            "contenderName": "contenders/phoenix-qcs2-agent",
+            "model": "Hy4 preview",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.13094966519990536,
+            "ciLower": 0.09762635177693452,
+            "ciUpper": 0.1642729786228762,
+            "rank": 4
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-high-agent",
+            "model": "Claude Opus 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.12936786983629,
+            "ciLower": 0.07762642881337112,
+            "ciUpper": 0.1811093108592089,
+            "rank": 5
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-max-agent",
+            "model": "Claude Opus 5 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.11954870016997632,
+            "ciLower": 0.06161030717687759,
+            "ciUpper": 0.17748709316307504,
+            "rank": 6
+          },
+          {
+            "contenderName": "contenders/farris-ees5-agent",
+            "model": "Qwen3.8 Flash Next",
+            "modelOrganization": "Alibaba",
+            "license": "qwen-community-1.0",
+            "isPublic": true,
+            "score": 0.11834740763559748,
+            "ciLower": 0.08836385211498388,
+            "ciUpper": 0.14833096315621108,
+            "rank": 7
+          },
+          {
+            "contenderName": "contenders/glm-5.3-flash-agent",
+            "model": "GLM 5.3 Flash",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.11747159110632754,
+            "ciLower": 0.0929693129743949,
+            "ciUpper": 0.1419738692382602,
+            "rank": 8
+          },
+          {
+            "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+            "model": "Deepseek V4.1 Flash (Max)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.11348369415465809,
+            "ciLower": 0.05179025431262079,
+            "ciUpper": 0.17517713399669538,
+            "rank": 9
+          },
+          {
+            "contenderName": "contenders/glm-5.2-agent",
+            "model": "GLM 5.2 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.11286479627798773,
+            "ciLower": 0.08945329690213892,
+            "ciUpper": 0.13627629565383656,
+            "rank": 10
+          },
+          {
+            "contenderName": "contenders/glm-5.3-agent",
+            "model": "GLM 5.3 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.11140551984130154,
+            "ciLower": 0.0893051861271758,
+            "ciUpper": 0.13350585355542727,
+            "rank": 11
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+            "model": "DeepSeek V4 Pro (High) (0813)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.10527063224157829,
+            "ciLower": 0.07738264028547917,
+            "ciUpper": 0.1331586241976774,
+            "rank": 12
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+            "model": "Deepseek V4 Flash (High) (20260731)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.09728036401838025,
+            "ciLower": 0.07211774742317728,
+            "ciUpper": 0.12244298061358322,
+            "rank": 13
+          },
+          {
+            "contenderName": "contenders/paisley-n9x0",
+            "model": "Qwen3.8 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.08675982251290992,
+            "ciLower": 0.055395103178758565,
+            "ciUpper": 0.11812454184706128,
+            "rank": 14
+          },
+          {
+            "contenderName": "contenders/muse-spark-1-3-max-agent",
+            "model": "Muse Spark 1.3 (Max)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.08673654419421484,
+            "ciLower": 0.051709470675531465,
+            "ciUpper": 0.1217636177128982,
+            "rank": 15
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-5-agent",
+            "model": "Claude Sonnet 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.07968296079734394,
+            "ciLower": 0.022318786763020966,
+            "ciUpper": 0.13704713483166692,
+            "rank": 16
+          },
+          {
+            "contenderName": "contenders/qwen3.8-27b-code-agent",
+            "model": "Qwen 3.8 27B",
+            "modelOrganization": "Alibaba",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.07665612084228757,
+            "ciLower": 0.04774513909155241,
+            "ciUpper": 0.10556710259302272,
+            "rank": 17
+          },
+          {
+            "contenderName": "contenders/claude-fable-5-agent",
+            "model": "Claude Fable 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06871329415751182,
+            "ciLower": 0.019466022335736917,
+            "ciUpper": 0.11796056597928672,
+            "rank": 18
+          },
+          {
+            "contenderName": "contenders/grok-4.5-agent",
+            "model": "Grok 4.5",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.05347024754630059,
+            "ciLower": 0.013573103355410537,
+            "ciUpper": 0.09336739173719064,
+            "rank": 19
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+            "model": "GPT 5.6 Sol (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.03708778100007348,
+            "ciLower": -0.011133605308387785,
+            "ciUpper": 0.08530916730853474,
+            "rank": 20
+          },
+          {
+            "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+            "model": "Grok 4.6 (xHigh)",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.022557326969738112,
+            "ciLower": -0.02001804313416647,
+            "ciUpper": 0.06513269707364269,
+            "rank": 21
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+            "model": "DeepSeek V4 Pro",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.01844147685753006,
+            "ciLower": -0.021565389892417415,
+            "ciUpper": 0.05844834360747753,
+            "rank": 22
+          },
+          {
+            "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+            "model": "Claude Opus 4.8 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.016645658602212787,
+            "ciLower": -0.03099423237001102,
+            "ciUpper": 0.06428554957443659,
+            "rank": 23
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+            "model": "GPT 5.6 Luna (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.002458186852264954,
+            "ciLower": -0.03795413731996781,
+            "ciUpper": 0.0330377636154379,
+            "rank": 24
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-xhigh-agent",
+            "model": "GPT 5.5 (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.006823117424820779,
+            "ciLower": -0.046766266220928526,
+            "ciUpper": 0.03312003137128697,
+            "rank": 25
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-agent",
+            "model": "GPT 5.5",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.015543131948256073,
+            "ciLower": -0.050257970777457195,
+            "ciUpper": 0.01917170688094505,
+            "rank": 26
+          },
+          {
+            "contenderName": "contenders/hy3-tencent-cloud-agent",
+            "model": "Hy3",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.01628200528605639,
+            "ciLower": -0.06459568598116633,
+            "ciUpper": 0.032031675409053544,
+            "rank": 27
+          },
+          {
+            "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+            "model": "GPT 5.4 (High)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.018691811153066284,
+            "ciLower": -0.0551621621627958,
+            "ciUpper": 0.01777853985666323,
+            "rank": 28
+          },
+          {
+            "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+            "model": "Muse Spark 1.2 (xHigh)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.02351030985636704,
+            "ciLower": -0.06549403993043712,
+            "ciUpper": 0.01847342021770304,
+            "rank": 29
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+            "model": "GPT 5.6 Terra (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.031019515078314686,
+            "ciLower": -0.07711812864838777,
+            "ciUpper": 0.01507909849175839,
+            "rank": 30
+          },
+          {
+            "contenderName": "contenders/super-nova-ext-3tam-agent",
+            "model": "Muse Spark 1.1",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.03147563155150279,
+            "ciLower": -0.05579959184322769,
+            "ciUpper": -0.0071516712597778885,
+            "rank": 31
+          },
+          {
+            "contenderName": "contenders/qwen3.7-max-agent",
+            "model": "Qwen3.7 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.04627904883181866,
+            "ciLower": -0.08432673900722683,
+            "ciUpper": -0.00823135865641049,
+            "rank": 32
+          },
+          {
+            "contenderName": "contenders/mimo-v2.5-pro-agent",
+            "model": "Mimo V2.5 Pro",
+            "modelOrganization": "Xiaomi",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.07697742903710525,
+            "ciLower": -0.11641544178809418,
+            "ciUpper": -0.03753941628611632,
+            "rank": 33
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-4-6-agent",
+            "model": "Claude Sonnet 4.6",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.09851987531743311,
+            "ciLower": -0.15260308330822947,
+            "ciUpper": -0.04443666732663676,
+            "rank": 34
+          },
+          {
+            "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+            "model": "Gemini 3.1 Pro Preview",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.10481041262717028,
+            "ciLower": -0.14554055091977572,
+            "ciUpper": -0.06408027433456484,
+            "rank": 35
+          },
+          {
+            "contenderName": "contenders/minimax-m3-first-party",
+            "model": "Minimax M3",
+            "modelOrganization": "MiniMax",
+            "license": "MiniMax Community License",
+            "isPublic": true,
+            "score": -0.10613145826108905,
+            "ciLower": -0.14763517961366912,
+            "ciUpper": -0.06462773690850898,
+            "rank": 36
+          },
+          {
+            "contenderName": "contenders/gemini-3.6-flash-agent",
+            "model": "Gemini 3.6 Flash (High)",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.11598012201821928,
+            "ciLower": -0.16214879261827594,
+            "ciUpper": -0.06981145141816261,
+            "rank": 37
+          },
+          {
+            "contenderName": "contenders/qwen3.7-plus-agent",
+            "model": "Qwen3.7 Plus",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.11665785244900262,
+            "ciLower": -0.1717695994763449,
+            "ciUpper": -0.061546105421660335,
+            "rank": 38
+          },
+          {
+            "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+            "model": "Mistral Medium 3.5",
+            "modelOrganization": "Mistral",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.1599808258892348,
+            "ciLower": -0.22262273216921646,
+            "ciUpper": -0.09733891960925312,
+            "rank": 39
+          },
+          {
+            "contenderName": "contenders/deep-octo-first-party",
+            "model": "Minimax M2.7",
+            "modelOrganization": "MiniMax",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.18086347434028704,
+            "ciLower": -0.23685563948496874,
+            "ciUpper": -0.12487130919560535,
+            "rank": 40
+          },
+          {
+            "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+            "model": "Gemini 3.5 Flash Lite",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.18549243192207443,
+            "ciLower": -0.248556914136161,
+            "ciUpper": -0.12242794970798786,
+            "rank": 41
+          },
+          {
+            "contenderName": "contenders/inkling-agent",
+            "model": "Inkling",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.2086907959648726,
+            "ciLower": -0.2626653436809978,
+            "ciUpper": -0.15471624824874738,
+            "rank": 42
+          },
+          {
+            "contenderName": "contenders/inkling-small",
+            "model": "Inkling Small",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.21317750164511162,
+            "ciLower": -0.2885309798690645,
+            "ciUpper": -0.13782402342115876,
+            "rank": 43
+          }
+        ]
+      },
+      {
+        "name": "praise_complaint",
+        "displayName": "Praise vs Complaint",
+        "description": "How often the model earns more explicitly positive responses than negative ones.",
+        "weight": 1,
+        "observationCount": 222227,
+        "clusterCount": 205606,
+        "ambiguousPenalty": 1,
+        "failurePenalty": 1,
+        "entries": [
+          {
+            "contenderName": "contenders/claude-fable-5.1-max-agent",
+            "model": "Claude Fable 5.1 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.3908696425371756,
+            "ciLower": 0.2717627158130064,
+            "ciUpper": 0.5099765692613448,
+            "rank": 1
+          },
+          {
+            "contenderName": "contenders/gpt-6-astra-max-agent",
+            "model": "GPT 6 Astra (Max)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.3598043211484939,
+            "ciLower": 0.21255978490500002,
+            "ciUpper": 0.5070488573919878,
+            "rank": 2
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+            "model": "GPT 5.6 Sol (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.24675534663716037,
+            "ciLower": 0.1756752812981709,
+            "ciUpper": 0.31783541197614984,
+            "rank": 3
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-high-agent",
+            "model": "Claude Opus 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.2013114137190748,
+            "ciLower": 0.11947631750335591,
+            "ciUpper": 0.2831465099347937,
+            "rank": 4
+          },
+          {
+            "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+            "model": "Claude Opus 4.8 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.17970737513757196,
+            "ciLower": 0.11391365333171127,
+            "ciUpper": 0.24550109694343264,
+            "rank": 5
+          },
+          {
+            "contenderName": "contenders/claude-fable-5-agent",
+            "model": "Claude Fable 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.17558222930610956,
+            "ciLower": 0.10954642201732637,
+            "ciUpper": 0.24161803659489275,
+            "rank": 6
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-max-agent",
+            "model": "Claude Opus 5 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.17189356077385043,
+            "ciLower": 0.08430257420560065,
+            "ciUpper": 0.2594845473421002,
+            "rank": 7
+          },
+          {
+            "contenderName": "contenders/kivine-wxzc-agent",
+            "model": "Kimi K3 (Max)",
+            "modelOrganization": "Moonshot",
+            "license": "Kimi K3 license",
+            "isPublic": true,
+            "score": 0.13458447030559817,
+            "ciLower": 0.10329770558968565,
+            "ciUpper": 0.1658712350215107,
+            "rank": 8
+          },
+          {
+            "contenderName": "contenders/glm-5.2-agent",
+            "model": "GLM 5.2 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.12757442481036807,
+            "ciLower": 0.0939145097823054,
+            "ciUpper": 0.16123433983843075,
+            "rank": 9
+          },
+          {
+            "contenderName": "contenders/phoenix-qcs2-agent",
+            "model": "Hy4 preview",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.11124918024422636,
+            "ciLower": 0.05599973247937052,
+            "ciUpper": 0.16649862800908222,
+            "rank": 10
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-5-agent",
+            "model": "Claude Sonnet 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.10114536588348122,
+            "ciLower": 0.015461277400909024,
+            "ciUpper": 0.18682945436605342,
+            "rank": 11
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+            "model": "DeepSeek V4 Pro (High) (0813)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0888580601775536,
+            "ciLower": 0.04900593132752269,
+            "ciUpper": 0.12871018902758452,
+            "rank": 12
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-xhigh-agent",
+            "model": "GPT 5.5 (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.07803226040032574,
+            "ciLower": 0.031059354760609177,
+            "ciUpper": 0.1250051660400423,
+            "rank": 13
+          },
+          {
+            "contenderName": "contenders/glm-5.3-agent",
+            "model": "GLM 5.3 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.07293685636116509,
+            "ciLower": 0.04489168975705311,
+            "ciUpper": 0.10098202296527707,
+            "rank": 14
+          },
+          {
+            "contenderName": "contenders/muse-spark-1-3-max-agent",
+            "model": "Muse Spark 1.3 (Max)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06753298011149178,
+            "ciLower": 0.02324402181935986,
+            "ciUpper": 0.1118219384036237,
+            "rank": 15
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+            "model": "Deepseek V4 Flash (High) (20260731)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.04672356130868027,
+            "ciLower": 0.013265828491066715,
+            "ciUpper": 0.08018129412629382,
+            "rank": 16
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-agent",
+            "model": "GPT 5.5",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.04514022777078597,
+            "ciLower": 0.00584851999524065,
+            "ciUpper": 0.08443193554633129,
+            "rank": 17
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+            "model": "GPT 5.6 Terra (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.02900887192394641,
+            "ciLower": -0.0218824891825483,
+            "ciUpper": 0.07990023303044112,
+            "rank": 18
+          },
+          {
+            "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+            "model": "Grok 4.6 (xHigh)",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.02817289582857796,
+            "ciLower": -0.018223634725825756,
+            "ciUpper": 0.07456942638298167,
+            "rank": 19
+          },
+          {
+            "contenderName": "contenders/paisley-n9x0",
+            "model": "Qwen3.8 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.027682379506897337,
+            "ciLower": -0.012774510170634905,
+            "ciUpper": 0.06813926918442959,
+            "rank": 20
+          },
+          {
+            "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+            "model": "Deepseek V4.1 Flash (Max)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.01889205060758581,
+            "ciLower": -0.05616422917498644,
+            "ciUpper": 0.09394833039015806,
+            "rank": 21
+          },
+          {
+            "contenderName": "contenders/grok-4.5-agent",
+            "model": "Grok 4.5",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.012872387573279909,
+            "ciLower": -0.03740529132367773,
+            "ciUpper": 0.06315006647023755,
+            "rank": 22
+          },
+          {
+            "contenderName": "contenders/qwen3.8-27b-code-agent",
+            "model": "Qwen 3.8 27B",
+            "modelOrganization": "Alibaba",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.0075132490823883735,
+            "ciLower": -0.026132123938448652,
+            "ciUpper": 0.0411586221032254,
+            "rank": 23
+          },
+          {
+            "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+            "model": "GPT 5.4 (High)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.001926548688117924,
+            "ciLower": -0.037227851365631094,
+            "ciUpper": 0.04108094874186694,
+            "rank": 24
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+            "model": "GPT 5.6 Luna (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.000790260765359152,
+            "ciLower": -0.03995843843489239,
+            "ciUpper": 0.041538959965610696,
+            "rank": 25
+          },
+          {
+            "contenderName": "contenders/farris-ees5-agent",
+            "model": "Qwen3.8 Flash Next",
+            "modelOrganization": "Alibaba",
+            "license": "qwen-community-1.0",
+            "isPublic": true,
+            "score": -0.0071590900270901425,
+            "ciLower": -0.0477792955221571,
+            "ciUpper": 0.03346111546797682,
+            "rank": 26
+          },
+          {
+            "contenderName": "contenders/glm-5.3-flash-agent",
+            "model": "GLM 5.3 Flash",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.007437655650160968,
+            "ciLower": -0.03501867634478997,
+            "ciUpper": 0.020143365044468037,
+            "rank": 27
+          },
+          {
+            "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+            "model": "Gemini 3.1 Pro Preview",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.028935938736653677,
+            "ciLower": -0.06652426217175508,
+            "ciUpper": 0.00865238469844773,
+            "rank": 28
+          },
+          {
+            "contenderName": "contenders/hy3-tencent-cloud-agent",
+            "model": "Hy3",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.03496506168870073,
+            "ciLower": -0.09310403279677673,
+            "ciUpper": 0.02317390941937527,
+            "rank": 29
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+            "model": "DeepSeek V4 Pro",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.03688820744568533,
+            "ciLower": -0.083377210833543,
+            "ciUpper": 0.00960079594217235,
+            "rank": 30
+          },
+          {
+            "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+            "model": "Muse Spark 1.2 (xHigh)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.06553262516504477,
+            "ciLower": -0.10960092509886596,
+            "ciUpper": -0.02146432523122358,
+            "rank": 31
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-4-6-agent",
+            "model": "Claude Sonnet 4.6",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.07395843121125156,
+            "ciLower": -0.1215046955725338,
+            "ciUpper": -0.026412166849969332,
+            "rank": 32
+          },
+          {
+            "contenderName": "contenders/mimo-v2.5-pro-agent",
+            "model": "Mimo V2.5 Pro",
+            "modelOrganization": "Xiaomi",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.10164802975824339,
+            "ciLower": -0.1350677909176945,
+            "ciUpper": -0.06822826859879229,
+            "rank": 33
+          },
+          {
+            "contenderName": "contenders/minimax-m3-first-party",
+            "model": "Minimax M3",
+            "modelOrganization": "MiniMax",
+            "license": "MiniMax Community License",
+            "isPublic": true,
+            "score": -0.10335847333590054,
+            "ciLower": -0.14001796882203194,
+            "ciUpper": -0.06669897784976914,
+            "rank": 34
+          },
+          {
+            "contenderName": "contenders/qwen3.7-max-agent",
+            "model": "Qwen3.7 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.10465464033469174,
+            "ciLower": -0.13641895337547189,
+            "ciUpper": -0.0728903272939116,
+            "rank": 35
+          },
+          {
+            "contenderName": "contenders/gemini-3.6-flash-agent",
+            "model": "Gemini 3.6 Flash (High)",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.10618532701097716,
+            "ciLower": -0.14357466760097193,
+            "ciUpper": -0.0687959864209824,
+            "rank": 36
+          },
+          {
+            "contenderName": "contenders/super-nova-ext-3tam-agent",
+            "model": "Muse Spark 1.1",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.11505710211899856,
+            "ciLower": -0.13619679478441793,
+            "ciUpper": -0.09391740945357917,
+            "rank": 37
+          },
+          {
+            "contenderName": "contenders/qwen3.7-plus-agent",
+            "model": "Qwen3.7 Plus",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.12224355472022785,
+            "ciLower": -0.16734703493563674,
+            "ciUpper": -0.07714007450481897,
+            "rank": 38
+          },
+          {
+            "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+            "model": "Mistral Medium 3.5",
+            "modelOrganization": "Mistral",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.14473685855676566,
+            "ciLower": -0.199303619056422,
+            "ciUpper": -0.09017009805710932,
+            "rank": 39
+          },
+          {
+            "contenderName": "contenders/deep-octo-first-party",
+            "model": "Minimax M2.7",
+            "modelOrganization": "MiniMax",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.1884967314848367,
+            "ciLower": -0.23002187756908304,
+            "ciUpper": -0.14697158540059035,
+            "rank": 40
+          },
+          {
+            "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+            "model": "Gemini 3.5 Flash Lite",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.2128474762290331,
+            "ciLower": -0.2496455895325722,
+            "ciUpper": -0.176049362925494,
+            "rank": 41
+          },
+          {
+            "contenderName": "contenders/inkling-small",
+            "model": "Inkling Small",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.21644258872720035,
+            "ciLower": -0.26365745538038504,
+            "ciUpper": -0.16922772207401565,
+            "rank": 42
+          },
+          {
+            "contenderName": "contenders/inkling-agent",
+            "model": "Inkling",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.220858450100194,
+            "ciLower": -0.2526542632794451,
+            "ciUpper": -0.18906263692094288,
+            "rank": 43
+          }
+        ]
+      },
+      {
+        "name": "steerability",
+        "displayName": "Steerability",
+        "description": "How well the model lands user corrections when they push back.",
+        "weight": 1,
+        "observationCount": 786468,
+        "clusterCount": 272007,
+        "ambiguousPenalty": 1,
+        "failurePenalty": 1,
+        "entries": [
+          {
+            "contenderName": "contenders/claude-fable-5-agent",
+            "model": "Claude Fable 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.14382157888041525,
+            "ciLower": 0.11012019871281084,
+            "ciUpper": 0.17752295904801965,
+            "rank": 1
+          },
+          {
+            "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+            "model": "Claude Opus 4.8 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.14381143985326889,
+            "ciLower": 0.10916364745769383,
+            "ciUpper": 0.17845923224884394,
+            "rank": 2
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-high-agent",
+            "model": "Claude Opus 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.141903459530778,
+            "ciLower": 0.0993296605387903,
+            "ciUpper": 0.18447725852276567,
+            "rank": 3
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+            "model": "GPT 5.6 Sol (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.10289726655788689,
+            "ciLower": 0.06739104117637608,
+            "ciUpper": 0.13840349193939772,
+            "rank": 4
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-max-agent",
+            "model": "Claude Opus 5 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.09886437922839897,
+            "ciLower": 0.05153906939716172,
+            "ciUpper": 0.14618968905963622,
+            "rank": 5
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+            "model": "GPT 5.6 Terra (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0975688590513159,
+            "ciLower": 0.06736025009161732,
+            "ciUpper": 0.12777746801101447,
+            "rank": 6
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-xhigh-agent",
+            "model": "GPT 5.5 (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.08710635166276343,
+            "ciLower": 0.06027309326898125,
+            "ciUpper": 0.1139396100565456,
+            "rank": 7
+          },
+          {
+            "contenderName": "contenders/grok-4.5-agent",
+            "model": "Grok 4.5",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.07849066267645943,
+            "ciLower": 0.048692455490832245,
+            "ciUpper": 0.10828886986208662,
+            "rank": 8
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-5-agent",
+            "model": "Claude Sonnet 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06809470387790145,
+            "ciLower": 0.014501826554462652,
+            "ciUpper": 0.12168758120134025,
+            "rank": 9
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-agent",
+            "model": "GPT 5.5",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0628602352047109,
+            "ciLower": 0.04046072631140647,
+            "ciUpper": 0.08525974409801533,
+            "rank": 10
+          },
+          {
+            "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+            "model": "Grok 4.6 (xHigh)",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06263407003991667,
+            "ciLower": 0.03430398143525147,
+            "ciUpper": 0.09096415864458186,
+            "rank": 11
+          },
+          {
+            "contenderName": "contenders/glm-5.2-agent",
+            "model": "GLM 5.2 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.04506587068208351,
+            "ciLower": 0.028041036060034705,
+            "ciUpper": 0.06209070530413231,
+            "rank": 12
+          },
+          {
+            "contenderName": "contenders/claude-fable-5.1-max-agent",
+            "model": "Claude Fable 5.1 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.041109913762513106,
+            "ciLower": -0.026877570110602614,
+            "ciUpper": 0.10909739763562883,
+            "rank": 13
+          },
+          {
+            "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+            "model": "GPT 5.4 (High)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.03313914367571402,
+            "ciLower": 0.009156146118263913,
+            "ciUpper": 0.05712214123316413,
+            "rank": 14
+          },
+          {
+            "contenderName": "contenders/kivine-wxzc-agent",
+            "model": "Kimi K3 (Max)",
+            "modelOrganization": "Moonshot",
+            "license": "Kimi K3 license",
+            "isPublic": true,
+            "score": 0.027767895809835297,
+            "ciLower": 0.010294132102257665,
+            "ciUpper": 0.04524165951741293,
+            "rank": 15
+          },
+          {
+            "contenderName": "contenders/paisley-n9x0",
+            "model": "Qwen3.8 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.022856269301987697,
+            "ciLower": -0.0016640447625056974,
+            "ciUpper": 0.047376583366481095,
+            "rank": 16
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+            "model": "GPT 5.6 Luna (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.018597450418538553,
+            "ciLower": -0.007173224508802235,
+            "ciUpper": 0.04436812534587934,
+            "rank": 17
+          },
+          {
+            "contenderName": "contenders/gpt-6-astra-max-agent",
+            "model": "GPT 6 Astra (Max)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.014193254600270766,
+            "ciLower": -0.08316959013605406,
+            "ciUpper": 0.11155609933659559,
+            "rank": 18
+          },
+          {
+            "contenderName": "contenders/muse-spark-1-3-max-agent",
+            "model": "Muse Spark 1.3 (Max)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.010330966065515312,
+            "ciLower": -0.01907397482833635,
+            "ciUpper": 0.039735906959366976,
+            "rank": 19
+          },
+          {
+            "contenderName": "contenders/glm-5.3-agent",
+            "model": "GLM 5.3 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0059343055390702615,
+            "ciLower": -0.009292786021701834,
+            "ciUpper": 0.021161397099842355,
+            "rank": 20
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+            "model": "DeepSeek V4 Pro (High) (0813)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.003910335330360282,
+            "ciLower": -0.019298169399439864,
+            "ciUpper": 0.027118840060160427,
+            "rank": 21
+          },
+          {
+            "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+            "model": "Deepseek V4.1 Flash (Max)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0012729281351824828,
+            "ciLower": -0.06098450274159431,
+            "ciUpper": 0.06353035901195928,
+            "rank": 22
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+            "model": "Deepseek V4 Flash (High) (20260731)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.0008083642918034761,
+            "ciLower": -0.019896997088191967,
+            "ciUpper": 0.018280268504585015,
+            "rank": 23
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+            "model": "DeepSeek V4 Pro",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.002498682778335898,
+            "ciLower": -0.029084930381548448,
+            "ciUpper": 0.024087564824876652,
+            "rank": 24
+          },
+          {
+            "contenderName": "contenders/glm-5.3-flash-agent",
+            "model": "GLM 5.3 Flash",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.009944309624390218,
+            "ciLower": -0.029091325549091714,
+            "ciUpper": 0.009202706300311277,
+            "rank": 25
+          },
+          {
+            "contenderName": "contenders/qwen3.8-27b-code-agent",
+            "model": "Qwen 3.8 27B",
+            "modelOrganization": "Alibaba",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.012864294063846843,
+            "ciLower": -0.033165976780186915,
+            "ciUpper": 0.007437388652493226,
+            "rank": 26
+          },
+          {
+            "contenderName": "contenders/phoenix-qcs2-agent",
+            "model": "Hy4 preview",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.022991519113985587,
+            "ciLower": -0.05355693220316483,
+            "ciUpper": 0.007573893975193653,
+            "rank": 27
+          },
+          {
+            "contenderName": "contenders/farris-ees5-agent",
+            "model": "Qwen3.8 Flash Next",
+            "modelOrganization": "Alibaba",
+            "license": "qwen-community-1.0",
+            "isPublic": true,
+            "score": -0.026224303381972153,
+            "ciLower": -0.05220815813461673,
+            "ciUpper": -0.00024044862932757344,
+            "rank": 28
+          },
+          {
+            "contenderName": "contenders/hy3-tencent-cloud-agent",
+            "model": "Hy3",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.027760828686777345,
+            "ciLower": -0.06502308344316501,
+            "ciUpper": 0.009501426069610325,
+            "rank": 29
+          },
+          {
+            "contenderName": "contenders/qwen3.7-max-agent",
+            "model": "Qwen3.7 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.03993859525521476,
+            "ciLower": -0.062231491197797986,
+            "ciUpper": -0.01764569931263153,
+            "rank": 30
+          },
+          {
+            "contenderName": "contenders/qwen3.7-plus-agent",
+            "model": "Qwen3.7 Plus",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.040044968357243804,
+            "ciLower": -0.07403707710364182,
+            "ciUpper": -0.0060528596108457774,
+            "rank": 31
+          },
+          {
+            "contenderName": "contenders/mimo-v2.5-pro-agent",
+            "model": "Mimo V2.5 Pro",
+            "modelOrganization": "Xiaomi",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.04542740312336177,
+            "ciLower": -0.06874686903375023,
+            "ciUpper": -0.022107937212973314,
+            "rank": 32
+          },
+          {
+            "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+            "model": "Gemini 3.1 Pro Preview",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.04606047225331572,
+            "ciLower": -0.06900088985055597,
+            "ciUpper": -0.023120054656075476,
+            "rank": 33
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-4-6-agent",
+            "model": "Claude Sonnet 4.6",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.04919519497352609,
+            "ciLower": -0.08228919977185101,
+            "ciUpper": -0.016101190175201174,
+            "rank": 34
+          },
+          {
+            "contenderName": "contenders/gemini-3.6-flash-agent",
+            "model": "Gemini 3.6 Flash (High)",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.05463062401470467,
+            "ciLower": -0.08301602715931801,
+            "ciUpper": -0.026245220870091335,
+            "rank": 35
+          },
+          {
+            "contenderName": "contenders/minimax-m3-first-party",
+            "model": "Minimax M3",
+            "modelOrganization": "MiniMax",
+            "license": "MiniMax Community License",
+            "isPublic": true,
+            "score": -0.08033668337932706,
+            "ciLower": -0.10647054239356858,
+            "ciUpper": -0.05420282436508554,
+            "rank": 36
+          },
+          {
+            "contenderName": "contenders/super-nova-ext-3tam-agent",
+            "model": "Muse Spark 1.1",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.08550380255951023,
+            "ciLower": -0.10144621637587792,
+            "ciUpper": -0.06956138874314255,
+            "rank": 37
+          },
+          {
+            "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+            "model": "Muse Spark 1.2 (xHigh)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.09071914783084326,
+            "ciLower": -0.12194357660135087,
+            "ciUpper": -0.05949471906033564,
+            "rank": 38
+          },
+          {
+            "contenderName": "contenders/inkling-small",
+            "model": "Inkling Small",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.09708471380255221,
+            "ciLower": -0.14414716155177884,
+            "ciUpper": -0.050022266053325576,
+            "rank": 39
+          },
+          {
+            "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+            "model": "Mistral Medium 3.5",
+            "modelOrganization": "Mistral",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.09820299985837636,
+            "ciLower": -0.14306519798944475,
+            "ciUpper": -0.05334080172730795,
+            "rank": 40
+          },
+          {
+            "contenderName": "contenders/inkling-agent",
+            "model": "Inkling",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.11902353681106459,
+            "ciLower": -0.1520645886481262,
+            "ciUpper": -0.08598248497400299,
+            "rank": 41
+          },
+          {
+            "contenderName": "contenders/deep-octo-first-party",
+            "model": "Minimax M2.7",
+            "modelOrganization": "MiniMax",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.13514022053888597,
+            "ciLower": -0.1727975203272069,
+            "ciUpper": -0.09748292075056503,
+            "rank": 42
+          },
+          {
+            "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+            "model": "Gemini 3.5 Flash Lite",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.16973938061612065,
+            "ciLower": -0.2068213302159695,
+            "ciUpper": -0.1326574310162718,
+            "rank": 43
+          }
+        ]
+      },
+      {
+        "name": "bash_recovery_steps",
+        "displayName": "Bash Recovery",
+        "description": "How quickly the model recovers when a command doesn't work.",
+        "weight": 1,
+        "observationCount": 2164626,
+        "clusterCount": 448181,
+        "ambiguousPenalty": 1,
+        "failurePenalty": 1,
+        "entries": [
+          {
+            "contenderName": "contenders/claude-opus-5-max-agent",
+            "model": "Claude Opus 5 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.13348756911348447,
+            "ciLower": 0.12434195664744438,
+            "ciUpper": 0.14263318157952456,
+            "rank": 1
+          },
+          {
+            "contenderName": "contenders/claude-fable-5.1-max-agent",
+            "model": "Claude Fable 5.1 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.11915482711892533,
+            "ciLower": 0.10652235355133766,
+            "ciUpper": 0.131787300686513,
+            "rank": 2
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-high-agent",
+            "model": "Claude Opus 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.11489171898699135,
+            "ciLower": 0.1020055023662928,
+            "ciUpper": 0.1277779356076899,
+            "rank": 3
+          },
+          {
+            "contenderName": "contenders/inkling-small",
+            "model": "Inkling Small",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.10536462299953309,
+            "ciLower": 0.08889346677252598,
+            "ciUpper": 0.1218357792265402,
+            "rank": 4
+          },
+          {
+            "contenderName": "contenders/claude-fable-5-agent",
+            "model": "Claude Fable 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.09584434234526107,
+            "ciLower": 0.0813033195773492,
+            "ciUpper": 0.11038536511317294,
+            "rank": 5
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-xhigh-agent",
+            "model": "GPT 5.5 (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.08532134375390554,
+            "ciLower": 0.07052578963358401,
+            "ciUpper": 0.10011689787422708,
+            "rank": 6
+          },
+          {
+            "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+            "model": "Deepseek V4.1 Flash (Max)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0817122626717044,
+            "ciLower": 0.06958954938247792,
+            "ciUpper": 0.09383497596093086,
+            "rank": 7
+          },
+          {
+            "contenderName": "contenders/phoenix-qcs2-agent",
+            "model": "Hy4 preview",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.08035494456703729,
+            "ciLower": 0.07236911852145521,
+            "ciUpper": 0.08834077061261937,
+            "rank": 8
+          },
+          {
+            "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+            "model": "Muse Spark 1.2 (xHigh)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.07697131308362404,
+            "ciLower": 0.06113195524640544,
+            "ciUpper": 0.09281067092084264,
+            "rank": 9
+          },
+          {
+            "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+            "model": "Claude Opus 4.8 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0767753228173953,
+            "ciLower": 0.05927188632278298,
+            "ciUpper": 0.09427875931200762,
+            "rank": 10
+          },
+          {
+            "contenderName": "contenders/inkling-agent",
+            "model": "Inkling",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.07530899923854872,
+            "ciLower": 0.061364289042041206,
+            "ciUpper": 0.08925370943505624,
+            "rank": 11
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-5-agent",
+            "model": "Claude Sonnet 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.075285276758708,
+            "ciLower": 0.06241217401352697,
+            "ciUpper": 0.08815837950388902,
+            "rank": 12
+          },
+          {
+            "contenderName": "contenders/gpt-6-astra-max-agent",
+            "model": "GPT 6 Astra (Max)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06683939814782525,
+            "ciLower": 0.052432611331930126,
+            "ciUpper": 0.08124618496372037,
+            "rank": 13
+          },
+          {
+            "contenderName": "contenders/muse-spark-1-3-max-agent",
+            "model": "Muse Spark 1.3 (Max)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.06122439450960648,
+            "ciLower": 0.04944448071787638,
+            "ciUpper": 0.07300430830133658,
+            "rank": 14
+          },
+          {
+            "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+            "model": "Grok 4.6 (xHigh)",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.05699675009239047,
+            "ciLower": 0.04296976036522732,
+            "ciUpper": 0.07102373981955362,
+            "rank": 15
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-4-6-agent",
+            "model": "Claude Sonnet 4.6",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.05328037033707855,
+            "ciLower": 0.029847252047331893,
+            "ciUpper": 0.07671348862682521,
+            "rank": 16
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+            "model": "DeepSeek V4 Pro (High) (0813)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.05190362818760974,
+            "ciLower": 0.043099749955340036,
+            "ciUpper": 0.060707506419879445,
+            "rank": 17
+          },
+          {
+            "contenderName": "contenders/grok-4.5-agent",
+            "model": "Grok 4.5",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.05088939023555583,
+            "ciLower": 0.03607581900815805,
+            "ciUpper": 0.06570296146295361,
+            "rank": 18
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-agent",
+            "model": "GPT 5.5",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.048794578120792576,
+            "ciLower": 0.034256050741274975,
+            "ciUpper": 0.06333310550031018,
+            "rank": 19
+          },
+          {
+            "contenderName": "contenders/kivine-wxzc-agent",
+            "model": "Kimi K3 (Max)",
+            "modelOrganization": "Moonshot",
+            "license": "Kimi K3 license",
+            "isPublic": true,
+            "score": 0.04392091307860224,
+            "ciLower": 0.0371318377833587,
+            "ciUpper": 0.050709988373845785,
+            "rank": 20
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+            "model": "GPT 5.6 Sol (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.03928458147030578,
+            "ciLower": 0.026533401751052614,
+            "ciUpper": 0.052035761189558945,
+            "rank": 21
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+            "model": "DeepSeek V4 Pro",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.03759121733237536,
+            "ciLower": 0.02583821762760944,
+            "ciUpper": 0.04934421703714128,
+            "rank": 22
+          },
+          {
+            "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+            "model": "GPT 5.4 (High)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.03316327690721632,
+            "ciLower": 0.020806331957549242,
+            "ciUpper": 0.0455202218568834,
+            "rank": 23
+          },
+          {
+            "contenderName": "contenders/paisley-n9x0",
+            "model": "Qwen3.8 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.031617139766679125,
+            "ciLower": 0.019809492999381735,
+            "ciUpper": 0.043424786533976516,
+            "rank": 24
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+            "model": "GPT 5.6 Terra (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.02778334279089334,
+            "ciLower": 0.012611657087806984,
+            "ciUpper": 0.0429550284939797,
+            "rank": 25
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+            "model": "GPT 5.6 Luna (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.02769895884196405,
+            "ciLower": 0.015051011615984095,
+            "ciUpper": 0.040346906067944006,
+            "rank": 26
+          },
+          {
+            "contenderName": "contenders/minimax-m3-first-party",
+            "model": "Minimax M3",
+            "modelOrganization": "MiniMax",
+            "license": "MiniMax Community License",
+            "isPublic": true,
+            "score": 0.020713314616942702,
+            "ciLower": 0.009139828052565574,
+            "ciUpper": 0.03228680118131983,
+            "rank": 27
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+            "model": "Deepseek V4 Flash (High) (20260731)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.012550257059251058,
+            "ciLower": 0.004404997453862421,
+            "ciUpper": 0.020695516664639695,
+            "rank": 28
+          },
+          {
+            "contenderName": "contenders/farris-ees5-agent",
+            "model": "Qwen3.8 Flash Next",
+            "modelOrganization": "Alibaba",
+            "license": "qwen-community-1.0",
+            "isPublic": true,
+            "score": 0.0021134940732197016,
+            "ciLower": -0.004608271665051472,
+            "ciUpper": 0.008835259811490876,
+            "rank": 29
+          },
+          {
+            "contenderName": "contenders/glm-5.2-agent",
+            "model": "GLM 5.2 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0010640952214602262,
+            "ciLower": -0.0089842801286523,
+            "ciUpper": 0.011112470571572752,
+            "rank": 30
+          },
+          {
+            "contenderName": "contenders/qwen3.7-max-agent",
+            "model": "Qwen3.7 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.005418843087661607,
+            "ciLower": -0.02738703494914709,
+            "ciUpper": 0.016549348773823875,
+            "rank": 31
+          },
+          {
+            "contenderName": "contenders/glm-5.3-agent",
+            "model": "GLM 5.3 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.024353707716913586,
+            "ciLower": -0.03230627463121859,
+            "ciUpper": -0.016401140802608585,
+            "rank": 32
+          },
+          {
+            "contenderName": "contenders/super-nova-ext-3tam-agent",
+            "model": "Muse Spark 1.1",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.03268085309745694,
+            "ciLower": -0.04728967643802773,
+            "ciUpper": -0.01807202975688615,
+            "rank": 33
+          },
+          {
+            "contenderName": "contenders/qwen3.8-27b-code-agent",
+            "model": "Qwen 3.8 27B",
+            "modelOrganization": "Alibaba",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.0441242150353478,
+            "ciLower": -0.05372378017621234,
+            "ciUpper": -0.03452464989448326,
+            "rank": 34
+          },
+          {
+            "contenderName": "contenders/qwen3.7-plus-agent",
+            "model": "Qwen3.7 Plus",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.047871311681544126,
+            "ciLower": -0.08365319604642218,
+            "ciUpper": -0.012089427316666075,
+            "rank": 35
+          },
+          {
+            "contenderName": "contenders/glm-5.3-flash-agent",
+            "model": "GLM 5.3 Flash",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.05499300761626613,
+            "ciLower": -0.06421006437629137,
+            "ciUpper": -0.04577595085624089,
+            "rank": 36
+          },
+          {
+            "contenderName": "contenders/mimo-v2.5-pro-agent",
+            "model": "Mimo V2.5 Pro",
+            "modelOrganization": "Xiaomi",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.055293571002073216,
+            "ciLower": -0.07931806722666206,
+            "ciUpper": -0.031269074777484376,
+            "rank": 37
+          },
+          {
+            "contenderName": "contenders/hy3-tencent-cloud-agent",
+            "model": "Hy3",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.0615104652962426,
+            "ciLower": -0.10206457514577041,
+            "ciUpper": -0.02095635544671478,
+            "rank": 38
+          },
+          {
+            "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+            "model": "Mistral Medium 3.5",
+            "modelOrganization": "Mistral",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.09987451052774476,
+            "ciLower": -0.13036447324493391,
+            "ciUpper": -0.06938454781055563,
+            "rank": 39
+          },
+          {
+            "contenderName": "contenders/gemini-3.6-flash-agent",
+            "model": "Gemini 3.6 Flash (High)",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.1446640097547487,
+            "ciLower": -0.17028753389620652,
+            "ciUpper": -0.11904048561329085,
+            "rank": 40
+          },
+          {
+            "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+            "model": "Gemini 3.1 Pro Preview",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.1970742974057611,
+            "ciLower": -0.22051439070329135,
+            "ciUpper": -0.17363420410823086,
+            "rank": 41
+          },
+          {
+            "contenderName": "contenders/deep-octo-first-party",
+            "model": "Minimax M2.7",
+            "modelOrganization": "MiniMax",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.2414459192572811,
+            "ciLower": -0.2812269450337631,
+            "ciUpper": -0.20166489348079908,
+            "rank": 42
+          },
+          {
+            "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+            "model": "Gemini 3.5 Flash Lite",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.28283299019387287,
+            "ciLower": -0.3274610508091021,
+            "ciUpper": -0.23820492957864364,
+            "rank": 43
+          }
+        ]
+      },
+      {
+        "name": "tool_hallucination",
+        "displayName": "Tool Hallucination",
+        "description": "How much the model hallucinates tools it doesn't have.",
+        "weight": 1,
+        "observationCount": 60391950,
+        "clusterCount": 807783,
+        "ambiguousPenalty": 1,
+        "failurePenalty": 1,
+        "entries": [
+          {
+            "contenderName": "contenders/glm-5.2-agent",
+            "model": "GLM 5.2 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0037413422720362632,
+            "ciLower": 0.003328347092052168,
+            "ciUpper": 0.004154337452020358,
+            "rank": 1
+          },
+          {
+            "contenderName": "contenders/glm-5.3-agent",
+            "model": "GLM 5.3 (Max)",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0037413422719225764,
+            "ciLower": 0.003328347091938622,
+            "ciUpper": 0.0041543374519065306,
+            "rank": 2
+          },
+          {
+            "contenderName": "contenders/kivine-wxzc-agent",
+            "model": "Kimi K3 (Max)",
+            "modelOrganization": "Moonshot",
+            "license": "Kimi K3 license",
+            "isPublic": true,
+            "score": 0.003741342271247561,
+            "ciLower": 0.0033283470912637415,
+            "ciUpper": 0.00415433745123138,
+            "rank": 3
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+            "model": "GPT 5.6 Luna (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0037413422711125577,
+            "ciLower": 0.003328347091128701,
+            "ciUpper": 0.004154337451096414,
+            "rank": 4
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+            "model": "GPT 5.6 Sol (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270970449,
+            "ciLower": 0.0033283470909866142,
+            "ciUpper": 0.0041543374509542845,
+            "rank": 5
+          },
+          {
+            "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+            "model": "Grok 4.6 (xHigh)",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270771497,
+            "ciLower": 0.0033283470907877455,
+            "ciUpper": 0.004154337450755248,
+            "rank": 6
+          },
+          {
+            "contenderName": "contenders/muse-spark-1-3-max-agent",
+            "model": "Muse Spark 1.3 (Max)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0037413422705796506,
+            "ciLower": 0.003328347090595984,
+            "ciUpper": 0.004154337450563318,
+            "rank": 7
+          },
+          {
+            "contenderName": "contenders/glm-5.3-flash-agent",
+            "model": "GLM 5.3 Flash",
+            "modelOrganization": "Z.ai",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0037413422705583343,
+            "ciLower": 0.003328347090574664,
+            "ciUpper": 0.004154337450542005,
+            "rank": 8
+          },
+          {
+            "contenderName": "contenders/grok-4.5-agent",
+            "model": "Grok 4.5",
+            "modelOrganization": "SpaceXAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270537018,
+            "ciLower": 0.003328347090553343,
+            "ciUpper": 0.004154337450520693,
+            "rank": 9
+          },
+          {
+            "contenderName": "contenders/claude-fable-5.1-max-agent",
+            "model": "Claude Fable 5.1 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270522807,
+            "ciLower": 0.0033283470905391406,
+            "ciUpper": 0.004154337450506474,
+            "rank": 10
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-agent",
+            "model": "GPT 5.5",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0037413422704446475,
+            "ciLower": 0.003328347090461002,
+            "ciUpper": 0.004154337450428293,
+            "rank": 11
+          },
+          {
+            "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+            "model": "GPT 5.6 Terra (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270416226,
+            "ciLower": 0.003328347090432588,
+            "ciUpper": 0.004154337450399863,
+            "rank": 12
+          },
+          {
+            "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+            "model": "GPT 5.4 (High)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270387804,
+            "ciLower": 0.003328347090404175,
+            "ciUpper": 0.004154337450371433,
+            "rank": 13
+          },
+          {
+            "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+            "model": "Muse Spark 1.2 (xHigh)",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003741342270352277,
+            "ciLower": 0.003328347090368652,
+            "ciUpper": 0.004154337450335902,
+            "rank": 14
+          },
+          {
+            "contenderName": "contenders/gpt-6-astra-max-agent",
+            "model": "GPT 6 Astra (Max)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0037413422700467436,
+            "ciLower": 0.003328347090063185,
+            "ciUpper": 0.004154337450030302,
+            "rank": 15
+          },
+          {
+            "contenderName": "contenders/claude-fable-5-agent",
+            "model": "Claude Fable 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003714206036981693,
+            "ciLower": 0.003297933492044178,
+            "ciUpper": 0.004130478581919209,
+            "rank": 16
+          },
+          {
+            "contenderName": "contenders/gpt-5.5-xhigh-agent",
+            "model": "GPT 5.5 (xHigh)",
+            "modelOrganization": "OpenAI",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0037075648048841003,
+            "ciLower": 0.0032895425641931444,
+            "ciUpper": 0.004125587045575057,
+            "rank": 17
+          },
+          {
+            "contenderName": "contenders/super-nova-ext-3tam-agent",
+            "model": "Muse Spark 1.1",
+            "modelOrganization": "Meta",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0036671003290038584,
+            "ciLower": 0.0032496786414524474,
+            "ciUpper": 0.0040845220165552695,
+            "rank": 18
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+            "model": "DeepSeek V4 Pro (High) (0813)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.003565395883086353,
+            "ciLower": 0.0030885557331516615,
+            "ciUpper": 0.0040422360330210445,
+            "rank": 19
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-max-agent",
+            "model": "Claude Opus 5 (Max)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003521910389551408,
+            "ciLower": 0.0030576953754870443,
+            "ciUpper": 0.003986125403615772,
+            "rank": 20
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+            "model": "Deepseek V4 Flash (High) (20260731)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.0034972838674676154,
+            "ciLower": 0.0030219245642928087,
+            "ciUpper": 0.003972643170642423,
+            "rank": 21
+          },
+          {
+            "contenderName": "contenders/gemini-3.6-flash-agent",
+            "model": "Gemini 3.6 Flash (High)",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0031873366778896184,
+            "ciLower": 0.002422655741697823,
+            "ciUpper": 0.003952017614081414,
+            "rank": 22
+          },
+          {
+            "contenderName": "contenders/claude-opus-5-high-agent",
+            "model": "Claude Opus 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.003085255506768192,
+            "ciLower": 0.0025983199907511504,
+            "ciUpper": 0.0035721910227852335,
+            "rank": 23
+          },
+          {
+            "contenderName": "contenders/phoenix-qcs2-agent",
+            "model": "Hy4 preview",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.0028485165267326806,
+            "ciLower": 0.002098996399810266,
+            "ciUpper": 0.003598036653655095,
+            "rank": 24
+          },
+          {
+            "contenderName": "contenders/deep-octo-first-party",
+            "model": "Minimax M2.7",
+            "modelOrganization": "MiniMax",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": 0.0027337597523242607,
+            "ciLower": 0.0014453718052325297,
+            "ciUpper": 0.0040221476994159915,
+            "rank": 25
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-4-6-agent",
+            "model": "Claude Sonnet 4.6",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0024364116838739847,
+            "ciLower": 0.0003680980336719015,
+            "ciUpper": 0.004504725334076068,
+            "rank": 26
+          },
+          {
+            "contenderName": "contenders/claude-sonnet-5-agent",
+            "model": "Claude Sonnet 5 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0020343956503268146,
+            "ciLower": 0.0008696806594396217,
+            "ciUpper": 0.0031991106412140075,
+            "rank": 27
+          },
+          {
+            "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+            "model": "Deepseek V4.1 Flash (Max)",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": 0.001871769219164321,
+            "ciLower": 0.0004169334755254762,
+            "ciUpper": 0.0033266049628031657,
+            "rank": 28
+          },
+          {
+            "contenderName": "contenders/inkling-agent",
+            "model": "Inkling",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": 0.0015677066309010002,
+            "ciLower": 0.00029202244925948103,
+            "ciUpper": 0.0028433908125425193,
+            "rank": 29
+          },
+          {
+            "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+            "model": "Claude Opus 4.8 (High)",
+            "modelOrganization": "Anthropic",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": 0.0010046667312906266,
+            "ciLower": -0.002391409979597361,
+            "ciUpper": 0.0044007434421786135,
+            "rank": 30
+          },
+          {
+            "contenderName": "contenders/minimax-m3-first-party",
+            "model": "Minimax M3",
+            "modelOrganization": "MiniMax",
+            "license": "MiniMax Community License",
+            "isPublic": true,
+            "score": 3.081087454148701e-05,
+            "ciLower": -0.0015484902105387644,
+            "ciUpper": 0.0016101119596217384,
+            "rank": 31
+          },
+          {
+            "contenderName": "contenders/qwen3.7-max-agent",
+            "model": "Qwen3.7 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.0009725040198418355,
+            "ciLower": -0.0032674470606417717,
+            "ciUpper": 0.0013224390209581006,
+            "rank": 32
+          },
+          {
+            "contenderName": "contenders/qwen3.8-27b-code-agent",
+            "model": "Qwen 3.8 27B",
+            "modelOrganization": "Alibaba",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.001250694701127486,
+            "ciLower": -0.002595576263444452,
+            "ciUpper": 9.418686118947998e-05,
+            "rank": 33
+          },
+          {
+            "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+            "model": "Gemini 3.1 Pro Preview",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.0019768054774829125,
+            "ciLower": -0.009199107556304308,
+            "ciUpper": 0.005245496601338483,
+            "rank": 34
+          },
+          {
+            "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+            "model": "DeepSeek V4 Pro",
+            "modelOrganization": "DeepSeek",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.0034452560671667243,
+            "ciLower": -0.005527543282751476,
+            "ciUpper": -0.0013629688515819725,
+            "rank": 35
+          },
+          {
+            "contenderName": "contenders/qwen3.7-plus-agent",
+            "model": "Qwen3.7 Plus",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.0058118134050246795,
+            "ciLower": -0.009541901230660678,
+            "ciUpper": -0.0020817255793886802,
+            "rank": 36
+          },
+          {
+            "contenderName": "contenders/inkling-small",
+            "model": "Inkling Small",
+            "modelOrganization": "Thinky",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.006367756328835128,
+            "ciLower": -0.012412587906772412,
+            "ciUpper": -0.0003229247508978444,
+            "rank": 37
+          },
+          {
+            "contenderName": "contenders/mimo-v2.5-pro-agent",
+            "model": "Mimo V2.5 Pro",
+            "modelOrganization": "Xiaomi",
+            "license": "MIT",
+            "isPublic": true,
+            "score": -0.008193716923699412,
+            "ciLower": -0.011810607730069063,
+            "ciUpper": -0.004576826117329761,
+            "rank": 38
+          },
+          {
+            "contenderName": "contenders/paisley-n9x0",
+            "model": "Qwen3.8 Max",
+            "modelOrganization": "Alibaba",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.009684022684794513,
+            "ciLower": -0.0149488419266115,
+            "ciUpper": -0.004419203442977526,
+            "rank": 39
+          },
+          {
+            "contenderName": "contenders/farris-ees5-agent",
+            "model": "Qwen3.8 Flash Next",
+            "modelOrganization": "Alibaba",
+            "license": "qwen-community-1.0",
+            "isPublic": true,
+            "score": -0.010284545282665647,
+            "ciLower": -0.011838771278692307,
+            "ciUpper": -0.008730319286638987,
+            "rank": 40
+          },
+          {
+            "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+            "model": "Gemini 3.5 Flash Lite",
+            "modelOrganization": "Google",
+            "license": "Proprietary",
+            "isPublic": true,
+            "score": -0.0202931004921183,
+            "ciLower": -0.03348932504901071,
+            "ciUpper": -0.007096875935225889,
+            "rank": 41
+          },
+          {
+            "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+            "model": "Mistral Medium 3.5",
+            "modelOrganization": "Mistral",
+            "license": "Modified MIT",
+            "isPublic": true,
+            "score": -0.021122487872702322,
+            "ciLower": -0.03137604471511147,
+            "ciUpper": -0.010868931030293176,
+            "rank": 42
+          },
+          {
+            "contenderName": "contenders/hy3-tencent-cloud-agent",
+            "model": "Hy3",
+            "modelOrganization": "Tencent",
+            "license": "Apache 2.0",
+            "isPublic": true,
+            "score": -0.032427904988885814,
+            "ciLower": -0.04359800423321733,
+            "ciUpper": -0.021257805744554294,
+            "rank": 43
+          }
+        ]
+      }
+    ]
+  },
+  "costs": {
+    "costWindowDays": 14,
+    "entries": [
+      {
+        "contenderName": "contenders/claude-fable-5.1-max-agent",
+        "medianUsd": 11.853086625,
+        "p25Usd": 2.633874125,
+        "p95Usd": 52.31348769999998,
+        "meanUsd": 16.646243825265444,
+        "totalSampleCount": 3897,
+        "pricedSampleCount": 3783,
+        "outputMtokPerTask": {
+          "medianMtok": 0.158656,
+          "p25Mtok": 0.032878500000000005,
+          "p95Mtok": 0.7384467999999991,
+          "meanMtok": 0.23169048607806852,
+          "totalSampleCount": 3897,
+          "tokenedSampleCount": 3783
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-6-astra-max-agent",
+        "medianUsd": 10.322255500000002,
+        "p25Usd": 3.4354129999999996,
+        "p95Usd": 128.5294386666665,
+        "meanUsd": 27.4713722582893,
+        "totalSampleCount": 3254,
+        "pricedSampleCount": 3217,
+        "outputMtokPerTask": {
+          "medianMtok": 0.076731,
+          "p25Mtok": 0.0274965,
+          "p95Mtok": 0.3321395999999999,
+          "meanMtok": 0.10656458486167239,
+          "totalSampleCount": 3254,
+          "tokenedSampleCount": 3217
+        }
+      },
+      {
+        "contenderName": "contenders/claude-opus-5-high-agent",
+        "medianUsd": 5.24320125,
+        "p25Usd": 1.2385525000000004,
+        "p95Usd": 26.04510295833333,
+        "meanUsd": 8.507062652901418,
+        "totalSampleCount": 1031,
+        "pricedSampleCount": 1011,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0586015,
+          "p25Mtok": 0.019026,
+          "p95Mtok": 0.2341295,
+          "meanMtok": 0.08249527035938016,
+          "totalSampleCount": 1031,
+          "tokenedSampleCount": 1011
+        }
+      },
+      {
+        "contenderName": "contenders/claude-opus-5-max-agent",
+        "medianUsd": 8.286369375,
+        "p25Usd": 2.64385025,
+        "p95Usd": 28.32691896666668,
+        "meanUsd": 10.482499557861221,
+        "totalSampleCount": 777,
+        "pricedSampleCount": 759,
+        "outputMtokPerTask": {
+          "medianMtok": 0.090919,
+          "p25Mtok": 0.037886,
+          "p95Mtok": 0.29760735000000005,
+          "meanMtok": 0.11031747782169522,
+          "totalSampleCount": 777,
+          "tokenedSampleCount": 759
+        }
+      },
+      {
+        "contenderName": "contenders/claude-fable-5-agent",
+        "medianUsd": 4.522389,
+        "p25Usd": 1.0761928749999998,
+        "p95Usd": 42.19347893749999,
+        "meanUsd": 11.946222671208945,
+        "totalSampleCount": 975,
+        "pricedSampleCount": 954,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0346515,
+          "p25Mtok": 0.00773675,
+          "p95Mtok": 0.2500954999999998,
+          "meanMtok": 0.0723133784067086,
+          "totalSampleCount": 975,
+          "tokenedSampleCount": 954
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.6-sol-xhigh-agent",
+        "medianUsd": 2.0015280000000004,
+        "p25Usd": 0.44917739999999995,
+        "p95Usd": 16.284274639999985,
+        "meanUsd": 4.535291582912213,
+        "totalSampleCount": 1052,
+        "pricedSampleCount": 1029,
+        "outputMtokPerTask": {
+          "medianMtok": 0.02822,
+          "p25Mtok": 0.009213,
+          "p95Mtok": 0.10350659999999988,
+          "meanMtok": 0.037198965986394564,
+          "totalSampleCount": 1052,
+          "tokenedSampleCount": 1029
+        }
+      },
+      {
+        "contenderName": "contenders/claude-opus-4-8-thinking-agent",
+        "medianUsd": 3.3885295000000006,
+        "p25Usd": 1.010687,
+        "p95Usd": 22.159048266666666,
+        "meanUsd": 6.529068294303202,
+        "totalSampleCount": 900,
+        "pricedSampleCount": 885,
+        "outputMtokPerTask": {
+          "medianMtok": 0.037297,
+          "p25Mtok": 0.013109,
+          "p95Mtok": 0.18079409999999999,
+          "meanMtok": 0.05933265819209039,
+          "totalSampleCount": 900,
+          "tokenedSampleCount": 885
+        }
+      },
+      {
+        "contenderName": "contenders/kivine-wxzc-agent",
+        "medianUsd": 1.61841335,
+        "p25Usd": 0.56806755,
+        "p95Usd": 8.227114709999997,
+        "meanUsd": 2.5961361643138736,
+        "totalSampleCount": 4038,
+        "pricedSampleCount": 3974,
+        "outputMtokPerTask": {
+          "medianMtok": 0.046861,
+          "p25Mtok": 0.021682,
+          "p95Mtok": 0.15535079999999996,
+          "meanMtok": 0.059039737813574966,
+          "totalSampleCount": 4038,
+          "tokenedSampleCount": 3973
+        }
+      },
+      {
+        "contenderName": "contenders/claude-sonnet-5-agent",
+        "medianUsd": 2.2839600250000003,
+        "p25Usd": 0.467164025,
+        "p95Usd": 11.12473511,
+        "meanUsd": 3.680041027050709,
+        "totalSampleCount": 923,
+        "pricedSampleCount": 894,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0590725,
+          "p25Mtok": 0.013889375,
+          "p95Mtok": 0.2889652999999998,
+          "meanMtok": 0.09533882382550336,
+          "totalSampleCount": 923,
+          "tokenedSampleCount": 894
+        }
+      },
+      {
+        "contenderName": "contenders/phoenix-qcs2-agent",
+        "medianUsd": 0.32579475999999996,
+        "p25Usd": 0.08474288499999999,
+        "p95Usd": 1.6633946848,
+        "meanUsd": 0.5474028330557907,
+        "totalSampleCount": 8132,
+        "pricedSampleCount": 8033,
+        "outputMtokPerTask": {
+          "medianMtok": 0.053796,
+          "p25Mtok": 0.0186125,
+          "p95Mtok": 0.189596,
+          "meanMtok": 0.07042134040831571,
+          "totalSampleCount": 8132,
+          "tokenedSampleCount": 8033
+        }
+      },
+      {
+        "contenderName": "contenders/glm-5.2-agent",
+        "medianUsd": 1.8527510800000004,
+        "p25Usd": 0.505442465,
+        "p95Usd": 8.241344391333337,
+        "meanUsd": 2.6504468625833337,
+        "totalSampleCount": 3550,
+        "pricedSampleCount": 3480,
+        "outputMtokPerTask": {
+          "medianMtok": 0.08640049999999999,
+          "p25Mtok": 0.039016,
+          "p95Mtok": 0.22229875,
+          "meanMtok": 0.09636259832375478,
+          "totalSampleCount": 3550,
+          "tokenedSampleCount": 3480
+        }
+      },
+      {
+        "contenderName": "contenders/deepseek-v4-pro-high-20260813-agent",
+        "medianUsd": 0.5092242138499999,
+        "p25Usd": 0.14437367368749998,
+        "p95Usd": 3.197787818862,
+        "meanUsd": 0.9304702405235373,
+        "totalSampleCount": 7456,
+        "pricedSampleCount": 7352,
+        "outputMtokPerTask": {
+          "medianMtok": 0.06814075,
+          "p25Mtok": 0.02931825,
+          "p95Mtok": 0.24253062499999994,
+          "meanMtok": 0.08937185496010153,
+          "totalSampleCount": 7456,
+          "tokenedSampleCount": 7352
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.5-xhigh-agent",
+        "medianUsd": 1.9066965000000002,
+        "p25Usd": 0.571013,
+        "p95Usd": 14.226657833333334,
+        "meanUsd": 4.006696663336839,
+        "totalSampleCount": 968,
+        "pricedSampleCount": 951,
+        "outputMtokPerTask": {
+          "medianMtok": 0.027955,
+          "p25Mtok": 0.011022833333333332,
+          "p95Mtok": 0.1135895,
+          "meanMtok": 0.03941821959341046,
+          "totalSampleCount": 968,
+          "tokenedSampleCount": 951
+        }
+      },
+      {
+        "contenderName": "contenders/muse-spark-1-3-max-agent",
+        "medianUsd": 0.6596768,
+        "p25Usd": 0.157914625,
+        "p95Usd": 4.057902904999998,
+        "meanUsd": 1.194793778283514,
+        "totalSampleCount": 9723,
+        "pricedSampleCount": 9568,
+        "outputMtokPerTask": {
+          "medianMtok": 0.045291,
+          "p25Mtok": 0.016409,
+          "p95Mtok": 0.17156349999999995,
+          "meanMtok": 0.061539276233277596,
+          "totalSampleCount": 9723,
+          "tokenedSampleCount": 9568
+        }
+      },
+      {
+        "contenderName": "contenders/deepseek-v4.1-flash-max-20260910-agent",
+        "medianUsd": 0.07429979999999996,
+        "p25Usd": 0.022008375999999996,
+        "p95Usd": 0.33969011574999997,
+        "meanUsd": 0.12480668080027467,
+        "totalSampleCount": 5042,
+        "pricedSampleCount": 4976,
+        "outputMtokPerTask": {
+          "medianMtok": 0.101431,
+          "p25Mtok": 0.042624,
+          "p95Mtok": 0.30142475,
+          "meanMtok": 0.11860311515273311,
+          "totalSampleCount": 5042,
+          "tokenedSampleCount": 4976
+        }
+      },
+      {
+        "contenderName": "contenders/grok-4.5-agent",
+        "medianUsd": 0.963428,
+        "p25Usd": 0.2902285,
+        "p95Usd": 6.821009026666664,
+        "meanUsd": 1.8261809620667686,
+        "totalSampleCount": 1323,
+        "pricedSampleCount": 1308,
+        "outputMtokPerTask": {
+          "medianMtok": 0.026727333333333332,
+          "p25Mtok": 0.010013,
+          "p95Mtok": 0.10471999999999998,
+          "meanMtok": 0.03702186901121305,
+          "totalSampleCount": 1323,
+          "tokenedSampleCount": 1308
+        }
+      },
+      {
+        "contenderName": "contenders/grok-4.6-xhigh-public-agent",
+        "medianUsd": 1.885303,
+        "p25Usd": 0.5234515,
+        "p95Usd": 7.336110024999998,
+        "meanUsd": 2.5809774759838473,
+        "totalSampleCount": 2301,
+        "pricedSampleCount": 2270,
+        "outputMtokPerTask": {
+          "medianMtok": 0.041649000000000005,
+          "p25Mtok": 0.013820124999999999,
+          "p95Mtok": 0.11325059999999994,
+          "meanMtok": 0.04676354977973568,
+          "totalSampleCount": 2301,
+          "tokenedSampleCount": 2270
+        }
+      },
+      {
+        "contenderName": "contenders/glm-5.3-agent",
+        "medianUsd": 1.4689578599999997,
+        "p25Usd": 0.39449201,
+        "p95Usd": 9.115521297666673,
+        "meanUsd": 2.719281380000331,
+        "totalSampleCount": 10233,
+        "pricedSampleCount": 10064,
+        "outputMtokPerTask": {
+          "medianMtok": 0.07505075,
+          "p25Mtok": 0.03140075,
+          "p95Mtok": 0.25704545,
+          "meanMtok": 0.09520814712506626,
+          "totalSampleCount": 10233,
+          "tokenedSampleCount": 10064
+        }
+      },
+      {
+        "contenderName": "contenders/deepseek-v4-flash-high-20260730-agent",
+        "medianUsd": 0.286001544,
+        "p25Usd": 0.090808096,
+        "p95Usd": 1.046100296,
+        "meanUsd": 0.40231768704850707,
+        "totalSampleCount": 3594,
+        "pricedSampleCount": 3539,
+        "outputMtokPerTask": {
+          "medianMtok": 0.093146,
+          "p25Mtok": 0.03709,
+          "p95Mtok": 0.28265219999999996,
+          "meanMtok": 0.11143841720825091,
+          "totalSampleCount": 3594,
+          "tokenedSampleCount": 3539
+        }
+      },
+      {
+        "contenderName": "contenders/paisley-n9x0",
+        "medianUsd": 1.05113575,
+        "p25Usd": 0.29887375,
+        "p95Usd": 6.373056291666667,
+        "meanUsd": 1.8826294059258304,
+        "totalSampleCount": 3928,
+        "pricedSampleCount": 3856,
+        "outputMtokPerTask": {
+          "medianMtok": 0.051448,
+          "p25Mtok": 0.0233665,
+          "p95Mtok": 0.165435375,
+          "meanMtok": 0.06456922869121716,
+          "totalSampleCount": 3928,
+          "tokenedSampleCount": 3856
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.5-agent",
+        "medianUsd": 0.9714734999999999,
+        "p25Usd": 0.3560155,
+        "p95Usd": 7.977713,
+        "meanUsd": 2.1153155378151256,
+        "totalSampleCount": 1083,
+        "pricedSampleCount": 1071,
+        "outputMtokPerTask": {
+          "medianMtok": 0.015031,
+          "p25Mtok": 0.006730750000000001,
+          "p95Mtok": 0.065973,
+          "meanMtok": 0.021777073607220664,
+          "totalSampleCount": 1083,
+          "tokenedSampleCount": 1071
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.6-terra-xhigh-agent",
+        "medianUsd": 0.6881813,
+        "p25Usd": 0.16539914999999997,
+        "p95Usd": 4.982442275,
+        "meanUsd": 1.4461329845260222,
+        "totalSampleCount": 1096,
+        "pricedSampleCount": 1076,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0232675,
+          "p25Mtok": 0.008126125,
+          "p95Mtok": 0.08371333333333333,
+          "meanMtok": 0.030453888940520448,
+          "totalSampleCount": 1096,
+          "tokenedSampleCount": 1076
+        }
+      },
+      {
+        "contenderName": "contenders/farris-ees5-agent",
+        "medianUsd": 0.27221466666666666,
+        "p25Usd": 0.0717295,
+        "p95Usd": 1.4691884999999998,
+        "meanUsd": 0.46777334154471534,
+        "totalSampleCount": 13771,
+        "pricedSampleCount": 1025,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0917945,
+          "p25Mtok": 0.0339895,
+          "p95Mtok": 0.30191684999999974,
+          "meanMtok": 0.11054689455757219,
+          "totalSampleCount": 13771,
+          "tokenedSampleCount": 13554
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.4-high-code-arena-harness-agent",
+        "medianUsd": 1.15826025,
+        "p25Usd": 0.3449288125,
+        "p95Usd": 6.510713749999999,
+        "meanUsd": 1.9117619057898256,
+        "totalSampleCount": 1008,
+        "pricedSampleCount": 996,
+        "outputMtokPerTask": {
+          "medianMtok": 0.029921,
+          "p25Mtok": 0.0112685,
+          "p95Mtok": 0.11470475,
+          "meanMtok": 0.040981648929049534,
+          "totalSampleCount": 1008,
+          "tokenedSampleCount": 996
+        }
+      },
+      {
+        "contenderName": "contenders/glm-5.3-flash-agent",
+        "medianUsd": 0.17074682,
+        "p25Usd": 0.0414377475,
+        "p95Usd": 1.1291213779999998,
+        "meanUsd": 0.3402753650286156,
+        "totalSampleCount": 10943,
+        "pricedSampleCount": 10775,
+        "outputMtokPerTask": {
+          "medianMtok": 0.065847,
+          "p25Mtok": 0.02857625,
+          "p95Mtok": 0.23080864999999992,
+          "meanMtok": 0.08455997559164732,
+          "totalSampleCount": 10943,
+          "tokenedSampleCount": 10775
+        }
+      },
+      {
+        "contenderName": "contenders/gpt-5.6-luna-xhigh-agent",
+        "medianUsd": 0.06606452,
+        "p25Usd": 0.012501665,
+        "p95Usd": 0.6536428640000003,
+        "meanUsd": 0.1783867901465934,
+        "totalSampleCount": 4045,
+        "pricedSampleCount": 4002,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0208805,
+          "p25Mtok": 0.00742025,
+          "p95Mtok": 0.08328274999999996,
+          "meanMtok": 0.028919766075295682,
+          "totalSampleCount": 4045,
+          "tokenedSampleCount": 4002
+        }
+      },
+      {
+        "contenderName": "contenders/qwen3.8-27b-code-agent",
+        "medianUsd": 0.7838214800000001,
+        "p25Usd": 0.22043849,
+        "p95Usd": 3.579372211999998,
+        "meanUsd": 1.1581362653570877,
+        "totalSampleCount": 6580,
+        "pricedSampleCount": 6455,
+        "outputMtokPerTask": {
+          "medianMtok": 0.077201,
+          "p25Mtok": 0.033613000000000004,
+          "p95Mtok": 0.23946949999999978,
+          "meanMtok": 0.09229309504260262,
+          "totalSampleCount": 6580,
+          "tokenedSampleCount": 6455
+        }
+      },
+      {
+        "contenderName": "contenders/deepseek-v4-pro-thinking-first-party",
+        "medianUsd": 0.5664962647999999,
+        "p25Usd": 0.14934702080000004,
+        "p95Usd": 3.45224010336,
+        "meanUsd": 1.0236510452537024,
+        "totalSampleCount": 1463,
+        "pricedSampleCount": 1445,
+        "outputMtokPerTask": {
+          "medianMtok": 0.067122,
+          "p25Mtok": 0.030459,
+          "p95Mtok": 0.2454298,
+          "meanMtok": 0.08978162710495964,
+          "totalSampleCount": 1463,
+          "tokenedSampleCount": 1445
+        }
+      },
+      {
+        "contenderName": "contenders/muse-spark-1.2-xhigh-agent",
+        "medianUsd": 0.3912428625,
+        "p25Usd": 0.09876312500000001,
+        "p95Usd": 3.2985471,
+        "meanUsd": 0.9319908715560349,
+        "totalSampleCount": 4917,
+        "pricedSampleCount": 4866,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0261935,
+          "p25Mtok": 0.01483125,
+          "p95Mtok": 0.10273219999999997,
+          "meanMtok": 0.0382004121131197,
+          "totalSampleCount": 4917,
+          "tokenedSampleCount": 4868
+        }
+      },
+      {
+        "contenderName": "contenders/claude-sonnet-4-6-agent",
+        "medianUsd": 1.4790997,
+        "p25Usd": 0.45177285,
+        "p95Usd": 10.97600474,
+        "meanUsd": 3.0329336033596848,
+        "totalSampleCount": 257,
+        "pricedSampleCount": 253,
+        "outputMtokPerTask": {
+          "medianMtok": 0.024595,
+          "p25Mtok": 0.007843,
+          "p95Mtok": 0.11873859999999997,
+          "meanMtok": 0.038972722002635046,
+          "totalSampleCount": 257,
+          "tokenedSampleCount": 253
+        }
+      },
+      {
+        "contenderName": "contenders/hy3-tencent-cloud-agent",
+        "medianUsd": 0.0756890904,
+        "p25Usd": 0.022690173,
+        "p95Usd": 1.8030198026399988,
+        "meanUsd": 0.36117407029844506,
+        "totalSampleCount": 1196,
+        "pricedSampleCount": 1179,
+        "outputMtokPerTask": {
+          "medianMtok": 0.04616166666666666,
+          "p25Mtok": 0.017573,
+          "p95Mtok": 0.20126239999999984,
+          "meanMtok": 0.06774556276505511,
+          "totalSampleCount": 1196,
+          "tokenedSampleCount": 1179
+        }
+      },
+      {
+        "contenderName": "contenders/qwen3.7-max-agent",
+        "medianUsd": 0.43783413250000003,
+        "p25Usd": 0.133367435,
+        "p95Usd": 2.8235210210000012,
+        "meanUsd": 0.8349476884041896,
+        "totalSampleCount": 1105,
+        "pricedSampleCount": 1082,
+        "outputMtokPerTask": {
+          "medianMtok": 0.027213750000000002,
+          "p25Mtok": 0.0110615,
+          "p95Mtok": 0.10912810000000003,
+          "meanMtok": 0.03724713555144794,
+          "totalSampleCount": 1105,
+          "tokenedSampleCount": 1082
+        }
+      },
+      {
+        "contenderName": "contenders/super-nova-ext-3tam-agent",
+        "medianUsd": 1.21576265,
+        "p25Usd": 0.2465402625,
+        "p95Usd": 12.865201676666635,
+        "meanUsd": 3.1648928744733693,
+        "totalSampleCount": 6770,
+        "pricedSampleCount": 6684,
+        "outputMtokPerTask": {
+          "medianMtok": 0.025533,
+          "p25Mtok": 0.0119615,
+          "p95Mtok": 0.10478344999999997,
+          "meanMtok": 0.03639549718232596,
+          "totalSampleCount": 6770,
+          "tokenedSampleCount": 6684
+        }
+      },
+      {
+        "contenderName": "contenders/minimax-m3-first-party",
+        "medianUsd": 0.15188900999999996,
+        "p25Usd": 0.019738980000000003,
+        "p95Usd": 1.965530465999999,
+        "meanUsd": 0.48278791176772246,
+        "totalSampleCount": 1129,
+        "pricedSampleCount": 1105,
+        "outputMtokPerTask": {
+          "medianMtok": 0.021368,
+          "p25Mtok": 0.005059,
+          "p95Mtok": 0.1179919,
+          "meanMtok": 0.03708436802413274,
+          "totalSampleCount": 1129,
+          "tokenedSampleCount": 1105
+        }
+      },
+      {
+        "contenderName": "contenders/mimo-v2.5-pro-agent",
+        "medianUsd": 0.057270348599999986,
+        "p25Usd": 0.01967928,
+        "p95Usd": 0.3224840022799992,
+        "meanUsd": 0.12201864717612312,
+        "totalSampleCount": 1369,
+        "pricedSampleCount": 1343,
+        "outputMtokPerTask": {
+          "medianMtok": 0.027874,
+          "p25Mtok": 0.00916025,
+          "p95Mtok": 0.11139409999999987,
+          "meanMtok": 0.037610012658227845,
+          "totalSampleCount": 1369,
+          "tokenedSampleCount": 1343
+        }
+      },
+      {
+        "contenderName": "contenders/qwen3.7-plus-agent",
+        "medianUsd": 0.13874416,
+        "p25Usd": 0.043953952000000004,
+        "p95Usd": 0.888384912,
+        "meanUsd": 0.2880060878879311,
+        "totalSampleCount": 715,
+        "pricedSampleCount": 696,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0296395,
+          "p25Mtok": 0.010909875,
+          "p95Mtok": 0.12130575,
+          "meanMtok": 0.041596572078544065,
+          "totalSampleCount": 715,
+          "tokenedSampleCount": 696
+        }
+      },
+      {
+        "contenderName": "contenders/gemini-3.1-pro-preview-agent",
+        "medianUsd": 0.6435052000000001,
+        "p25Usd": 0.2127704,
+        "p95Usd": 8.724549479999997,
+        "meanUsd": 1.832337756391876,
+        "totalSampleCount": 861,
+        "pricedSampleCount": 837,
+        "outputMtokPerTask": {
+          "medianMtok": 0.016939,
+          "p25Mtok": 0.008704,
+          "p95Mtok": 0.08181999999999999,
+          "meanMtok": 0.02723027698128236,
+          "totalSampleCount": 861,
+          "tokenedSampleCount": 837
+        }
+      },
+      {
+        "contenderName": "contenders/gemini-3.6-flash-agent",
+        "medianUsd": 0.492783675,
+        "p25Usd": 0.23801561250000003,
+        "p95Usd": 2.1845752300000005,
+        "meanUsd": 0.7397601856362469,
+        "totalSampleCount": 1191,
+        "pricedSampleCount": 1167,
+        "outputMtokPerTask": {
+          "medianMtok": 0.04252,
+          "p25Mtok": 0.02325925,
+          "p95Mtok": 0.13941110000000004,
+          "meanMtok": 0.05334301928020566,
+          "totalSampleCount": 1191,
+          "tokenedSampleCount": 1167
+        }
+      },
+      {
+        "contenderName": "contenders/inkling-small",
+        "medianUsd": 0.17435089999999998,
+        "p25Usd": 0.057355199999999995,
+        "p95Usd": 1.1216509199999998,
+        "meanUsd": 0.32495546203104786,
+        "totalSampleCount": 777,
+        "pricedSampleCount": 773,
+        "outputMtokPerTask": {
+          "medianMtok": 0.022048,
+          "p25Mtok": 0.01172,
+          "p95Mtok": 0.0680902,
+          "meanMtok": 0.02679145946528676,
+          "totalSampleCount": 777,
+          "tokenedSampleCount": 773
+        }
+      },
+      {
+        "contenderName": "contenders/inkling-agent",
+        "medianUsd": 0.4773775375,
+        "p25Usd": 0.14848556999999998,
+        "p95Usd": 2.3612086349999997,
+        "meanUsd": 0.7774654123280422,
+        "totalSampleCount": 765,
+        "pricedSampleCount": 756,
+        "outputMtokPerTask": {
+          "medianMtok": 0.0198645,
+          "p25Mtok": 0.00935825,
+          "p95Mtok": 0.068785625,
+          "meanMtok": 0.025516410052910058,
+          "totalSampleCount": 765,
+          "tokenedSampleCount": 756
+        }
+      },
+      {
+        "contenderName": "contenders/mistral-medium-3.5-v2-agent",
+        "medianUsd": 2.4798742500000004,
+        "p25Usd": 0.52806825,
+        "p95Usd": 20.394272100000002,
+        "meanUsd": 5.336607071882086,
+        "totalSampleCount": 743,
+        "pricedSampleCount": 735,
+        "outputMtokPerTask": {
+          "medianMtok": 0.032313,
+          "p25Mtok": 0.01090875,
+          "p95Mtok": 0.14173789999999997,
+          "meanMtok": 0.04643464625850341,
+          "totalSampleCount": 743,
+          "tokenedSampleCount": 735
+        }
+      },
+      {
+        "contenderName": "contenders/deep-octo-first-party",
+        "medianUsd": 0.1394079,
+        "p25Usd": 0.031211816249999996,
+        "p95Usd": 1.314314290499998,
+        "meanUsd": 0.3360711353869565,
+        "totalSampleCount": 579,
+        "pricedSampleCount": 575,
+        "outputMtokPerTask": {
+          "medianMtok": 0.019074,
+          "p25Mtok": 0.005981,
+          "p95Mtok": 0.10583039999999999,
+          "meanMtok": 0.030567336521739135,
+          "totalSampleCount": 579,
+          "tokenedSampleCount": 575
+        }
+      },
+      {
+        "contenderName": "contenders/gemini-3.5-flash-lite-agent",
+        "medianUsd": 0.11629479999999999,
+        "p25Usd": 0.04834312,
+        "p95Usd": 0.7685724519999999,
+        "meanUsd": 0.2331478491037037,
+        "totalSampleCount": 228,
+        "pricedSampleCount": 225,
+        "outputMtokPerTask": {
+          "medianMtok": 0.019117,
+          "p25Mtok": 0.010146,
+          "p95Mtok": 0.06721659999999997,
+          "meanMtok": 0.026773409629629635,
+          "totalSampleCount": 228,
+          "tokenedSampleCount": 225
+        }
+      }
+    ]
+  }
+}
