@@ -16,30 +16,29 @@ The core deliverable is [`AI_Leaderboard_for_Vibe_Coding.html`](file:///Volumes/
 
 The ranking is sorted strictly descending by **Score**:
 
-$$\text{Score} = 0.35 \times \text{CS} + 0.30 \times \text{Steer} + 0.25 \times \text{Praise} + 0.10 \times \text{Bash}$$
+$$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times \text{Praise} + 0.10 \times \text{Bash}$$
 
 | Signal | Weight | Source Field | What It Measures |
 | :--- | :---: | :--- | :--- |
-| **Confirmed Success (CS)** | **35%** | `task_outcome_explicit` | Frequency at which tasks are explicitly marked as completed and accepted. |
+| **Confirmed Success (CS)** | **30%** | `task_outcome_explicit` | Frequency at which tasks are explicitly marked as completed and accepted. |
 | **Steerability (Steer)** | **30%** | `steerability` | Ability to adopt user course-corrections, changing approach without regression. |
-| **Praise / Complaint (Praise)** | **25%** | `praise_complaint` | Ratio of positive developer sentiment versus reported frustrations. |
+| **Praise / Complaint (Praise)** | **30%** | `praise_complaint` | Ratio of positive developer sentiment versus reported frustrations. |
 | **Bash Recovery (Bash)** | **10%** | `bash_recovery_steps` | Resilience in autonomously fixing broken commands and syntax/runtime errors. |
 
 > **Crucial Rule:** Cost is purely informational (for budgeting and tie-breaking). **Cost never enters the Score formula.**
 
-### 2. Cost & Token Metrics
+### 2. Cost & Pricing Metrics
 
-- **Cost/Task P50**: Median USD cost per task on Arena measured across a rolling 14-day window (`costWindowDays = 14`). Set to `N/A` if `pricedSampleCount < 10` (or `< 30` for sparse models).
-- **Score / $**: `max(Score, 0) / Cost/Task P50`, using the OpenRouter cost when that overlay is shown, otherwise the Arena median. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`.
+- **Cost/Task**: Mean USD cost per task (session) on Arena measured across a rolling 14-day window (`costWindowDays = 14`). Set to `N/A` if `pricedSampleCount < 10` (or `< 30` for sparse models).
+- **Score / $**: `max(Score, 0) / Cost/Task`, using the OpenRouter cost when that overlay is shown, otherwise the Arena mean. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`.
 - **Price $/M**: Vendor list price per million tokens (input / output) reported on Arena.
-- **Tokens P50**: Median output tokens per completed task on Arena (displayed in thousands, e.g. `68.3K`).
 - **OpenRouter Real-Time Overlay**: Where an active OpenRouter route exists, the effective cost is calculated and shown **first**:
-  $$\text{OR \$/task} = \text{Cost/Task P50} \times \frac{\text{OR}_{\text{blended}}}{\text{list}_{\text{blended}}}$$
+  $$\text{OR \$/task} = \text{Cost/Task} \times \frac{\text{OR}_{\text{blended}}}{\text{list}_{\text{blended}}}$$
   $$\text{blended} = 0.25 \times \text{input \$/M} + 0.75 \times \text{output \$/M}$$
   - **Green (`.main.down`)**: OpenRouter is cheaper than vendor list price.
   - **Red (`.main.up`)**: OpenRouter is more expensive than vendor list price.
   - **Plain single line**: When OpenRouter matches vendor list price (to 2 decimals) or when OpenRouter data is unavailable.
-- **General Rounding Rule**: ALL price and currency metrics (including Cost/Task P50, Price $/M, blended prices, and internal numerical `data-v` sorting attributes) MUST be rounded to at most 2 decimal places. No price or cost metric may expose 3 or more decimal places.
+- **General Rounding Rule**: ALL price and currency metrics (including Cost/Task, Price $/M, blended prices, and internal numerical `data-v` sorting attributes) MUST be rounded to at most 2 decimal places. No price or cost metric may expose 3 or more decimal places.
 
 ---
 
@@ -76,7 +75,7 @@ python3 update_leaderboard.py
    - Reassembles Arena Next.js `self.__next_f` stream chunks to extract snapshot scores and 14-day rolling cost statistics.
    - Extracts OpenRouter pricing, filtering out `:batch` routes and prioritizing `:free` endpoints for each model.
 3. **Deterministic Scoring**:
-   - Computes Vibe Score: `0.35 * CS + 0.30 * Steer + 0.25 * Praise + 0.10 * Bash`.
+   - Computes Vibe Score: `0.30 * CS + 0.30 * Steer + 0.30 * Praise + 0.10 * Bash`.
    - Normalizes per-column min/max bounds and calculates dynamic HSL tint alphas.
    - Renders OpenRouter price overlay badges (green for cheaper, red for more expensive).
 4. **Surgical DOM Update**:
@@ -86,15 +85,14 @@ python3 update_leaderboard.py
 
 ### Technical Specifications & Formulas
 
-- **Score**: Compute `0.35 * CS + 0.30 * Steer + 0.25 * Praise + 0.10 * Bash` using the frozen percentage points from `signalScores`.
+- **Score**: Compute `0.30 * CS + 0.30 * Steer + 0.30 * Praise + 0.10 * Bash` using the frozen percentage points from `signalScores`.
 - **Cell Attributes (`data-v`)**: Maintain numerical sort keys on every `<td>`:
   - Rank: integer.
   - Model: string.
   - Score and Signals: floating point numbers.
-  - Score / $: non-negative `max(Score, 0) / Cost/Task P50`; use `data-v="Infinity"` for positive Score with zero cost and omit `data-v` when the cost is unavailable so `N/A` sorts last.
-  - Cost/Task P50: primary numerical value (OR cost if available, else Arena median).
+  - Score / $: non-negative `max(Score, 0) / Cost/Task`; use `data-v="Infinity"` for positive Score with zero cost and omit `data-v` when the cost is unavailable so `N/A` sorts last.
+  - Cost/Task: primary numerical value (OR cost if available, else Arena mean).
   - Price $/M: blended price `0.25 * input + 0.75 * output` of the primary pair.
-  - Tokens P50: integer token count.
 - **Dynamic Alphas**:
   - For positive values: `alpha = value / column_max`
   - For negative values: `alpha = abs(value) / abs(column_min)`
@@ -163,19 +161,19 @@ When Arena live payloads omit vendor list pricing or lack sufficient 14-day roll
   - `Deepseek V4 Flash (High) (20260731)`: `$0.14 / $0.28`
   - `Grok 4.6 (xHigh)`: `$2 / $6`
   - `Qwen3.7 Max`: `$2.5 / $7.5`
-- **`KNOWN_BASELINES`**: Verified historical median cost baseline for models with insufficient rolling samples (`pricedSampleCount < 10`):
-  - `Gemini 3.8 Flash (High)`: `$0.45` median USD, `41,429` tokens.
+- **`KNOWN_BASELINES`**: Verified historical mean cost baseline for models with insufficient rolling samples (`pricedSampleCount < 10`):
+  - `Gemini 3.8 Flash (High)`: `$0.45` mean USD.
 
 ### 5. Acceptance Checklist
 
 Before completing an update, verify each item:
 - [ ] Header metadata matches Arena live values (snapshot date, total model count, total session count, OpenRouter timestamp).
 - [ ] Models are sorted by `Score` descending, numbered $1 \dots N$.
-- [ ] Formula is computed accurately row by row: `0.35*CS + 0.30*Steer + 0.25*Praise + 0.10*Bash`.
+- [ ] Formula is computed accurately row by row: `0.30*CS + 0.30*Steer + 0.30*Praise + 0.10*Bash`.
 - [ ] OpenRouter price overlays are properly color-coded (green if cheaper, red if more expensive, neutral if identical or unmapped).
 - [ ] General rule: ALL currency and price values without exception (Cost/Task, Price $/M, blended rates, and `data-v` attributes) are rounded to at most 2 decimal places.
 - [ ] Sorting functionality works across all columns; ties break on initial rank.
 - [ ] `score-col` styling is active and properly framed.
-- [ ] The framed Score / $ column immediately precedes Cost/Task P50, uses the displayed cost value, clamps negative Scores to zero, and displays positive zero-cost ratios as `+∞`.
+- [ ] The framed Score / $ column immediately precedes Cost/Task, uses the displayed cost value, clamps negative Scores to zero, and displays positive zero-cost ratios as `+∞`.
 - [ ] Pin & Compare functionality is preserved and persists via `localStorage`.
 - [ ] No third-party tracking or injected challenge scripts remain in the HTML.

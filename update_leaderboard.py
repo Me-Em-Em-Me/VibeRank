@@ -68,10 +68,9 @@ OPENROUTER_MAP = {
 # Known verified historical baselines for models lacking sufficient rolling-window samples
 KNOWN_BASELINES = {
     "Gemini 3.8 Flash (High)": {
-        "medianUsd": 0.45,
+        "meanUsd": 0.45,
         "inputPricePerMillion": 0.75,
-        "outputPricePerMillion": 3.75,
-        "tokens": 41429
+        "outputPricePerMillion": 3.75
     }
 }
 
@@ -194,18 +193,6 @@ def format_price_dollars(v):
         return f"${v:.1f}"
     return f"${v:.2f}"
 
-def format_tokens(t):
-    if t is None:
-        return "N/A"
-    if t >= 1_000_000:
-        return f"{t / 1_000_000:.1f}M"
-    if t >= 1_000:
-        k = t / 1000.0
-        k_str = f"{k:.1f}"
-        if k_str.endswith(".0"):
-            k_str = k_str[:-2]
-        return f"{k_str}K"
-    return str(t)
 
 def compute_leaderboard_data(snapshot, costs, or_by_id):
     cost_map = {e["contenderName"]: e for e in costs.get("entries", [])}
@@ -221,7 +208,7 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
         steer = signals.get("steerability", 0.0) * 100.0
         praise = signals.get("praise_complaint", 0.0) * 100.0
         bash = signals.get("bash_recovery_steps", 0.0) * 100.0
-        score = 0.35 * cs + 0.30 * steer + 0.25 * praise + 0.10 * bash
+        score = 0.30 * cs + 0.30 * steer + 0.30 * praise + 0.10 * bash
 
         # Extract list prices
         list_in = r.get("inputPricePerMillion")
@@ -230,23 +217,19 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
             list_in, list_out = KNOWN_LIST_PRICES[model_name]
         list_blended = 0.25 * list_in + 0.75 * list_out if list_in is not None and list_out is not None else None
 
-        # Extract Arena live cost & tokens
+        # Extract Arena live cost
         cost_entry = cost_map.get(contender)
         if cost_entry and cost_entry.get("pricedSampleCount", 0) >= 10:
-            arena_cost = cost_entry.get("medianUsd")
-            mtok = cost_entry.get("outputMtokPerTask", {}).get("medianMtok", 0.0)
-            tokens = int(round(mtok * 1_000_000))
+            arena_cost = cost_entry.get("meanUsd")
         elif model_name in KNOWN_BASELINES:
             b = KNOWN_BASELINES[model_name]
-            arena_cost = b["medianUsd"]
+            arena_cost = b.get("meanUsd", b.get("medianUsd"))
             if list_in is None:
                 list_in = b["inputPricePerMillion"]
                 list_out = b["outputPricePerMillion"]
                 list_blended = 0.25 * list_in + 0.75 * list_out
-            tokens = b["tokens"]
         else:
             arena_cost = None
-            tokens = None
 
         # Resolve OpenRouter real-time pricing
         or_info = resolve_openrouter_pricing(model_name, or_by_id)
@@ -269,7 +252,6 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
             "list_out": list_out,
             "list_blended": list_blended,
             "arena_cost": arena_cost,
-            "tokens": tokens,
             "or_info": or_info,
             "or_cost": or_cost,
             "ratio": ratio
@@ -388,10 +370,6 @@ def render_table_rows(processed, extrema):
             else:
                 price_cell = '<td class="num"><div class="main">N/A</div></td>'
 
-        tokens = p["tokens"]
-        tokens_display = format_tokens(tokens)
-        tokens_cell = f'<td class="num" data-v="{tokens}"><div class="main">{tokens_display}</div></td>' if tokens else '<td class="num"><div class="main">N/A</div></td>'
-
         row = (
             f'<tr>\n'
             f'<td class="num rank" data-v="{rank}">{rank}</td>\n'
@@ -403,7 +381,6 @@ def render_table_rows(processed, extrema):
             f'<td class="num" data-v="{bash:.2f}"{bash_style}><div class="main">{bash_sign}{bash:.2f}%</div></td>\n'
             f'{cost_cell}\n'
             f'{price_cell}\n'
-            f'{tokens_cell}\n'
             f'</tr>'
         )
         rows_html.append(row)
