@@ -27,9 +27,16 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
 
 > **Crucial Rule:** Cost is purely informational (for budgeting and tie-breaking). **Cost never enters the Score formula.**
 
-### 2. Cost & Pricing Metrics
+### 2. Cost & Operational Metrics
 
 - **Cost/Task**: Mean USD cost per task (session) on Arena measured across a rolling 14-day window (`costWindowDays = 14`). Set to `N/A` if `pricedSampleCount < 10` (or `< 30` for sparse models).
+- **Time/Task**: Estimated developer wall-clock duration per coding session, combining generation decode time with response latency (TTFT) overhead across turns:
+  $$\text{Time/Task (min)} = \frac{\text{Decode Time (s)} + \text{Latency Overhead (s)}}{60}$$
+  $$\text{Decode Time (s)} = \frac{\text{Arena meanMtok} \times 1{,}000{,}000}{\text{OpenRouter Mean Throughput (tok/s)}}$$
+  $$\text{Latency Overhead (s)} = \left(\frac{\text{Arena observations}}{\text{Arena sessions}}\right) \times \text{OpenRouter Mean Latency (s)}$$
+  - **Arena Real Observed Tokens & Turns**: Uses actual observed mean output tokens (`meanMtok`) and average turns per task ($\text{observations} / \text{sessions}$).
+  - **OpenRouter Mean Speed & TTFT**: Uses the arithmetic mean throughput (tok/s) and mean latency (s) across all active providers for that model on OpenRouter.
+  - **Fastest First**: Clicking the `Time/Task` column header defaults to ascending order (shortest duration first).
 - **Score / $**: `max(Score, 0) / Cost/Task`, using the OpenRouter cost when that overlay is shown, otherwise the Arena mean. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`.
 - **Price $/M**: Vendor list price per million tokens (input / output) reported on Arena.
 - **OpenRouter Real-Time Overlay**: Where an active OpenRouter route exists, the effective cost is calculated and shown **first**:
@@ -39,6 +46,27 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
   - **Red (`.main.up`)**: OpenRouter is more expensive than vendor list price.
   - **Plain single line**: When OpenRouter matches vendor list price (to 2 decimals) or when OpenRouter data is unavailable.
 - **General Rounding Rule**: ALL price and currency metrics (including Cost/Task, Price $/M, blended prices, and internal numerical `data-v` sorting attributes) MUST be rounded to at most 2 decimal places. No price or cost metric may expose 3 or more decimal places.
+
+### 3. Concrete Scoring Example
+
+Taking **GLM 5.3 Flash** from the frozen benchmark snapshot:
+
+$$\text{Score} = 0.30 \times (+11.27) + 0.30 \times (+1.09) + 0.30 \times (+1.00) + 0.10 \times (-5.41)$$
+$$\text{Score} = 3.38 + 0.33 + 0.30 - 0.54 = +3.47$$
+
+Signal percentages are frozen per benchmark snapshot and mirror Arena's public values. Score and signal cells use normalized linear tints scaled per column and per sign ($0.05$ minimum alpha floor; a value of exactly $0$ receives no background tint).
+
+### 4. Reading & Interpretation Guidelines
+
+When analyzing model behaviors for agentic vibe coding:
+- **Confirmed Success vs. Praise**:
+  - **High CS + Low Praise**: A solid, disciplined workhorse that reliably completes tasks without generating excessive conversational enthusiasm.
+  - **High Praise + Low CS**: High perceived responsiveness and pleasant interaction that masks frequent unfinished implementations or broken edge cases.
+- **Bash Recovery as the Agentic Bottleneck**:
+  - A strongly negative Bash Recovery score (e.g. failing to self-correct broken terminal commands, shell scripts, or build errors) is the most critical failure mode in autonomous coding loops. Models with low Bash Recovery require frequent manual intervention.
+- **Cost vs. Capability Tiering**:
+  - **Daily Workhorses**: High-speed, low-cost models (such as GLM Flash and DeepSeek class) provide instant feedback and maximal score-per-dollar efficiency for routine iterative development.
+  - **Frontier Models**: Premium models (e.g., Claude Sonnet/Opus, GPT-5/6 tiers) excel at complex multi-file architectural restructuring, high-ambiguity prompt resolution, and intricate error recovery.
 
 ---
 
@@ -71,17 +99,20 @@ python3 update_leaderboard.py
 1. **Concurrent Fetching**: Downloads live payloads in parallel from:
    - `https://arena.ai/leaderboard/agent/code`
    - `https://openrouter.ai/api/v1/models`
+   - Real-time provider performance profiles from `https://openrouter.ai/{model}` (throughput in tok/s & TTFT in ms)
 2. **Payload Parsing**:
-   - Reassembles Arena Next.js `self.__next_f` stream chunks to extract snapshot scores and 14-day rolling cost statistics.
+   - Reassembles Arena Next.js `self.__next_f` stream chunks to extract snapshot scores, 14-day rolling cost statistics, and output token distributions (`meanMtok`).
    - Extracts OpenRouter pricing, filtering out `:batch` routes and prioritizing `:free` endpoints for each model.
-3. **Deterministic Scoring**:
+   - Computes arithmetic mean throughput and response latency across active providers for each model.
+3. **Deterministic Scoring & Metrics**:
    - Computes Vibe Score: `0.30 * CS + 0.30 * Steer + 0.30 * Praise + 0.10 * Bash`.
+   - Computes wall-clock session duration: $\text{Time/Task} = (\text{Arena tokens} / \text{tok/s}) + (\text{turns} \times \text{latency})$.
    - Normalizes per-column min/max bounds and calculates dynamic HSL tint alphas.
    - Renders OpenRouter price overlay badges (green for cheaper, red for more expensive).
 4. **Surgical DOM Update**:
    - Updates hero counters (models tracked, total sessions, snapshot date, cost window).
    - Injects fresh `<tbody>` rows with numerical `data-v` sorting keys into [`AI_Leaderboard_for_Vibe_Coding.html`](file:///Volumes/SSDMarco/VibeCoding/AI-Leaderboard/AI_Leaderboard_for_Vibe_Coding.html).
-   - Refreshes methodology notes and footer timestamp.
+   - Refreshes footer timestamp and hero metadata counters.
 
 ### Technical Specifications & Formulas
 
@@ -153,16 +184,20 @@ Use this canonical mapping for real-time model resolution:
 
 *When a new model enters the leaderboard, look up its real-time endpoint in `/tmp/or.json`, always check if a `:free` version exists for the model, select the lowest In/Out Price among active providers/endpoints (excluding `:batch`), and append it to this dictionary.*
 
-### 4. Verified List Prices & Historical Baselines
+### 4. Verified List Prices, Predecessor Fallback & Historical Baselines
 
 When Arena live payloads omit vendor list pricing or lack sufficient 14-day rolling cost samples, `update_leaderboard.py` applies verified fallbacks:
+- **`PREDECESSOR_MAP`**: Dynamically inherits average output tokens per task (`meanMtok`) from a direct predecessor's live Arena data when a model lacks rolling cost samples (`pricedSampleCount < 10`):
+  - `Gemini 3.8 Flash (High)` inherits from `Gemini 3.6 Flash (High)`.
+  - Once Arena populates $\ge 10$ native cost samples for the model in future refreshes, the updater automatically prioritizes native Arena data.
+  - In the table UI, inherited token counts are clearly marked with an asterisk (e.g. `53k*`) and an explanatory tooltip indicating the predecessor source.
 - **`KNOWN_LIST_PRICES`**: Fallback vendor list prices ($/M tokens: input, output) used when Arena snapshot values are `null`:
   - `DeepSeek V4 Pro (High) (0813)`: `$0.44 / $0.87` (from $0.435 rounded to 2 decimals)
   - `Deepseek V4 Flash (High) (20260731)`: `$0.14 / $0.28`
   - `Grok 4.6 (xHigh)`: `$2 / $6`
   - `Qwen3.7 Max`: `$2.5 / $7.5`
-- **`KNOWN_BASELINES`**: Verified historical mean cost baseline for models with insufficient rolling samples (`pricedSampleCount < 10`):
-  - `Gemini 3.8 Flash (High)`: `$0.45` mean USD.
+- **`KNOWN_BASELINES`**: Verified historical mean cost baseline for models with insufficient rolling samples (`pricedSampleCount < 10`) when neither native nor predecessor data is available:
+  - `Gemini 3.8 Flash (High)`: `$0.45` mean USD (historical fallback).
 
 ### 5. Acceptance Checklist
 

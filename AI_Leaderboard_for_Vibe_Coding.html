@@ -325,38 +325,9 @@ tbody.filter-on tr td.rank[data-v="1"], tbody.filter-on tr td.rank[data-v="2"], 
 .lb-float .btn { padding: 7px 16px; }
 .lb-float .btn-ghost { background: transparent; }
 
-/* ---------- note + methodology ---------- */
+/* ---------- table note ---------- */
 .note { color: var(--muted); font-size: 0.86rem; margin: 16px 4px 0; }
 .note strong { color: var(--text); }
-.method {
-  color: var(--text); font-size: 0.93rem;
-  border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--card); backdrop-filter: var(--glass-blur);
-  padding: 26px 28px; box-shadow: var(--shadow);
-}
-.method h3 { font-size: 1rem; margin: 24px 0 10px; font-weight: 800; letter-spacing: -0.015em; display: flex; align-items: center; gap: 9px; }
-.method h3:first-child { margin-top: 0; }
-.method h3::before {
-  content: ""; width: 9px; height: 26px; border-radius: 5px; flex: none;
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
-}
-.method p { margin: 0 0 12px; color: var(--muted); }
-.method p strong, .method li strong { color: var(--text); }
-.method p:last-child { margin-bottom: 0; }
-.method ul, .method ol { margin: 8px 0 12px; padding-left: 20px; color: var(--muted); }
-.method li { margin: 5px 0; }
-.method li::marker { color: var(--accent-2); }
-.method .formula {
-  background: rgba(0, 0, 0, 0.28); border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 13px 16px; margin: 12px 0; font-family: var(--mono);
-  font-size: 0.85rem; color: var(--text); overflow-x: auto;
-}
-html[data-theme="light"] .method .formula { background: rgba(15, 23, 42, 0.045); }
-.weights { width: 100%; min-width: 0; margin: 14px 0; font-size: 0.87rem; border: 1px solid var(--border-soft); border-radius: var(--radius-sm); overflow: hidden; }
-.weights th { position: static; background: var(--chip-bg); backdrop-filter: none; }
-.weights th, .weights td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border-soft); }
-.weights tr:last-child td { border-bottom: 0; }
-.weights th.num, .weights td.num { text-align: right; }
 
 /* ---------- footer ---------- */
 footer {
@@ -384,12 +355,11 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
   .hero, main { padding-left: 16px; padding-right: 16px; }
   .nav-links a.hide-sm { display: none; }
   .lb-tools { top: 53px; }
-  .method { padding: 20px 18px; }
 }
 @media print {
   .cosmos, .nav, .lb-tools, .lb-float, th.pin-col, td.pin-col, .search, .theme-btn, footer { display: none !important; }
   body { background: #fff; color: #000; padding: 0; }
-  .wrap, .method { box-shadow: none; }
+  .wrap { box-shadow: none; }
   td.score-col { border-left: 2px solid #999; border-right: 2px solid #999; }
 }
 </style>
@@ -461,6 +431,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <th class="num">Praise 30%</th>
 <th class="num">Bash 10%</th>
 <th class="num" data-role="cost">Cost/Task</th>
+<th class="num" data-role="time">Time/Task</th>
 <th class="num">Price $/M</th>
 </tr></thead><tbody>
 <tr>
@@ -472,6 +443,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="41.58" style="background-color:hsl(125 49% 50% / 1.000)"><div class="main">+41.58%</div></td>
 <td class="num" data-v="10.68" style="background-color:hsl(125 49% 50% / 0.822)"><div class="main">+10.68%</div></td>
 <td class="num" data-v="16.60"><div class="main">$16.60</div></td>
+<td class="num" data-v="88.34" title="Total: 1h 28m | Decode: 75.9m (231k tok @ 50.8 t/s) + Latency: 12.4m (138 turns &times; 5.41s TTFT) across 8 OR providers"><div class="main">1h 28m</div><div class="alt">231k &middot; 51 t/s</div></td>
 <td class="num" data-v="40.00"><div class="main">$10 / $50</div></td>
 </tr>
 <tr>
@@ -483,6 +455,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="37.53" style="background-color:hsl(125 49% 50% / 0.903)"><div class="main">+37.53%</div></td>
 <td class="num" data-v="5.82" style="background-color:hsl(125 49% 50% / 0.448)"><div class="main">+5.82%</div></td>
 <td class="num" data-v="27.44"><div class="main">$27.44</div></td>
+<td class="num" data-v="59.12" title="Total: 59.1m | Decode: 48.0m (107k tok @ 37.0 t/s) + Latency: 11.1m (99 turns &times; 6.71s TTFT) across 10 OR providers"><div class="main">59.1m</div><div class="alt">107k &middot; 37 t/s</div></td>
 <td class="num" data-v="40.00"><div class="main">$10 / $50</div></td>
 </tr>
 <tr>
@@ -493,7 +466,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="16.05" style="background-color:hsl(125 49% 50% / 1.000)"><div class="main">+16.05%</div></td>
 <td class="num" data-v="20.04" style="background-color:hsl(125 49% 50% / 0.482)"><div class="main">+20.04%</div></td>
 <td class="num" data-v="12.00" style="background-color:hsl(125 49% 50% / 0.923)"><div class="main">+12.00%</div></td>
-<td class="num" data-v="8.75"><div class="main">$8.75</div></td>
+<td class="num" data-v="8.74"><div class="main">$8.74</div></td>
+<td class="num" data-v="37.06" title="Total: 37.1m | Decode: 22.9m (85k tok @ 61.7 t/s) + Latency: 14.1m (238 turns &times; 3.57s TTFT) across 18 OR providers"><div class="main">37.1m</div><div class="alt">85k &middot; 62 t/s</div></td>
 <td class="num" data-v="20.00"><div class="main">$5 / $25</div></td>
 </tr>
 <tr>
@@ -504,7 +478,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="9.53" style="background-color:hsl(125 49% 50% / 0.594)"><div class="main">+9.53%</div></td>
 <td class="num" data-v="18.68" style="background-color:hsl(125 49% 50% / 0.449)"><div class="main">+18.68%</div></td>
 <td class="num" data-v="12.99" style="background-color:hsl(125 49% 50% / 1.000)"><div class="main">+12.99%</div></td>
-<td class="num" data-v="10.44"><div class="main">$10.44</div></td>
+<td class="num" data-v="10.50"><div class="main">$10.50</div></td>
+<td class="num" data-v="43.96" title="Total: 44.0m | Decode: 29.8m (110k tok @ 61.7 t/s) + Latency: 14.2m (238 turns &times; 3.57s TTFT) across 18 OR providers"><div class="main">44.0m</div><div class="alt">110k &middot; 62 t/s</div></td>
 <td class="num" data-v="20.00"><div class="main">$5 / $25</div></td>
 </tr>
 <tr>
@@ -515,7 +490,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="13.86" style="background-color:hsl(125 49% 50% / 0.864)"><div class="main">+13.86%</div></td>
 <td class="num" data-v="17.92" style="background-color:hsl(125 49% 50% / 0.431)"><div class="main">+17.92%</div></td>
 <td class="num" data-v="10.18" style="background-color:hsl(125 49% 50% / 0.783)"><div class="main">+10.18%</div></td>
-<td class="num" data-v="12.60"><div class="main">$12.60</div></td>
+<td class="num" data-v="12.48"><div class="main">$12.48</div></td>
+<td class="num" data-v="39.65" title="Total: 39.7m | Decode: 30.7m (75k tok @ 40.9 t/s) + Latency: 8.9m (103 turns &times; 5.19s TTFT) across 10 OR providers"><div class="main">39.7m</div><div class="alt">75k &middot; 41 t/s</div></td>
 <td class="num" data-v="40.00"><div class="main">$10 / $50</div></td>
 </tr>
 <tr>
@@ -526,7 +502,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="10.54" style="background-color:hsl(125 49% 50% / 0.657)"><div class="main">+10.54%</div></td>
 <td class="num" data-v="24.27" style="background-color:hsl(125 49% 50% / 0.584)"><div class="main">+24.27%</div></td>
 <td class="num" data-v="3.90" style="background-color:hsl(125 49% 50% / 0.300)"><div class="main">+3.90%</div></td>
-<td class="num" data-v="2.33" title="OpenRouter real-time &times; 0.500 via openai/gpt-5.6-sol (no batch)"><div class="main down">OR $2.33</div><div class="alt">Arena $4.66</div></td>
+<td class="num" data-v="2.34" title="OpenRouter real-time &times; 0.500 via openai/gpt-5.6-sol (no batch)"><div class="main down">OR $2.34</div><div class="alt">Arena $4.68</div></td>
+<td class="num" data-v="30.62" title="Total: 30.6m | Decode: 13.4m (38k tok @ 47.3 t/s) + Latency: 17.2m (200 turns &times; 5.15s TTFT) across 14 OR providers"><div class="main">30.6m</div><div class="alt">38k &middot; 47 t/s</div></td>
 <td class="num" data-v="8.00" title="OpenRouter real-time &times; 0.500 via openai/gpt-5.6-sol (no batch)"><div class="main down">OR $2 / $10</div><div class="alt">list $4 / $20</div></td>
 </tr>
 <tr>
@@ -537,7 +514,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="14.12" style="background-color:hsl(125 49% 50% / 0.880)"><div class="main">+14.12%</div></td>
 <td class="num" data-v="17.66" style="background-color:hsl(125 49% 50% / 0.425)"><div class="main">+17.66%</div></td>
 <td class="num" data-v="7.46" style="background-color:hsl(125 49% 50% / 0.574)"><div class="main">+7.46%</div></td>
-<td class="num" data-v="6.64"><div class="main">$6.64</div></td>
+<td class="num" data-v="6.62"><div class="main">$6.62</div></td>
+<td class="num" data-v="18.69" title="Total: 18.7m | Decode: 15.2m (60k tok @ 65.7 t/s) + Latency: 3.5m (103 turns &times; 2.04s TTFT) across 18 OR providers"><div class="main">18.7m</div><div class="alt">60k &middot; 66 t/s</div></td>
 <td class="num" data-v="20.00"><div class="main">$5 / $25</div></td>
 </tr>
 <tr>
@@ -548,7 +526,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="2.48" style="background-color:hsl(125 49% 50% / 0.154)"><div class="main">+2.48%</div></td>
 <td class="num" data-v="14.01" style="background-color:hsl(125 49% 50% / 0.337)"><div class="main">+14.01%</div></td>
 <td class="num" data-v="4.45" style="background-color:hsl(125 49% 50% / 0.342)"><div class="main">+4.45%</div></td>
-<td class="num" data-v="2.34" title="OpenRouter real-time &times; 0.885 via moonshotai/kimi-k3 (no batch)"><div class="main down">OR $2.34</div><div class="alt">Arena $2.65</div></td>
+<td class="num" data-v="2.33" title="OpenRouter real-time &times; 0.885 via moonshotai/kimi-k3 (no batch)"><div class="main down">OR $2.33</div><div class="alt">Arena $2.64</div></td>
+<td class="num" data-v="33.83" title="Total: 33.8m | Decode: 27.1m (60k tok @ 36.8 t/s) + Latency: 6.7m (149 turns &times; 2.71s TTFT) across 40 OR providers"><div class="main">33.8m</div><div class="alt">60k &middot; 37 t/s</div></td>
 <td class="num" data-v="10.62" title="OpenRouter real-time &times; 0.885 via moonshotai/kimi-k3 (no batch)"><div class="main down">OR $2.65 / $13.28</div><div class="alt">list $3 / $15</div></td>
 </tr>
 <tr>
@@ -560,6 +539,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="11.50" style="background-color:hsl(125 49% 50% / 0.277)"><div class="main">+11.50%</div></td>
 <td class="num" data-v="7.80" style="background-color:hsl(125 49% 50% / 0.600)"><div class="main">+7.80%</div></td>
 <td class="num" data-v="3.72"><div class="main">$3.72</div></td>
+<td class="num" data-v="37.49" title="Total: 37.5m | Decode: 27.5m (96k tok @ 58.3 t/s) + Latency: 10.0m (198 turns &times; 3.03s TTFT) across 18 OR providers"><div class="main">37.5m</div><div class="alt">96k &middot; 58 t/s</div></td>
 <td class="num" data-v="8.00"><div class="main">$2 / $10</div></td>
 </tr>
 <tr>
@@ -571,6 +551,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="13.01" style="background-color:hsl(125 49% 50% / 0.313)"><div class="main">+13.01%</div></td>
 <td class="num" data-v="0.09" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+0.09%</div></td>
 <td class="num" data-v="1.30" title="OpenRouter real-time &times; 0.488 via z-ai/glm-5.2 (no batch)"><div class="main down">OR $1.30</div><div class="alt">Arena $2.67</div></td>
+<td class="num" data-v="30.15" title="Total: 30.1m | Decode: 27.0m (97k tok @ 59.7 t/s) + Latency: 3.2m (113 turns &times; 1.68s TTFT) across 66 OR providers"><div class="main">30.1m</div><div class="alt">97k &middot; 60 t/s</div></td>
 <td class="num" data-v="1.78" title="OpenRouter real-time &times; 0.488 via z-ai/glm-5.2 (no batch)"><div class="main down">OR $0.68 / $2.15</div><div class="alt">list $1.4 / $4.4</div></td>
 </tr>
 <tr>
@@ -581,7 +562,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-1.73" style="background-color:hsl(2 86% 63% / 0.103)"><div class="main">-1.73%</div></td>
 <td class="num" data-v="13.24" style="background-color:hsl(125 49% 50% / 0.318)"><div class="main">+13.24%</div></td>
 <td class="num" data-v="8.52" style="background-color:hsl(125 49% 50% / 0.656)"><div class="main">+8.52%</div></td>
-<td class="num" data-v="0.57"><div class="main">$0.57</div></td>
+<td class="num" data-v="0.56"><div class="main">$0.56</div></td>
+<td class="num" data-v="36.95" title="Total: 37.0m | Decode: 30.1m (72k tok @ 40.0 t/s) + Latency: 6.8m (139 turns &times; 2.94s TTFT) across 2 OR providers"><div class="main">37.0m</div><div class="alt">72k &middot; 40 t/s</div></td>
 <td class="num" data-v="2.08"><div class="main">$0.83 / $2.5</div></td>
 </tr>
 <tr>
@@ -592,7 +574,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="0.28" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+0.28%</div></td>
 <td class="num" data-v="8.61" style="background-color:hsl(125 49% 50% / 0.207)"><div class="main">+8.61%</div></td>
 <td class="num" data-v="5.05" style="background-color:hsl(125 49% 50% / 0.388)"><div class="main">+5.05%</div></td>
-<td class="num" data-v="3.01" title="OpenRouter real-time &times; 3.224 via deepseek/deepseek-v4-pro-0813 (no batch)"><div class="main up">OR $3.01</div><div class="alt">Arena $0.93</div></td>
+<td class="num" data-v="3.02" title="OpenRouter real-time &times; 3.224 via deepseek/deepseek-v4-pro-0813 (no batch)"><div class="main up">OR $3.02</div><div class="alt">Arena $0.94</div></td>
+<td class="num" data-v="34.97" title="Total: 35.0m | Decode: 31.0m (90k tok @ 48.2 t/s) + Latency: 4.0m (153 turns &times; 1.55s TTFT) across 42 OR providers"><div class="main">35.0m</div><div class="alt">90k &middot; 48 t/s</div></td>
 <td class="num" data-v="2.46" title="OpenRouter real-time &times; 3.224 via deepseek/deepseek-v4-pro-0813 (no batch)"><div class="main up">OR $0.98 / $2.95</div><div class="alt">list $0.44 / $0.87</div></td>
 </tr>
 <tr>
@@ -603,7 +586,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="8.46" style="background-color:hsl(125 49% 50% / 0.527)"><div class="main">+8.46%</div></td>
 <td class="num" data-v="8.94" style="background-color:hsl(125 49% 50% / 0.215)"><div class="main">+8.94%</div></td>
 <td class="num" data-v="8.83" style="background-color:hsl(125 49% 50% / 0.679)"><div class="main">+8.83%</div></td>
-<td class="num" data-v="4.09"><div class="main">$4.09</div></td>
+<td class="num" data-v="4.05"><div class="main">$4.05</div></td>
+<td class="num" data-v="15.77" title="Total: 15.8m | Decode: 9.6m (40k tok @ 69.0 t/s) + Latency: 6.2m (81 turns &times; 4.58s TTFT) across 12 OR providers"><div class="main">15.8m</div><div class="alt">40k &middot; 69 t/s</div></td>
 <td class="num" data-v="23.75"><div class="main">$5 / $30</div></td>
 </tr>
 <tr>
@@ -614,7 +598,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="0.90" style="background-color:hsl(125 49% 50% / 0.056)"><div class="main">+0.90%</div></td>
 <td class="num" data-v="7.19" style="background-color:hsl(125 49% 50% / 0.173)"><div class="main">+7.19%</div></td>
 <td class="num" data-v="-3.19" style="background-color:hsl(2 86% 63% / 0.119)"><div class="main">-3.19%</div></td>
-<td class="num" data-v="2.71"><div class="main">$2.71</div></td>
+<td class="num" data-v="2.72"><div class="main">$2.72</div></td>
+<td class="num" data-v="27.89" title="Total: 27.9m | Decode: 23.0m (95k tok @ 68.6 t/s) + Latency: 4.9m (144 turns &times; 2.03s TTFT) across 54 OR providers"><div class="main">27.9m</div><div class="alt">95k &middot; 69 t/s</div></td>
 <td class="num" data-v="3.65"><div class="main">$1.4 / $4.4</div></td>
 </tr>
 <tr>
@@ -626,6 +611,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="4.42" style="background-color:hsl(125 49% 50% / 0.106)"><div class="main">+4.42%</div></td>
 <td class="num" data-v="5.80" style="background-color:hsl(125 49% 50% / 0.447)"><div class="main">+5.80%</div></td>
 <td class="num" data-v="2.60"><div class="main">$2.60</div></td>
+<td class="num" data-v="19.65" title="Total: 19.7m | Decode: 15.1m (47k tok @ 51.8 t/s) + Latency: 4.6m (169 turns &times; 1.63s TTFT) across 8 OR providers"><div class="main">19.7m</div><div class="alt">47k &middot; 52 t/s</div></td>
 <td class="num" data-v="5.00"><div class="main">$2 / $6</div></td>
 </tr>
 <tr>
@@ -636,7 +622,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="6.52" style="background-color:hsl(125 49% 50% / 0.406)"><div class="main">+6.52%</div></td>
 <td class="num" data-v="2.01" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+2.01%</div></td>
 <td class="num" data-v="5.23" style="background-color:hsl(125 49% 50% / 0.403)"><div class="main">+5.23%</div></td>
-<td class="num" data-v="1.84"><div class="main">$1.84</div></td>
+<td class="num" data-v="1.83"><div class="main">$1.83</div></td>
+<td class="num" data-v="14.52" title="Total: 14.5m | Decode: 13.1m (37k tok @ 47.0 t/s) + Latency: 1.4m (73 turns &times; 1.14s TTFT) across 6 OR providers"><div class="main">14.5m</div><div class="alt">37k &middot; 47 t/s</div></td>
 <td class="num" data-v="5.00"><div class="main">$2 / $6</div></td>
 </tr>
 <tr>
@@ -648,6 +635,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="8.26" style="background-color:hsl(125 49% 50% / 0.199)"><div class="main">+8.26%</div></td>
 <td class="num" data-v="6.57" style="background-color:hsl(125 49% 50% / 0.505)"><div class="main">+6.57%</div></td>
 <td class="num" data-v="0.06" title="OpenRouter real-time &times; 0.050 via meta/muse-spark-1.3-contributor (no batch)"><div class="main down">OR $0.06</div><div class="alt">Arena $1.21</div></td>
+<td class="num" data-v="18.77" title="Total: 18.8m | Decode: 13.0m (62k tok @ 80.0 t/s) + Latency: 5.8m (108 turns &times; 3.22s TTFT) across 2 OR providers"><div class="main">18.8m</div><div class="alt">62k &middot; 80 t/s</div></td>
 <td class="num" data-v="0.17" title="OpenRouter real-time &times; 0.050 via meta/muse-spark-1.3-contributor (no batch)"><div class="main down">OR $0.1 / $0.2</div><div class="alt">list $1.25 / $4.25</div></td>
 </tr>
 <tr>
@@ -659,6 +647,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="2.30" style="background-color:hsl(125 49% 50% / 0.055)"><div class="main">+2.30%</div></td>
 <td class="num" data-v="3.90" style="background-color:hsl(125 49% 50% / 0.300)"><div class="main">+3.90%</div></td>
 <td class="num" data-v="1.89"><div class="main">$1.89</div></td>
+<td class="num" data-v="40.26" title="Total: 40.3m | Decode: 34.8m (65k tok @ 31.0 t/s) + Latency: 5.5m (141 turns &times; 2.34s TTFT) across 2 OR providers"><div class="main">40.3m</div><div class="alt">65k &middot; 31 t/s</div></td>
 <td class="num" data-v="5.00"><div class="main">$2 / $6</div></td>
 </tr>
 <tr>
@@ -669,7 +658,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="0.06" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+0.06%</div></td>
 <td class="num" data-v="4.35" style="background-color:hsl(125 49% 50% / 0.105)"><div class="main">+4.35%</div></td>
 <td class="num" data-v="1.52" style="background-color:hsl(125 49% 50% / 0.117)"><div class="main">+1.52%</div></td>
-<td class="num" data-v="0.17" title="OpenRouter real-time &times; 0.429 via deepseek/deepseek-v4-flash-0731 (no batch)"><div class="main down">OR $0.17</div><div class="alt">Arena $0.40</div></td>
+<td class="num" data-v="0.17" title="OpenRouter real-time &times; 0.429 via deepseek/deepseek-v4-flash-0731 (no batch)"><div class="main down">OR $0.17</div><div class="alt">Arena $0.41</div></td>
+<td class="num" data-v="40.04" title="Total: 40.0m | Decode: 35.6m (112k tok @ 52.2 t/s) + Latency: 4.4m (193 turns &times; 1.38s TTFT) across 56 OR providers"><div class="main">40.0m</div><div class="alt">112k &middot; 52 t/s</div></td>
 <td class="num" data-v="0.10" title="OpenRouter real-time &times; 0.429 via deepseek/deepseek-v4-flash-0731 (no batch)"><div class="main down">OR $0.06 / $0.12</div><div class="alt">list $0.14 / $0.28</div></td>
 </tr>
 <tr>
@@ -680,7 +670,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="9.97" style="background-color:hsl(125 49% 50% / 0.621)"><div class="main">+9.97%</div></td>
 <td class="num" data-v="2.39" style="background-color:hsl(125 49% 50% / 0.057)"><div class="main">+2.39%</div></td>
 <td class="num" data-v="3.12" style="background-color:hsl(125 49% 50% / 0.240)"><div class="main">+3.12%</div></td>
-<td class="num" data-v="1.51"><div class="main">$1.51</div></td>
+<td class="num" data-v="1.49"><div class="main">$1.49</div></td>
+<td class="num" data-v="15.25" title="Total: 15.2m | Decode: 10.0m (31k tok @ 51.9 t/s) + Latency: 5.2m (101 turns &times; 3.10s TTFT) across 12 OR providers"><div class="main">15.2m</div><div class="alt">31k &middot; 52 t/s</div></td>
 <td class="num" data-v="9.50"><div class="main">$2 / $12</div></td>
 </tr>
 <tr>
@@ -692,6 +683,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="1.00" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+1.00%</div></td>
 <td class="num" data-v="-5.41" style="background-color:hsl(2 86% 63% / 0.202)"><div class="main">-5.41%</div></td>
 <td class="num" data-v="0.68" title="OpenRouter real-time &times; 2.000 via z-ai/glm-5.3-flash (no batch)"><div class="main up">OR $0.68</div><div class="alt">Arena $0.34</div></td>
+<td class="num" data-v="43.30" title="Total: 43.3m | Decode: 30.2m (85k tok @ 46.7 t/s) + Latency: 13.1m (169 turns &times; 4.64s TTFT) across 54 OR providers"><div class="main">43.3m</div><div class="alt">85k &middot; 47 t/s</div></td>
 <td class="num" data-v="0.41" title="OpenRouter real-time &times; 2.000 via z-ai/glm-5.3-flash (no batch)"><div class="main up">OR $0.15 / $0.5</div><div class="alt">list $0.07 / $0.25</div></td>
 </tr>
 <tr>
@@ -702,7 +694,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="6.10" style="background-color:hsl(125 49% 50% / 0.380)"><div class="main">+6.10%</div></td>
 <td class="num" data-v="4.39" style="background-color:hsl(125 49% 50% / 0.106)"><div class="main">+4.39%</div></td>
 <td class="num" data-v="4.68" style="background-color:hsl(125 49% 50% / 0.360)"><div class="main">+4.68%</div></td>
-<td class="num" data-v="2.12"><div class="main">$2.12</div></td>
+<td class="num" data-v="2.13"><div class="main">$2.13</div></td>
+<td class="num" data-v="9.00" title="Total: 9.0m | Decode: 5.3m (22k tok @ 69.0 t/s) + Latency: 3.7m (48 turns &times; 4.58s TTFT) across 12 OR providers"><div class="main">9.0m</div><div class="alt">22k &middot; 69 t/s</div></td>
 <td class="num" data-v="23.75"><div class="main">$5 / $30</div></td>
 </tr>
 <tr>
@@ -713,7 +706,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-1.02" style="background-color:hsl(2 86% 63% / 0.060)"><div class="main">-1.02%</div></td>
 <td class="num" data-v="-1.32" style="background-color:hsl(2 86% 63% / 0.062)"><div class="main">-1.32%</div></td>
 <td class="num" data-v="1.14" style="background-color:hsl(125 49% 50% / 0.088)"><div class="main">+1.14%</div></td>
-<td class="num" data-v="0.46" title="OpenRouter real-time &times; 0.994 via qwen/qwen3.8-flash (no batch)"><div class="main down">OR $0.46</div><div class="alt">Arena $0.47</div></td>
+<td class="num" data-v="0.46" title="OpenRouter real-time &times; 0.994 via qwen/qwen3.8-flash (no batch)"><div class="main down">OR $0.46</div><div class="alt">Arena $0.46</div></td>
+<td class="num" data-v="26.77" title="Total: 26.8m | Decode: 22.6m (112k tok @ 82.5 t/s) + Latency: 4.2m (206 turns &times; 1.22s TTFT) across 4 OR providers"><div class="main">26.8m</div><div class="alt">112k &middot; 82 t/s</div></td>
 <td class="num" data-v="0.39" title="OpenRouter real-time &times; 0.994 via qwen/qwen3.8-flash (no batch)"><div class="main down">OR $0.15 / $0.47</div><div class="alt">list $0.16 / $0.47</div></td>
 </tr>
 <tr>
@@ -725,6 +719,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="1.64" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+1.64%</div></td>
 <td class="num" data-v="-4.46" style="background-color:hsl(2 86% 63% / 0.167)"><div class="main">-4.46%</div></td>
 <td class="num" data-v="0.96" title="OpenRouter real-time &times; 0.837 via qwen/qwen3.8-27b (no batch)"><div class="main down">OR $0.96</div><div class="alt">Arena $1.14</div></td>
+<td class="num" data-v="44.74" title="Total: 44.7m | Decode: 40.3m (92k tok @ 38.2 t/s) + Latency: 4.4m (187 turns &times; 1.42s TTFT) across 30 OR providers"><div class="main">44.7m</div><div class="alt">92k &middot; 38 t/s</div></td>
 <td class="num" data-v="1.97" title="OpenRouter real-time &times; 0.837 via qwen/qwen3.8-27b (no batch)"><div class="main down">OR $0.21 / $2.55</div><div class="alt">list $0.4 / $3</div></td>
 </tr>
 <tr>
@@ -735,7 +730,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="4.39" style="background-color:hsl(125 49% 50% / 0.274)"><div class="main">+4.39%</div></td>
 <td class="num" data-v="0.74" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+0.74%</div></td>
 <td class="num" data-v="3.63" style="background-color:hsl(125 49% 50% / 0.279)"><div class="main">+3.63%</div></td>
-<td class="num" data-v="1.95"><div class="main">$1.95</div></td>
+<td class="num" data-v="1.93"><div class="main">$1.93</div></td>
+<td class="num" data-v="14.60" title="Total: 14.6m | Decode: 12.6m (41k tok @ 54.6 t/s) + Latency: 2.0m (88 turns &times; 1.37s TTFT) across 10 OR providers"><div class="main">14.6m</div><div class="alt">41k &middot; 55 t/s</div></td>
 <td class="num" data-v="11.88"><div class="main">$2.5 / $15</div></td>
 </tr>
 <tr>
@@ -747,6 +743,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="3.07" style="background-color:hsl(125 49% 50% / 0.074)"><div class="main">+3.07%</div></td>
 <td class="num" data-v="0.79" style="background-color:hsl(125 49% 50% / 0.060)"><div class="main">+0.79%</div></td>
 <td class="num" data-v="0.45"><div class="main">$0.45</div></td>
+<td class="num" data-v="18.43" title="Total: 18.4m | Decode: 10.6m (53k tok (via predecessor Gemini 3.6 Flash (High)) @ 83.7 t/s) + Latency: 7.8m (116 turns &times; 4.04s TTFT) across 12 OR providers"><div class="main">18.4m</div><div class="alt">53k* &middot; 84 t/s</div></td>
 <td class="num" data-v="3.00"><div class="main">$0.75 / $3.75</div></td>
 </tr>
 <tr>
@@ -758,6 +755,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="0.82" style="background-color:hsl(125 49% 50% / 0.050)"><div class="main">+0.82%</div></td>
 <td class="num" data-v="3.54" style="background-color:hsl(125 49% 50% / 0.272)"><div class="main">+3.54%</div></td>
 <td class="num" data-v="0.19"><div class="main">$0.19</div></td>
+<td class="num" data-v="15.56" title="Total: 15.6m | Decode: 8.7m (30k tok @ 57.2 t/s) + Latency: 6.9m (133 turns &times; 3.11s TTFT) across 14 OR providers"><div class="main">15.6m</div><div class="alt">30k &middot; 57 t/s</div></td>
 <td class="num" data-v="0.95"><div class="main">$0.2 / $1.2</div></td>
 </tr>
 <tr>
@@ -768,7 +766,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-1.37" style="background-color:hsl(2 86% 63% / 0.082)"><div class="main">-1.37%</div></td>
 <td class="num" data-v="-4.33" style="background-color:hsl(2 86% 63% / 0.204)"><div class="main">-4.33%</div></td>
 <td class="num" data-v="3.46" style="background-color:hsl(125 49% 50% / 0.266)"><div class="main">+3.46%</div></td>
-<td class="num" data-v="0.88" title="OpenRouter real-time &times; 0.848 via deepseek/deepseek-v4-pro (no batch)"><div class="main down">OR $0.88</div><div class="alt">Arena $1.04</div></td>
+<td class="num" data-v="0.88" title="OpenRouter real-time &times; 0.848 via deepseek/deepseek-v4-pro (no batch)"><div class="main down">OR $0.88</div><div class="alt">Arena $1.03</div></td>
+<td class="num" data-v="39.36" title="Total: 39.4m | Decode: 36.8m (91k tok @ 41.1 t/s) + Latency: 2.5m (88 turns &times; 1.71s TTFT) across 32 OR providers"><div class="main">39.4m</div><div class="alt">91k &middot; 41 t/s</div></td>
 <td class="num" data-v="2.80" title="OpenRouter real-time &times; 0.848 via deepseek/deepseek-v4-pro (no batch)"><div class="main down">OR $1.6 / $3.2</div><div class="alt">list $1.32 / $3.96</div></td>
 </tr>
 <tr>
@@ -780,6 +779,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-4.14" style="background-color:hsl(2 86% 63% / 0.195)"><div class="main">-4.14%</div></td>
 <td class="num" data-v="-6.63" style="background-color:hsl(2 86% 63% / 0.248)"><div class="main">-6.63%</div></td>
 <td class="num" data-v="0.36"><div class="main">$0.36</div></td>
+<td class="num" data-v="23.84" title="Total: 23.8m | Decode: 22.1m (68k tok @ 51.5 t/s) + Latency: 1.7m (57 turns &times; 1.84s TTFT) across 12 OR providers"><div class="main">23.8m</div><div class="alt">68k &middot; 52 t/s</div></td>
 <td class="num" data-v="0.43"><div class="main">$0.13 / $0.53</div></td>
 </tr>
 <tr>
@@ -791,6 +791,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-9.83" style="background-color:hsl(2 86% 63% / 0.464)"><div class="main">-9.83%</div></td>
 <td class="num" data-v="-1.29" style="background-color:hsl(2 86% 63% / 0.050)"><div class="main">-1.29%</div></td>
 <td class="num" data-v="0.50" title="OpenRouter real-time &times; 0.590 via qwen/qwen3.7-max (no batch)"><div class="main down">OR $0.50</div><div class="alt">Arena $0.84</div></td>
+<td class="num" data-v="11.85" title="Total: 11.9m | Decode: 10.3m (38k tok @ 61.0 t/s) + Latency: 1.6m (82 turns &times; 1.14s TTFT) across 2 OR providers"><div class="main">11.9m</div><div class="alt">38k &middot; 61 t/s</div></td>
 <td class="num" data-v="3.69" title="OpenRouter real-time &times; 0.590 via qwen/qwen3.7-max (no batch)"><div class="main down">OR $1.48 / $4.42</div><div class="alt">list $2.5 / $7.5</div></td>
 </tr>
 <tr>
@@ -801,7 +802,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-10.22" style="background-color:hsl(2 86% 63% / 0.609)"><div class="main">-10.22%</div></td>
 <td class="num" data-v="-9.35" style="background-color:hsl(2 86% 63% / 0.441)"><div class="main">-9.35%</div></td>
 <td class="num" data-v="7.64" style="background-color:hsl(125 49% 50% / 0.588)"><div class="main">+7.64%</div></td>
-<td class="num" data-v="0.05" title="OpenRouter real-time &times; 0.050 via meta/muse-spark-1.2-contributor (no batch)"><div class="main down">OR $0.05</div><div class="alt">Arena $0.98</div></td>
+<td class="num" data-v="0.05" title="OpenRouter real-time &times; 0.050 via meta/muse-spark-1.2-contributor (no batch)"><div class="main down">OR $0.05</div><div class="alt">Arena $0.97</div></td>
+<td class="num" data-v="14.01" title="Total: 14.0m | Decode: 9.0m (39k tok @ 73.0 t/s) + Latency: 5.1m (68 turns &times; 4.48s TTFT) across 2 OR providers"><div class="main">14.0m</div><div class="alt">39k &middot; 73 t/s</div></td>
 <td class="num" data-v="0.17" title="OpenRouter real-time &times; 0.050 via meta/muse-spark-1.2-contributor (no batch)"><div class="main down">OR $0.1 / $0.2</div><div class="alt">list $1.25 / $4.25</div></td>
 </tr>
 <tr>
@@ -812,7 +814,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-4.53" style="background-color:hsl(2 86% 63% / 0.270)"><div class="main">-4.53%</div></td>
 <td class="num" data-v="-6.75" style="background-color:hsl(2 86% 63% / 0.319)"><div class="main">-6.75%</div></td>
 <td class="num" data-v="5.73" style="background-color:hsl(125 49% 50% / 0.441)"><div class="main">+5.73%</div></td>
-<td class="num" data-v="6.21" title="OpenRouter real-time &times; 2.000 via anthropic/claude-sonnet-4.6 (no batch)"><div class="main up">OR $6.21</div><div class="alt">Arena $3.10</div></td>
+<td class="num" data-v="6.14" title="OpenRouter real-time &times; 2.000 via anthropic/claude-sonnet-4.6 (no batch)"><div class="main up">OR $6.14</div><div class="alt">Arena $3.07</div></td>
+<td class="num" data-v="19.01" title="Total: 19.0m | Decode: 16.9m (39k tok @ 38.8 t/s) + Latency: 2.1m (89 turns &times; 1.42s TTFT) across 18 OR providers"><div class="main">19.0m</div><div class="alt">39k &middot; 39 t/s</div></td>
 <td class="num" data-v="12.00" title="OpenRouter real-time &times; 2.000 via anthropic/claude-sonnet-4.6 (no batch)"><div class="main up">OR $3 / $15</div><div class="alt">list $1.5 / $7.5</div></td>
 </tr>
 <tr>
@@ -824,6 +827,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-10.33" style="background-color:hsl(2 86% 63% / 0.487)"><div class="main">-10.33%</div></td>
 <td class="num" data-v="-4.67" style="background-color:hsl(2 86% 63% / 0.175)"><div class="main">-4.67%</div></td>
 <td class="num" data-v="0.13"><div class="main">$0.13</div></td>
+<td class="num" data-v="31.18" title="Total: 31.2m | Decode: 26.7m (38k tok @ 23.4 t/s) + Latency: 4.4m (86 turns &times; 3.09s TTFT) across 14 OR providers"><div class="main">31.2m</div><div class="alt">38k &middot; 23 t/s</div></td>
 <td class="num" data-v="0.76"><div class="main">$0.43 / $0.87</div></td>
 </tr>
 <tr>
@@ -834,7 +838,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-8.18" style="background-color:hsl(2 86% 63% / 0.487)"><div class="main">-8.18%</div></td>
 <td class="num" data-v="-11.14" style="background-color:hsl(2 86% 63% / 0.525)"><div class="main">-11.14%</div></td>
 <td class="num" data-v="-3.41" style="background-color:hsl(2 86% 63% / 0.128)"><div class="main">-3.41%</div></td>
-<td class="num" data-v="3.29"><div class="main">$3.29</div></td>
+<td class="num" data-v="3.27"><div class="main">$3.27</div></td>
+<td class="num" data-v="5.27" title="Total: 5.3m | Decode: 3.2m (36k tok @ 187.0 t/s) + Latency: 2.0m (63 turns &times; 1.93s TTFT) across 2 OR providers"><div class="main">5.3m</div><div class="alt">36k &middot; 187 t/s</div></td>
 <td class="num" data-v="3.50"><div class="main">$1.25 / $4.25</div></td>
 </tr>
 <tr>
@@ -845,7 +850,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-5.07" style="background-color:hsl(2 86% 63% / 0.302)"><div class="main">-5.07%</div></td>
 <td class="num" data-v="-2.84" style="background-color:hsl(2 86% 63% / 0.134)"><div class="main">-2.84%</div></td>
 <td class="num" data-v="-18.93" style="background-color:hsl(2 86% 63% / 0.708)"><div class="main">-18.93%</div></td>
-<td class="num" data-v="3.55" title="OpenRouter real-time &times; 2.000 via google/gemini-3.1-pro-preview (no batch)"><div class="main up">OR $3.55</div><div class="alt">Arena $1.78</div></td>
+<td class="num" data-v="3.59" title="OpenRouter real-time &times; 2.000 via google/gemini-3.1-pro-preview (no batch)"><div class="main up">OR $3.59</div><div class="alt">Arena $1.80</div></td>
+<td class="num" data-v="30.62" title="Total: 30.6m | Decode: 5.7m (27k tok @ 78.4 t/s) + Latency: 24.9m (69 turns &times; 21.54s TTFT) across 10 OR providers"><div class="main">30.6m</div><div class="alt">27k &middot; 78 t/s</div></td>
 <td class="num" data-v="9.50" title="OpenRouter real-time &times; 2.000 via google/gemini-3.1-pro-preview (no batch)"><div class="main up">OR $2 / $12</div><div class="alt">list $1 / $6</div></td>
 </tr>
 <tr>
@@ -856,7 +862,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-7.85" style="background-color:hsl(2 86% 63% / 0.468)"><div class="main">-7.85%</div></td>
 <td class="num" data-v="-10.29" style="background-color:hsl(2 86% 63% / 0.485)"><div class="main">-10.29%</div></td>
 <td class="num" data-v="1.85" style="background-color:hsl(125 49% 50% / 0.143)"><div class="main">+1.85%</div></td>
-<td class="num" data-v="0.50"><div class="main">$0.50</div></td>
+<td class="num" data-v="0.49"><div class="main">$0.49</div></td>
+<td class="num" data-v="11.28" title="Total: 11.3m | Decode: 8.3m (38k tok @ 76.2 t/s) + Latency: 3.0m (134 turns &times; 1.34s TTFT) across 24 OR providers"><div class="main">11.3m</div><div class="alt">38k &middot; 76 t/s</div></td>
 <td class="num" data-v="0.97"><div class="main">$0.3 / $1.2</div></td>
 </tr>
 <tr>
@@ -868,6 +875,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-12.79" style="background-color:hsl(2 86% 63% / 0.603)"><div class="main">-12.79%</div></td>
 <td class="num" data-v="-3.50" style="background-color:hsl(2 86% 63% / 0.131)"><div class="main">-3.50%</div></td>
 <td class="num" data-v="0.30"><div class="main">$0.30</div></td>
+<td class="num" data-v="64.46" title="Total: 1h 4m | Decode: 63.2m (42k tok @ 11.0 t/s) + Latency: 1.3m (81 turns &times; 0.94s TTFT) across 2 OR providers"><div class="main">1h 4m</div><div class="alt">42k &middot; 11 t/s</div></td>
 <td class="num" data-v="1.04"><div class="main">$0.32 / $1.28</div></td>
 </tr>
 <tr>
@@ -879,6 +887,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-10.71" style="background-color:hsl(2 86% 63% / 0.505)"><div class="main">-10.71%</div></td>
 <td class="num" data-v="-13.70" style="background-color:hsl(2 86% 63% / 0.512)"><div class="main">-13.70%</div></td>
 <td class="num" data-v="0.75"><div class="main">$0.75</div></td>
+<td class="num" data-v="16.01" title="Total: 16.0m | Decode: 11.6m (53k tok @ 76.2 t/s) + Latency: 4.4m (96 turns &times; 2.74s TTFT) across 12 OR providers"><div class="main">16.0m</div><div class="alt">53k &middot; 76 t/s</div></td>
 <td class="num" data-v="3.00"><div class="main">$0.75 / $3.75</div></td>
 </tr>
 <tr>
@@ -889,7 +898,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-11.49" style="background-color:hsl(2 86% 63% / 0.684)"><div class="main">-11.49%</div></td>
 <td class="num" data-v="-13.38" style="background-color:hsl(2 86% 63% / 0.631)"><div class="main">-13.38%</div></td>
 <td class="num" data-v="-9.12" style="background-color:hsl(2 86% 63% / 0.341)"><div class="main">-9.12%</div></td>
-<td class="num" data-v="10.50" title="OpenRouter real-time &times; 2.000 via mistralai/mistral-medium-3-5 (no batch)"><div class="main up">OR $10.50</div><div class="alt">Arena $5.25</div></td>
+<td class="num" data-v="10.60" title="OpenRouter real-time &times; 2.000 via mistralai/mistral-medium-3-5 (no batch)"><div class="main up">OR $10.60</div><div class="alt">Arena $5.30</div></td>
+<td class="num" data-v="19.66" title="Total: 19.7m | Decode: 18.9m (47k tok @ 41.0 t/s) + Latency: 0.8m (57 turns &times; 0.79s TTFT) across 4 OR providers"><div class="main">19.7m</div><div class="alt">47k &middot; 41 t/s</div></td>
 <td class="num" data-v="6.00" title="OpenRouter real-time &times; 2.000 via mistralai/mistral-medium-3-5 (no batch)"><div class="main up">OR $1.5 / $7.5</div><div class="alt">list $0.75 / $3.75</div></td>
 </tr>
 <tr>
@@ -901,6 +911,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-21.20" style="background-color:hsl(2 86% 63% / 1.000)"><div class="main">-21.20%</div></td>
 <td class="num" data-v="10.73" style="background-color:hsl(125 49% 50% / 0.825)"><div class="main">+10.73%</div></td>
 <td class="num" data-v="0.00" title="OpenRouter real-time &times; 0.000 via thinkingmachines/inkling-small:free (no batch)"><div class="main down">OR $0.00</div><div class="alt">Arena $0.33</div></td>
+<td class="num" data-v="6.20" title="Total: 6.2m | Decode: 3.2m (27k tok @ 140.2 t/s) + Latency: 3.0m (56 turns &times; 3.23s TTFT) across 6 OR providers"><div class="main">6.2m</div><div class="alt">27k &middot; 140 t/s</div></td>
 <td class="num" data-v="0.00" title="OpenRouter real-time &times; 0.000 via thinkingmachines/inkling-small:free (no batch)"><div class="main down">OR $0 / $0</div><div class="alt">list $0.5 / $1.2</div></td>
 </tr>
 <tr>
@@ -912,6 +923,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-20.83" style="background-color:hsl(2 86% 63% / 0.982)"><div class="main">-20.83%</div></td>
 <td class="num" data-v="7.77" style="background-color:hsl(125 49% 50% / 0.598)"><div class="main">+7.77%</div></td>
 <td class="num" data-v="0.00" title="OpenRouter real-time &times; 0.000 via thinkingmachines/inkling:free (no batch)"><div class="main down">OR $0.00</div><div class="alt">Arena $0.78</div></td>
+<td class="num" data-v="7.71" title="Total: 7.7m | Decode: 7.2m (26k tok @ 59.1 t/s) + Latency: 0.5m (60 turns &times; 0.51s TTFT) across 8 OR providers"><div class="main">7.7m</div><div class="alt">26k &middot; 59 t/s</div></td>
 <td class="num" data-v="0.00" title="OpenRouter real-time &times; 0.000 via thinkingmachines/inkling:free (no batch)"><div class="main down">OR $0 / $0</div><div class="alt">list $1 / $4.05</div></td>
 </tr>
 <tr>
@@ -923,6 +935,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-18.37" style="background-color:hsl(2 86% 63% / 0.866)"><div class="main">-18.37%</div></td>
 <td class="num" data-v="-23.02" style="background-color:hsl(2 86% 63% / 0.861)"><div class="main">-23.02%</div></td>
 <td class="num" data-v="0.33"><div class="main">$0.33</div></td>
+<td class="num" data-v="8.38" title="Total: 8.4m | Decode: 6.8m (30k tok @ 74.6 t/s) + Latency: 1.6m (35 turns &times; 2.72s TTFT) across 18 OR providers"><div class="main">8.4m</div><div class="alt">30k &middot; 75 t/s</div></td>
 <td class="num" data-v="0.97"><div class="main">$0.3 / $1.2</div></td>
 </tr>
 <tr>
@@ -934,70 +947,13 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <td class="num" data-v="-20.76" style="background-color:hsl(2 86% 63% / 0.979)"><div class="main">-20.76%</div></td>
 <td class="num" data-v="-26.74" style="background-color:hsl(2 86% 63% / 1.000)"><div class="main">-26.74%</div></td>
 <td class="num" data-v="0.48" title="OpenRouter real-time &times; 2.000 via google/gemini-3.5-flash-lite (no batch)"><div class="main up">OR $0.48</div><div class="alt">Arena $0.24</div></td>
+<td class="num" data-v="11.81" title="Total: 11.8m | Decode: 10.4m (27k tok @ 43.0 t/s) + Latency: 1.4m (47 turns &times; 1.84s TTFT) across 16 OR providers"><div class="main">11.8m</div><div class="alt">27k &middot; 43 t/s</div></td>
 <td class="num" data-v="1.95" title="OpenRouter real-time &times; 2.000 via google/gemini-3.5-flash-lite (no batch)"><div class="main up">OR $0.3 / $2.5</div><div class="alt">list $0.15 / $1.25</div></td>
 </tr>
 </tbody></table></div>
 
-<p class="note"><strong>Score / $</strong> is <code>max(Score, 0) / Cost/Task</code>: negative Scores become <code>0</code>, positive values are green, and a positive Score with zero cost is <code>+∞</code>; unavailable costs remain <code>N/A</code>. The leading colored value inside <strong>Cost/Task</strong> and <strong>Price $/M</strong> = the same workload at OpenRouter real-time prices — <span style="color:#188038;font-weight:600">green = cheaper</span>, <span style="color:#c5221f;font-weight:600">red = more expensive</span> — shown <strong>first</strong>, with the tested value (muted <code>Arena …</code> / <code>list …</code> line) below. One plain line when the two are equal or OR data is missing (hover: ratio + model id). Always checks for <code>:free</code> model variants (no <code>:batch</code>). Headers are clickable — ▲ ascending, ▼ descending, third click restores the rank order; <strong>Cost/Task</strong> sorts by the value shown first (OpenRouter when present), <strong>Price $/M</strong> by the blended price <code>0.25×input + 0.75×output</code> of the pair shown first, and N/A always sorts last.</p>
+<p class="note"><strong>Score / $</strong> is <code>max(Score, 0) / Cost/Task</code>: negative Scores become <code>0</code>, positive values are green, and a positive Score with zero cost is <code>+∞</code>; unavailable costs remain <code>N/A</code>. The leading colored value inside <strong>Cost/Task</strong> and <strong>Price $/M</strong> = the same workload at OpenRouter real-time prices — <span style="color:#188038;font-weight:600">green = cheaper</span>, <span style="color:#c5221f;font-weight:600">red = more expensive</span> — shown <strong>first</strong>, with the tested value (muted <code>Arena …</code> / <code>list …</code> line) below. One plain line when the two are equal or OR data is missing (hover: ratio + model id). Always checks for <code>:free</code> model variants (no <code>:batch</code>). Headers are clickable — ▲ ascending, ▼ descending, third click restores the rank order; <strong>Time/Task</strong> defaults to ascending (fastest first); <strong>Cost/Task</strong> sorts by the value shown first (OpenRouter when present), <strong>Price $/M</strong> by the blended price <code>0.25×input + 0.75×output</code> of the pair shown first, and N/A always sorts last.</p>
 
-  <div class="section-head reveal">
-    <h2><span class="n">02</span> How this ranking was built</h2>
-    <p>Transparent methodology — every number traceable to its source.</p>
-  </div>
-  <div class="reveal">
-<div class="method">
-<p>LMArena’s <a href="https://arena.ai/leaderboard/agent/code">Agent → Code</a> board: each model completes vibe-coding tasks in a real environment, and the signals below are measured on the same sessions. All numbers come from the public page values (scores, list prices, rolling cost window) — no raw session data. <strong>Cost is informational</strong>: budget and tie-break only, never part of the score.</p>
-
-<h3>1. Vibe score</h3>
-<div class="formula">Score = 0.30 × CS + 0.30 × Steer + 0.30 × Praise + 0.10 × Bash</div>
-<table class="weights">
-<thead><tr><th>Signal</th><th class="num">Weight</th><th>Arena field</th><th>What it measures</th></tr></thead>
-<tbody>
-<tr><td><strong>Confirmed Success (CS)</strong></td><td class="num"><strong>30%</strong></td><td><code>task_outcome_explicit</code></td><td>Frequency with which tasks are explicitly marked finished and accepted.</td></tr>
-<tr><td><strong>Steerability (Steer)</strong></td><td class="num"><strong>30%</strong></td><td><code>steerability</code></td><td>Adopting user course-corrections, changing approach without back-tracking.</td></tr>
-<tr><td><strong>Praise / Complaint (Praise)</strong></td><td class="num"><strong>30%</strong></td><td><code>praise_complaint</code></td><td>Positive developer sentiment ratio over reported frustration.</td></tr>
-<tr><td><strong>Bash Recovery (Bash)</strong></td><td class="num"><strong>10%</strong></td><td><code>bash_recovery_steps</code></td><td>Self-healing broken commands and syntax/runtime errors autonomously.</td></tr>
-</tbody>
-</table>
-<p>Example (GLM 5.3 Flash, current snapshot):</p>
-<div class="formula">Score = 0.30×(+11.27) + 0.30×(+1.09) + 0.30×(+1.00) + 0.10×(-5.41)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3.38 + 0.33 + 0.30 − 0.54 = +3.47</div>
-<p>Signal percentages are frozen at the snapshot (Sep 9, 2026) and stay constant until the next one. Score and signal cells mirror Arena — same hues: <span style="color:hsl(125 49% 50%)">green = positive</span>, <span style="color:hsl(2 86% 63%)">red = negative</span> — with a linear tint scaled <strong>per column and per sign</strong>: each positive side and negative side has its own darkest value, 0.05 floor, and a value of exactly 0 gets no tint at all. Score / $ uses the same pure linear green scale relative to the actual largest finite ratio; positive infinity is always darkest green. Numbers stay in the default dark text color.</p>
-
-<h3>2. Cost columns</h3>
-<ul>
-<li><strong>Score / $</strong> — <code>max(Score, 0) / Cost/Task</code>. Negative Scores become zero; positive Scores with zero cost are shown as <code>+∞</code>; unavailable costs are <code>N/A</code>.</li>
-<li><strong>Cost/Task</strong> — mean $ per task (session) on Arena, on a rolling 14-day window (moves between refreshes even when signals don’t). N/A below 10 priced samples (stricter for sparse models; all 43 models have cost data, with Gemini 3.8 Flash (High) referencing its last verified Arena baseline of $0.45 due to lack of samples in the current 14-day rolling window).</li>
-<li><strong>Price $/M</strong> — vendor list input/output per million tokens, from Arena.</li>
-<li><strong>OpenRouter overlay (no separate column)</strong> — where a <a href="https://openrouter.ai/models">OpenRouter</a> real-time price exists, it is shown <strong>first</strong> in the Cost/Task and Price $/M cells, with the tested value as a muted line below (<code>Arena …</code> / <code>list …</code>). <span style="color:#188038;font-weight:600">Green = cheaper</span>, <span style="color:#c5221f;font-weight:600">red = more expensive</span>; one plain line when the two round equal (2 decimals) or when OR data is missing. Always checks and selects <code>:free</code> routes for each model when available, while strictly ignoring <code>:batch</code> routes.
-<div class="formula">OR $/task = Cost/Task × (OR_blended ÷ list_blended)<br/>blended = 0.25×input_$/M + 0.75×output_$/M</div>
-</li>
-<li>All $ values are rounded to at most 2 decimals.</li>
-</ul>
-<p>Notable OR cases on this snapshot (cheaper / more expensive than list; equal values show a single plain line):</p>
-<ul>
-<li><strong>DeepSeek V4 Pro (High) (0813)</strong> — Arena $0.93 → OR $/task <strong>$3.01</strong> (322%)</li>
-<li><strong>GLM 5.3 Flash</strong> — Arena $0.34 → OR $/task <strong>$0.68</strong> (200%)</li>
-<li><strong>Claude Sonnet 4.6</strong> — Arena $3.10 → OR $/task <strong>$6.21</strong> (200%)</li>
-<li><strong>Gemini 3.1 Pro Preview</strong> — Arena $1.78 → OR $/task <strong>$3.55</strong> (200%)</li>
-<li><strong>Mistral Medium 3.5</strong> — Arena $5.25 → OR $/task <strong>$10.50</strong> (200%)</li>
-<li><strong>Inkling Small</strong> — Arena $0.33 → OR $/task <strong>$0.00</strong> (0%)</li>
-<li><strong>Inkling</strong> — Arena $0.78 → OR $/task <strong>$0.00</strong> (0%)</li>
-<li><strong>Gemini 3.5 Flash Lite</strong> — Arena $0.24 → OR $/task <strong>$0.48</strong> (200%)</li>
-<li><strong>Muse Spark 1.3 (Max)</strong> — Arena $1.21 → OR $/task <strong>$0.06</strong> (5%)</li>
-<li><strong>Muse Spark 1.2 (xHigh)</strong> — Arena $0.98 → OR $/task <strong>$0.05</strong> (5%)</li>
-</ul>
-
-<h3>3. Reading tips</h3>
-<ol>
-<li>Score = quality for vibe coding; costs are budget / tie-break only.</li>
-<li>Plain (uncolored) value = no OR data, or OR price equals the tested one; green = OpenRouter cheaper, red = more expensive.</li>
-<li>High CS + low Praise → solid but possibly bland. High Praise + low CS → hyped but unfinished.</li>
-<li>Very negative Bash Recovery (Gemini 3.5 Flash Lite, Minimax M2.7) = doesn’t recover from errors — the weakest signal for agentic work.</li>
-<li>Default cheap workhorses: GLM Flash / DeepSeek-class rows; premium rows for critical sessions.</li>
-</ol>
-</div>
-
-  </div>
 </main>
 
 <footer>
@@ -1152,7 +1108,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 
     function toggle() {
       var str = th.getAttribute('data-type') === 'str';
-      var first = str ? 'asc' : 'desc';
+      var isTime = th.getAttribute('data-role') === 'time';
+      var first = str || isTime ? 'asc' : 'desc';
       var cur = state[i] || (i === scoreIdx ? 'desc' : null);
       state[i] = !cur ? first : (cur === first ? (first === 'asc' ? 'desc' : 'asc') : null);
       ths.forEach(function (t, j) { if (j !== i) state[j] = null; });

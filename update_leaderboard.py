@@ -65,10 +65,24 @@ OPENROUTER_MAP = {
     "Solar Pro 4": "upstage/solar-pro4"
 }
 
+# Predecessor mapping: when a new model lacks rolling-window token samples on Arena,
+# inherit the measured mean token volume from its direct architectural predecessor
+PREDECESSOR_MAP = {
+    "Gemini 3.8 Flash (High)": "Gemini 3.6 Flash (High)",
+    "GPT 5.6 Luna (xHigh)": "GPT 5.5 (xHigh)",
+    "GPT 5.6 Terra (xHigh)": "GPT 5.5 (xHigh)",
+    "GPT 5.6 Sol (xHigh)": "GPT 5.5 (xHigh)",
+    "Claude Opus 5 (Max)": "Claude Opus 4.8 (High)",
+    "Claude Fable 5.1 (Max)": "Claude Fable 5 (High)",
+    "GLM 5.3 (Max)": "GLM 5.2 (Max)",
+    "Qwen3.8 Max": "Qwen3.7 Max"
+}
+
 # Known verified historical baselines for models lacking sufficient rolling-window samples
 KNOWN_BASELINES = {
     "Gemini 3.8 Flash (High)": {
         "meanUsd": 0.45,
+        "meanMtok": 0.08,
         "inputPricePerMillion": 0.75,
         "outputPricePerMillion": 3.75
     }
@@ -194,7 +208,60 @@ def format_price_dollars(v):
     return f"${v:.2f}"
 
 
-def compute_leaderboard_data(snapshot, costs, or_by_id):
+def fetch_openrouter_performance(model_map):
+    cache_file = "/tmp/or_perf_cache.json"
+    now = time.time()
+    if os.path.isfile(cache_file):
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                cached = json.load(f)
+            if cached.get("_timestamp", 0) > now - 3600:
+                return cached.get("data", {})
+        except Exception:
+            pass
+
+    clean_ids = list(set([m_id.split(":")[0] for m_id in model_map.values()]))
+
+    def fetch_one(clean_id):
+        url = f"https://openrouter.ai/{clean_id}"
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                html = resp.read().decode("utf-8")
+            tps_matches = re.findall(r'p50_throughput\\\\?\":\s*([0-9.]+)', html)
+            lat_matches = re.findall(r'p50_latency\\\\?\":\s*([0-9.]+)', html)
+            tps_list = [float(x) for x in tps_matches if float(x) > 0]
+            lat_list = [float(x) / 1000.0 for x in lat_matches if float(x) > 0]
+            mean_tps = sum(tps_list) / len(tps_list) if tps_list else None
+            mean_lat = sum(lat_list) / len(lat_list) if lat_list else None
+            return clean_id, {
+                "mean_tps": round(mean_tps, 1) if mean_tps else None,
+                "mean_lat": round(mean_lat, 2) if mean_lat else None,
+                "provider_count": len(tps_list)
+            }
+        except Exception:
+            return clean_id, {"mean_tps": None, "mean_lat": None, "provider_count": 0}
+
+    results = {}
+    with ThreadPoolExecutor(max_workers=12) as executor:
+        for clean_id, data in executor.map(fetch_one, clean_ids):
+            results[clean_id] = data
+
+    try:
+        with open(cache_file, "w", encoding="utf-8") as f:
+            json.dump({"_timestamp": now, "data": results}, f)
+    except Exception:
+        pass
+
+    return results
+
+
+def compute_leaderboard_data(snapshot, costs, or_by_id, perf_data=None):
+    if perf_data is None:
+        perf_data = {}
     cost_map = {e["contenderName"]: e for e in costs.get("entries", [])}
     raw_rows = snapshot.get("rows", [])
     
@@ -217,10 +284,15 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
             list_in, list_out = KNOWN_LIST_PRICES[model_name]
         list_blended = 0.25 * list_in + 0.75 * list_out if list_in is not None and list_out is not None else None
 
-        # Extract Arena live cost
+        # Extract Arena live cost and output token volume
         cost_entry = cost_map.get(contender)
+        arena_mtok = None
+        fallback_source = None
         if cost_entry and cost_entry.get("pricedSampleCount", 0) >= 10:
             arena_cost = cost_entry.get("meanUsd")
+            mtok_entry = cost_entry.get("outputMtokPerTask")
+            if mtok_entry and mtok_entry.get("meanMtok") is not None:
+                arena_mtok = mtok_entry.get("meanMtok")
         elif model_name in KNOWN_BASELINES:
             b = KNOWN_BASELINES[model_name]
             arena_cost = b.get("meanUsd", b.get("medianUsd"))
@@ -231,6 +303,22 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
         else:
             arena_cost = None
 
+        # Predecessor token fallback: dynamically inherit from direct predecessor if model lacks live samples
+        if arena_mtok is None and model_name in PREDECESSOR_MAP:
+            pred_name = PREDECESSOR_MAP[model_name]
+            pred_contender = next((x["contenderName"] for x in raw_rows if x["model"] == pred_name), None)
+            if pred_contender and pred_contender in cost_map:
+                pred_entry = cost_map[pred_contender]
+                pred_mtok = pred_entry.get("outputMtokPerTask", {}).get("meanMtok")
+                if pred_mtok is not None:
+                    arena_mtok = pred_mtok
+                    fallback_source = pred_name
+
+        if arena_mtok is None and model_name in KNOWN_BASELINES:
+            arena_mtok = KNOWN_BASELINES[model_name].get("meanMtok")
+            if arena_mtok is not None and not fallback_source:
+                fallback_source = "verified baseline"
+
         # Resolve OpenRouter real-time pricing
         or_info = resolve_openrouter_pricing(model_name, or_by_id)
         or_cost = None
@@ -239,6 +327,28 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
             ratio = or_info["blended"] / list_blended
             if arena_cost is not None:
                 or_cost = arena_cost * ratio
+
+        # Compute Time/Task (generation decode time + response latency overhead)
+        sess = r.get("sessions", 0)
+        obs = r.get("observations", 0)
+        avg_turns = (obs / sess) if sess and sess > 0 else 100.0
+
+        clean_id = OPENROUTER_MAP.get(model_name, "").split(":")[0]
+        perf = perf_data.get(clean_id, {})
+        mean_tps = perf.get("mean_tps")
+        mean_lat = perf.get("mean_lat")
+        provider_count = perf.get("provider_count", 0)
+
+        tot_min = None
+        dec_sec = None
+        lat_sec = None
+        output_tokens = None
+        if arena_mtok is not None and mean_tps and mean_tps > 0 and mean_lat is not None:
+            output_tokens = arena_mtok * 1_000_000.0
+            dec_sec = output_tokens / mean_tps
+            lat_sec = avg_turns * mean_lat
+            tot_sec = dec_sec + lat_sec
+            tot_min = tot_sec / 60.0
 
         processed.append({
             "model": model_name,
@@ -252,6 +362,16 @@ def compute_leaderboard_data(snapshot, costs, or_by_id):
             "list_out": list_out,
             "list_blended": list_blended,
             "arena_cost": arena_cost,
+            "arena_mtok": arena_mtok,
+            "fallback_source": fallback_source,
+            "output_tokens": output_tokens,
+            "avg_turns": avg_turns,
+            "mean_tps": mean_tps,
+            "mean_lat": mean_lat,
+            "provider_count": provider_count,
+            "dec_sec": dec_sec,
+            "lat_sec": lat_sec,
+            "tot_min": tot_min,
             "or_info": or_info,
             "or_cost": or_cost,
             "ratio": ratio
@@ -288,7 +408,6 @@ def render_cell_color(val, col, extrema):
 
 def render_table_rows(processed, extrema):
     rows_html = []
-    notable_cases = []
 
     for p in processed:
         rank = p["rank"]
@@ -331,15 +450,6 @@ def render_table_rows(processed, extrema):
 
         if has_overlay:
             direction = "down" if ratio < 1.0 else "up"
-            pct_int = int(round(ratio * 100))
-            notable_cases.append({
-                "model": model,
-                "arena_cost": arena_cost,
-                "or_cost": or_cost,
-                "pct": pct_int,
-                "ratio": ratio
-            })
-            
             cost_title = f'OpenRouter real-time &times; {ratio:.3f} via {or_info["id"]} (no batch)'
             cost_cell = (
                 f'<td class="num" data-v="{or_cost:.2f}" title="{cost_title}">'
@@ -370,6 +480,46 @@ def render_table_rows(processed, extrema):
             else:
                 price_cell = '<td class="num"><div class="main">N/A</div></td>'
 
+        # Time cell (Generation Decode Time + Response Latency Overhead)
+        tot_min = p.get("tot_min")
+        output_tokens = p.get("output_tokens")
+        mean_tps = p.get("mean_tps")
+        mean_lat = p.get("mean_lat")
+        dec_sec = p.get("dec_sec")
+        lat_sec = p.get("lat_sec")
+        avg_turns = p.get("avg_turns")
+        provider_count = p.get("provider_count", 0)
+        fallback_source = p.get("fallback_source")
+
+        if tot_min is not None and dec_sec is not None and lat_sec is not None:
+            tot_sec = tot_min * 60.0
+            if tot_min < 1.0:
+                time_main = f"{int(round(tot_sec))}s"
+            elif tot_min < 60.0:
+                time_main = f"{tot_min:.1f}m"
+            else:
+                hours = int(tot_min // 60)
+                mins = int(round(tot_min % 60))
+                time_main = f"{hours}h {mins}m"
+
+            tok_k = int(round(output_tokens / 1000.0))
+            tps_int = int(round(mean_tps))
+            alt_ast = "*" if fallback_source else ""
+            time_alt = f"{tok_k}k{alt_ast} &middot; {tps_int} t/s"
+            source_note = f" (via predecessor {fallback_source})" if fallback_source else ""
+            time_title = (
+                f"Total: {time_main} | Decode: {dec_sec/60.0:.1f}m ({tok_k}k tok{source_note} @ {mean_tps:.1f} t/s) + "
+                f"Latency: {lat_sec/60.0:.1f}m ({int(round(avg_turns))} turns &times; {mean_lat:.2f}s TTFT) "
+                f"across {provider_count} OR providers"
+            )
+            time_cell = (
+                f'<td class="num" data-v="{tot_min:.2f}" title="{time_title}">'
+                f'<div class="main">{time_main}</div>'
+                f'<div class="alt">{time_alt}</div></td>'
+            )
+        else:
+            time_cell = '<td class="num"><div class="main">N/A</div></td>'
+
         row = (
             f'<tr>\n'
             f'<td class="num rank" data-v="{rank}">{rank}</td>\n'
@@ -380,14 +530,15 @@ def render_table_rows(processed, extrema):
             f'<td class="num" data-v="{praise:.2f}"{praise_style}><div class="main">{praise_sign}{praise:.2f}%</div></td>\n'
             f'<td class="num" data-v="{bash:.2f}"{bash_style}><div class="main">{bash_sign}{bash:.2f}%</div></td>\n'
             f'{cost_cell}\n'
+            f'{time_cell}\n'
             f'{price_cell}\n'
             f'</tr>'
         )
         rows_html.append(row)
 
-    return "\n".join(rows_html), notable_cases
+    return "\n".join(rows_html)
 
-def update_html_file(html_path, snapshot, costs, rows_html, notable_cases):
+def update_html_file(html_path, snapshot, costs, rows_html):
     with open(html_path, "r", encoding="utf-8") as f:
         html = f.read()
 
@@ -441,24 +592,7 @@ def update_html_file(html_path, snapshot, costs, rows_html, notable_cases):
     if n_subs == 0:
         raise ValueError("Could not replace <tbody> in main table")
 
-    # 4. Update notable OR cases in Section 2 methodology
-    if notable_cases:
-        notable_html = []
-        # Sort notable cases by deviation from 100%
-        sorted_cases = sorted(notable_cases, key=lambda x: abs(x["ratio"] - 1.0), reverse=True)[:10]
-        for c in sorted_cases:
-            notable_html.append(
-                f'<li><strong>{c["model"]}</strong> — Arena ${c["arena_cost"]:.2f} → OR $/task <strong>${c["or_cost"]:.2f}</strong> ({c["pct"]}%)</li>'
-            )
-        notable_ul = "<ul>\n" + "\n".join(notable_html) + "\n</ul>"
-        html = re.sub(
-            r'(<p>Notable OR cases on this snapshot [^:]+:</p>\s*)<ul>.*?</ul>',
-            r'\g<1>' + notable_ul,
-            html,
-            flags=re.DOTALL
-        )
-
-    # 5. Update footer snapshot & OpenRouter dates
+    # 4. Update footer snapshot & OpenRouter dates
     pattern_footer = r'Snapshot [^·]+· Signals: <a href="https://arena\.ai/leaderboard/agent/code">LMArena Agent → Code</a> · Prices: <a href="https://openrouter\.ai/models">OpenRouter</a> real-time \d{4}-\d{2}-\d{2} UTC'
     new_footer_text = f'Snapshot {snapshot_full} · Signals: <a href="https://arena.ai/leaderboard/agent/code">LMArena Agent → Code</a> · Prices: <a href="https://openrouter.ai/models">OpenRouter</a> real-time {today_utc} UTC'
     html = re.sub(pattern_footer, new_footer_text, html)
@@ -509,12 +643,15 @@ def main():
     snapshot, costs = parse_arena_payload(arena_html)
     or_by_id = parse_openrouter_payload(or_raw_json)
     
-    processed = compute_leaderboard_data(snapshot, costs, or_by_id)
+    print("Fetching OpenRouter real-time performance profiles...")
+    perf_data = fetch_openrouter_performance(OPENROUTER_MAP)
+    
+    processed = compute_leaderboard_data(snapshot, costs, or_by_id, perf_data)
     extrema = compute_column_extrema(processed)
-    rows_html, notable_cases = render_table_rows(processed, extrema)
+    rows_html = render_table_rows(processed, extrema)
 
     print("Updating " + HTML_FILENAME + "...")
-    update_html_file(html_path, snapshot, costs, rows_html, notable_cases)
+    update_html_file(html_path, snapshot, costs, rows_html)
 
     t_end = time.time()
     print(f"Successfully updated {len(processed)} models in {t_end - t_start:.2f}s!")
