@@ -29,6 +29,7 @@ OPENROUTER_MAP = {
     "DeepSeek V4 Pro": "deepseek/deepseek-v4-pro",
     "DeepSeek V4 Pro (High) (0813)": "deepseek/deepseek-v4-pro-0813",
     "Deepseek V4 Flash (High) (20260731)": "deepseek/deepseek-v4-flash-0731",
+    "Deepseek V4.1 Flash (Max)": "deepseek/deepseek-v4.1-flash",
     "GLM 5.2 (Max)": "z-ai/glm-5.2",
     "GLM 5.3 (Max)": "z-ai/glm-5.3",
     "GLM 5.3 Flash": "z-ai/glm-5.3-flash",
@@ -164,17 +165,41 @@ def parse_openrouter_payload(or_raw_json):
         or_by_id[mid] = m
     return or_by_id
 
-def resolve_openrouter_pricing(model_name, or_by_id):
+def resolve_openrouter_pricing(model_name, or_by_id, perf_data=None):
     target_id = OPENROUTER_MAP.get(model_name)
     if not target_id:
         return None
 
+    clean_id = target_id.split(":")[0]
+
+    # Prioritize :free endpoint when explicitly specified or available with zero cost
+    free_id = clean_id + ":free"
+    if target_id.endswith(":free") or (free_id in or_by_id and free_id != target_id):
+        free_cand = or_by_id.get(free_id) or or_by_id.get(target_id)
+        if free_cand and float(free_cand["pricing"]["prompt"]) == 0 and float(free_cand["pricing"]["completion"]) == 0:
+            return {
+                "id": free_cand["id"],
+                "prompt": 0.0,
+                "completion": 0.0,
+                "blended": 0.0
+            }
+
+    # Prioritize the hero box "IN / OUT PRICE" directly visible on OpenRouter page
+    if perf_data and clean_id in perf_data:
+        box_in = perf_data[clean_id].get("box_in")
+        box_out = perf_data[clean_id].get("box_out")
+        if box_in is not None and box_out is not None:
+            blended_price = 0.25 * box_in + 0.75 * box_out
+            return {
+                "id": target_id,
+                "prompt": box_in,
+                "completion": box_out,
+                "blended": blended_price
+            }
+
     candidates = []
     if target_id in or_by_id:
         candidates.append(or_by_id[target_id])
-    
-    # Check for a :free endpoint if not already specified
-    free_id = target_id.split(":")[0] + ":free"
     if free_id in or_by_id and free_id != target_id:
         candidates.append(or_by_id[free_id])
     
@@ -211,16 +236,28 @@ def format_price_dollars(v):
 def fetch_openrouter_performance(model_map):
     cache_file = "/tmp/or_perf_cache.json"
     now = time.time()
+    cached_data = {}
     if os.path.isfile(cache_file):
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
                 cached = json.load(f)
             if cached.get("_timestamp", 0) > now - 3600:
-                return cached.get("data", {})
+                raw_cached = cached.get("data", {})
+                if any(v.get("provider_count", 0) > 0 for v in raw_cached.values()):
+                    cached_data = raw_cached
         except Exception:
-            pass
+            cached_data = {}
 
     clean_ids = list(set([m_id.split(":")[0] for m_id in model_map.values()]))
+    needed_ids = [
+        cid for cid in clean_ids
+        if cid not in cached_data
+        or cached_data[cid].get("provider_count", 0) == 0
+        or cached_data[cid].get("box_in") is None
+    ]
+
+    if not needed_ids:
+        return cached_data
 
     def fetch_one(clean_id):
         url = f"https://openrouter.ai/{clean_id}"
@@ -233,6 +270,9 @@ def fetch_openrouter_performance(model_map):
                 html = resp.read().decode("utf-8")
             tps_matches = re.findall(r'p50_throughput\\\\?\":\s*([0-9.]+)', html)
             lat_matches = re.findall(r'p50_latency\\\\?\":\s*([0-9.]+)', html)
+            box_match = re.search(r'In\s*/\s*Out\s*Price.*?\$([0-9.]+)\s*/\s*\$([0-9.]+)', html, re.DOTALL | re.I)
+            box_in = float(box_match.group(1)) if box_match else None
+            box_out = float(box_match.group(2)) if box_match else None
             tps_list = [float(x) for x in tps_matches if float(x) > 0]
             lat_list = [float(x) / 1000.0 for x in lat_matches if float(x) > 0]
             mean_tps = sum(tps_list) / len(tps_list) if tps_list else None
@@ -240,21 +280,24 @@ def fetch_openrouter_performance(model_map):
             return clean_id, {
                 "mean_tps": round(mean_tps, 1) if mean_tps else None,
                 "mean_lat": round(mean_lat, 2) if mean_lat else None,
-                "provider_count": len(tps_list)
+                "provider_count": len(tps_list),
+                "box_in": box_in,
+                "box_out": box_out
             }
         except Exception:
-            return clean_id, {"mean_tps": None, "mean_lat": None, "provider_count": 0}
+            return clean_id, {"mean_tps": None, "mean_lat": None, "provider_count": 0, "box_in": None, "box_out": None}
 
-    results = {}
+    results = dict(cached_data)
     with ThreadPoolExecutor(max_workers=12) as executor:
-        for clean_id, data in executor.map(fetch_one, clean_ids):
+        for clean_id, data in executor.map(fetch_one, needed_ids):
             results[clean_id] = data
 
-    try:
-        with open(cache_file, "w", encoding="utf-8") as f:
-            json.dump({"_timestamp": now, "data": results}, f)
-    except Exception:
-        pass
+    if any(v.get("provider_count", 0) > 0 for v in results.values()):
+        try:
+            with open(cache_file, "w", encoding="utf-8") as f:
+                json.dump({"_timestamp": now, "data": results}, f)
+        except Exception:
+            pass
 
     return results
 
@@ -320,7 +363,7 @@ def compute_leaderboard_data(snapshot, costs, or_by_id, perf_data=None):
                 fallback_source = "verified baseline"
 
         # Resolve OpenRouter real-time pricing
-        or_info = resolve_openrouter_pricing(model_name, or_by_id)
+        or_info = resolve_openrouter_pricing(model_name, or_by_id, perf_data)
         or_cost = None
         ratio = 1.0
         if or_info and list_blended and list_blended > 0:
@@ -492,15 +535,8 @@ def render_table_rows(processed, extrema):
         fallback_source = p.get("fallback_source")
 
         if tot_min is not None and dec_sec is not None and lat_sec is not None:
-            tot_sec = tot_min * 60.0
-            if tot_min < 1.0:
-                time_main = f"{int(round(tot_sec))}s"
-            elif tot_min < 60.0:
-                time_main = f"{tot_min:.1f}m"
-            else:
-                hours = int(tot_min // 60)
-                mins = int(round(tot_min % 60))
-                time_main = f"{hours}h {mins}m"
+            mins = max(1, int(round(tot_min)))
+            time_main = f"{mins}m"
 
             tok_k = int(round(output_tokens / 1000.0))
             tps_int = int(round(mean_tps))
@@ -600,6 +636,46 @@ def update_html_file(html_path, snapshot, costs, rows_html):
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html)
 
+def update_readme_example(readme_path, top_model):
+    if not os.path.isfile(readme_path):
+        return
+    with open(readme_path, "r", encoding="utf-8") as f:
+        readme = f.read()
+
+    name = top_model["model"]
+    cs = top_model["cs"]
+    steer = top_model["steer"]
+    praise = top_model["praise"]
+    bash = top_model["bash"]
+    score = top_model["score"]
+
+    cs_contrib = 0.30 * cs
+    steer_contrib = 0.30 * steer
+    praise_contrib = 0.30 * praise
+    bash_contrib = 0.10 * bash
+
+    line1 = (
+        r"$$\text{Score} = 0.30 \times (" + f"{cs:+.2f}" + r") + 0.30 \times (" +
+        f"{steer:+.2f}" + r") + 0.30 \times (" + f"{praise:+.2f}" + r") + 0.10 \times (" +
+        f"{bash:+.2f}" + r")$$"
+    )
+    line2 = (
+        r"$$\text{Score} = " + f"{cs_contrib:.2f} {steer_contrib:+.2f} {praise_contrib:+.2f} {bash_contrib:+.2f} = {score:+.2f}" + r"$$"
+    )
+
+    example_block = (
+        f"### 3. Concrete Scoring Example\n\n"
+        f"Taking the #1 ranked model, **{name}**, from the benchmark snapshot:\n\n"
+        f"{line1}\n"
+        f"{line2}"
+    )
+
+    pattern = r"### 3\. Concrete Scoring Example\s*\n\s*Taking .*?(?=\n\nSignal percentages)"
+    readme, n = re.subn(pattern, lambda _: example_block, readme, flags=re.DOTALL)
+    if n > 0:
+        with open(readme_path, "w", encoding="utf-8") as f:
+            f.write(readme)
+
 def main():
     t_start = time.time()
     workspace_dir = os.path.dirname(os.path.abspath(__file__))
@@ -652,6 +728,11 @@ def main():
 
     print("Updating " + HTML_FILENAME + "...")
     update_html_file(html_path, snapshot, costs, rows_html)
+
+    if processed:
+        print("Updating scoring example in README.md with #1 ranked model...")
+        readme_path = os.path.join(workspace_dir, "README.md")
+        update_readme_example(readme_path, processed[0])
 
     t_end = time.time()
     print(f"Successfully updated {len(processed)} models in {t_end - t_start:.2f}s!")

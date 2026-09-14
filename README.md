@@ -37,11 +37,13 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
   - **Arena Real Observed Tokens & Turns**: Uses actual observed mean output tokens (`meanMtok`) and average turns per task ($\text{observations} / \text{sessions}$).
   - **OpenRouter Mean Speed & TTFT**: Uses the arithmetic mean throughput (tok/s) and mean latency (s) across all active providers for that model on OpenRouter.
   - **Fastest First**: Clicking the `Time/Task` column header defaults to ascending order (shortest duration first).
+  - **Integer Minute Formatting**: Displayed strictly in whole minutes rounded to the nearest minute (e.g. `14m`, `88m`). Durations over an hour remain purely in minutes (e.g. `65m` rather than `1h 5m`).
 - **Score / $**: `max(Score, 0) / Cost/Task`, using the OpenRouter cost when that overlay is shown, otherwise the Arena mean. Negative Scores become `0`; a positive Score with zero cost is `+∞`; unavailable costs are `N/A`.
 - **Price $/M**: Vendor list price per million tokens (input / output) reported on Arena.
 - **OpenRouter Real-Time Overlay**: Where an active OpenRouter route exists, the effective cost is calculated and shown **first**:
   $$\text{OR \$/task} = \text{Cost/Task} \times \frac{\text{OR}_{\text{blended}}}{\text{list}_{\text{blended}}}$$
   $$\text{blended} = 0.25 \times \text{input \$/M} + 0.75 \times \text{output \$/M}$$
+  - **Pricing Source**: Extracted directly from the primary "IN / OUT PRICE" hero box displayed on each model's OpenRouter page (representing the best available rate across active providers), falling back to the OpenRouter API catalog price.
   - **Green (`.main.down`)**: OpenRouter is cheaper than vendor list price.
   - **Red (`.main.up`)**: OpenRouter is more expensive than vendor list price.
   - **Plain single line**: When OpenRouter matches vendor list price (to 2 decimals) or when OpenRouter data is unavailable.
@@ -49,10 +51,10 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
 
 ### 3. Concrete Scoring Example
 
-Taking **GLM 5.3 Flash** from the frozen benchmark snapshot:
+Taking the #1 ranked model, **Claude Fable 5.1 (Max)**, from the benchmark snapshot:
 
-$$\text{Score} = 0.30 \times (+11.27) + 0.30 \times (+1.09) + 0.30 \times (+1.00) + 0.10 \times (-5.41)$$
-$$\text{Score} = 3.38 + 0.33 + 0.30 - 0.54 = +3.47$$
+$$\text{Score} = 0.30 \times (+22.10) + 0.30 \times (+4.11) + 0.30 \times (+39.09) + 0.10 \times (+11.92)$$
+$$\text{Score} = 6.63 +1.23 +11.73 +1.19 = +20.78$$
 
 Signal percentages are frozen per benchmark snapshot and mirror Arena's public values. Score and signal cells use normalized linear tints scaled per column and per sign ($0.05$ minimum alpha floor; a value of exactly $0$ receives no background tint).
 
@@ -145,6 +147,7 @@ Use this canonical mapping for real-time model resolution:
   "DeepSeek V4 Pro": "deepseek/deepseek-v4-pro",
   "DeepSeek V4 Pro (High) (0813)": "deepseek/deepseek-v4-pro-0813",
   "Deepseek V4 Flash (High) (20260731)": "deepseek/deepseek-v4-flash-0731",
+  "Deepseek V4.1 Flash (Max)": "deepseek/deepseek-v4.1-flash",
   "GLM 5.2 (Max)": "z-ai/glm-5.2",
   "GLM 5.3 (Max)": "z-ai/glm-5.3",
   "GLM 5.3 Flash": "z-ai/glm-5.3-flash",
