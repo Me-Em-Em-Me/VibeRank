@@ -50,8 +50,8 @@ $$\text{Score} = 0.30 \times \text{CS} + 0.30 \times \text{Steer} + 0.30 \times 
 
 Taking the #1 ranked model, **Claude Fable 5.1 (Max)**, from the benchmark snapshot:
 
-$$\text{Score} = 0.30 \times (+22.10) + 0.30 \times (+4.11) + 0.30 \times (+39.09) + 0.10 \times (+11.92)$$
-$$\text{Score} = 6.63 +1.23 +11.73 +1.19 = +20.78$$
+$$\text{Score} = 0.30 \times (+19.44) + 0.30 \times (+5.94) + 0.30 \times (+41.00) + 0.10 \times (+12.32)$$
+$$\text{Score} = 5.83 +1.78 +12.30 +1.23 = +21.15$$
 
 Signal percentages are frozen per benchmark snapshot and mirror Arena's public values. Score and signal cells use normalized linear tints scaled per column and per sign ($0.05$ minimum alpha floor; a value of exactly $0$ receives no background tint).
 

@@ -44,6 +44,7 @@ OPENROUTER_MAP = {
     "Gemini 3.1 Pro Preview": "google/gemini-3.1-pro-preview",
     "Gemini 3.5 Flash Lite": "google/gemini-3.5-flash-lite",
     "Gemini 3.6 Flash (High)": "google/gemini-3.6-flash",
+    "Gemini 3.7 Flash (High)": "google/gemini-3.7-flash",
     "Gemini 3.8 Flash (High)": "google/gemini-3.8-flash",
     "Grok 4.5": "x-ai/grok-4.5",
     "Grok 4.6 (xHigh)": "x-ai/grok-4.6",
@@ -174,10 +175,9 @@ def resolve_openrouter_pricing(model_name, or_by_id, perf_data=None):
 
     clean_id = target_id.split(":")[0]
 
-    # Prioritize :free endpoint when explicitly specified or available with zero cost
-    free_id = clean_id + ":free"
-    if target_id.endswith(":free") or (free_id in or_by_id and free_id != target_id):
-        free_cand = or_by_id.get(free_id) or or_by_id.get(target_id)
+    # Use :free endpoint only when explicitly specified in OPENROUTER_MAP
+    if target_id.endswith(":free"):
+        free_cand = or_by_id.get(target_id)
         if free_cand and float(free_cand["pricing"]["prompt"]) == 0 and float(free_cand["pricing"]["completion"]) == 0:
             return {
                 "id": free_cand["id"],
@@ -202,8 +202,6 @@ def resolve_openrouter_pricing(model_name, or_by_id, perf_data=None):
     candidates = []
     if target_id in or_by_id:
         candidates.append(or_by_id[target_id])
-    if free_id in or_by_id and free_id != target_id:
-        candidates.append(or_by_id[free_id])
     
     if not candidates:
         return None
