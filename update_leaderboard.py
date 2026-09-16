@@ -2,7 +2,7 @@
 """
 AI Leaderboard for Vibe Coding — Fast Updater
 Fetches real-time signals from LMArena Agent -> Code and pricing from OpenRouter,
-computes the vibe score rankings, and surgically updates AI_Leaderboard_for_Vibe_Coding.html.
+computes the vibe score rankings, and surgically updates index.html.
 
 Execution time: ~2-3 seconds.
 Zero external dependencies (uses Python standard library only).
@@ -99,7 +99,7 @@ KNOWN_LIST_PRICES = {
     "Qwen3.7 Max": (2.5, 7.5),
 }
 
-HTML_FILENAME = "AI_Leaderboard_for_Vibe_Coding.html"
+HTML_FILENAME = "index.html"
 ARENA_DATA_FILENAME = "arena_data.json"
 
 def fetch_url(url, timeout=12):

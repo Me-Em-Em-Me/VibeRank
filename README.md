@@ -6,7 +6,7 @@ A standalone, self-contained web application providing an empirical, actionable 
 
 Traditional benchmarks often measure one-shot snippet completion or synthetic puzzles. In contrast, this leaderboard captures real multi-turn developer interaction dynamics inside live environments (accepted tasks, course corrections, user sentiment, and error recovery) while tracking true execution costs.
 
-The core deliverable is [`AI_Leaderboard_for_Vibe_Coding.html`](file:///Volumes/SSDMarco/VibeCoding/AI-Leaderboard/AI_Leaderboard_for_Vibe_Coding.html), a single-file zero-dependency dashboard that can be opened directly in any modern web browser.
+The core deliverable is [`index.html`](index.html), a single-file zero-dependency dashboard that can be opened directly in any modern web browser or deployed natively to GitHub Pages.
 
 ---
 
@@ -91,7 +91,7 @@ python3 update_leaderboard.py
 
 > **INSTRUCTION FOR AI ASSISTANTS & AUTOMATIONS:**
 > Whenever asked to refresh, modify, or update the leaderboard, run `python3 update_leaderboard.py`.
-> Maintain [`AI_Leaderboard_for_Vibe_Coding.html`](file:///Volumes/SSDMarco/VibeCoding/AI-Leaderboard/AI_Leaderboard_for_Vibe_Coding.html) as a single self-contained file in English. Do not regenerate HTML manually token-by-token.
+> Maintain [`index.html`](index.html) as a single self-contained file in English. Do not regenerate HTML manually token-by-token.
 
 ### How It Works
 
@@ -110,7 +110,7 @@ python3 update_leaderboard.py
    - Renders OpenRouter price overlay badges (green for cheaper, red for more expensive).
 4. **Surgical DOM Update**:
    - Updates hero counters (models tracked, total sessions, snapshot date, cost window).
-   - Injects fresh `<tbody>` rows with numerical `data-v` sorting keys into [`AI_Leaderboard_for_Vibe_Coding.html`](file:///Volumes/SSDMarco/VibeCoding/AI-Leaderboard/AI_Leaderboard_for_Vibe_Coding.html).
+   - Injects fresh `<tbody>` rows with numerical `data-v` sorting keys into [`index.html`](index.html).
    - Refreshes footer timestamp and hero metadata counters.
 
 ### Technical Specifications & Formulas
@@ -212,3 +212,22 @@ Before completing an update, verify each item:
 - [ ] The framed Score / $ column immediately precedes Cost/Task, uses the displayed cost value, clamps negative Scores to zero, and displays positive zero-cost ratios as `+∞`.
 - [ ] Pin & Compare functionality is preserved and persists via `localStorage`.
 - [ ] No third-party tracking or injected challenge scripts remain in the HTML.
+- [ ] Column guide and disclaimer box render cleanly below the ranking table.
+
+---
+
+## Deployment to GitHub Pages
+
+To host this leaderboard publicly on GitHub Pages:
+1. Push the repository to GitHub.
+2. In the repository settings, navigate to **Pages** (under the "Code and automation" section).
+3. Under **Build and deployment** > **Branch**, select `main` (or default branch) and `/ (root)`.
+4. Click **Save**. GitHub Pages will automatically serve [`index.html`](index.html) as the primary leaderboard dashboard.
+
+---
+
+## Legal Notice & Fair Use
+
+- **Personal & Educational**: This project is independent, non-commercial, and provided for research and informational reference under fair use principles.
+- **Third-Party Data & Marks**: Evaluation signals are derived from publicly accessible benchmark data published by LMSYS (LMArena), and API pricing reflects public endpoints published by OpenRouter. All company names, logos, and model names belong to their respective proprietors.
+- **Disclaimer**: No warranties are made regarding benchmark permanence or API pricing accuracy. See the in-app disclaimer for complete terms.

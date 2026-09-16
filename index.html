@@ -327,9 +327,34 @@ tbody.filter-on tr td.rank[data-v="1"], tbody.filter-on tr td.rank[data-v="2"], 
 .lb-float .btn { padding: 7px 16px; }
 .lb-float .btn-ghost { background: transparent; }
 
-/* ---------- table note ---------- */
-.note { color: var(--muted); font-size: 0.86rem; margin: 16px 4px 0; }
-.note strong { color: var(--text); }
+/* ---------- column guide & disclaimer ---------- */
+.guide-section { margin: 36px 0 20px; display: flex; flex-direction: column; gap: 20px; }
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.guide-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 14px 16px; backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  font-size: 0.84rem; color: var(--muted); line-height: 1.45;
+}
+.guide-card strong { display: block; color: var(--text); font-weight: 750; margin-bottom: 3px; }
+.guide-badge {
+  display: inline-block; font-family: var(--mono); font-size: 0.74rem; font-weight: 700;
+  padding: 2px 7px; border-radius: 6px; background: var(--chip-bg);
+  border: 1px solid var(--border-soft); color: var(--accent-ink); margin-bottom: 6px;
+}
+.guide-card p { margin: 0; }
+.guide-colors { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: 0.8rem; }
+.guide-colors span { display: inline-flex; align-items: center; gap: 6px; }
+.disclaimer-box {
+  background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm); padding: 18px 22px; font-size: 0.82rem; color: var(--muted);
+  line-height: 1.55; backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+}
+.disclaimer-box h3 {
+  margin: 0 0 8px; font-size: 0.94rem; font-weight: 800; color: var(--text);
+  letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+}
+.disclaimer-box p { margin: 6px 0 0; }
+.disclaimer-box strong { color: var(--text); }
 
 /* ---------- footer ---------- */
 footer {
@@ -990,7 +1015,96 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 </tr>
 </tbody></table></div>
 
-<p class="note"><strong>Score / $</strong> is <code>max(Score, 0) / Cost/Task</code>: negative Scores become <code>0</code>, positive Score with zero cost is <code>+∞</code>, and unavailable costs remain <code>N/A</code>; it features a logarithmic diverging heatmap dynamically centered on the geometric mean of positive efficiency models (~3.48), with values above the geometric mean in <span style="color:#15803d;font-weight:700">green (high efficiency)</span>, the neutral threshold white/unshaded, and values below in <span style="color:#dc2626;font-weight:700">red (lower efficiency / non-positive)</span>. <strong>Cost/Task</strong> features a logarithmic diverging heatmap centered on the median cost ($1.46), and <strong>Time/Task</strong> features a linear diverging heatmap centered on the median duration (25m), scaling from intense <span style="color:#15803d;font-weight:700">green (cheapest / fastest)</span> through neutral white/unshaded at the median to intense <span style="color:#dc2626;font-weight:700">red (highest cost / slowest)</span> matching the score saturation. Values in <span style="color:#0284c7;font-weight:700">blue</span> represent effective real-time OpenRouter pricing differing from the Arena baseline (hover over any price or duration to view original Arena values and routing breakdown). All full Arena baseline values are securely archived in <code>arena_data.json</code>. Headers are clickable — ▲ ascending, ▼ descending, third click restores rank order; <strong>Time/Task</strong> defaults to ascending (fastest first).</p>
+<section class="guide-section reveal" aria-labelledby="guideHeading">
+  <div class="section-head" style="margin: 0 0 10px;">
+    <h2 id="guideHeading" style="font-size: 1.25rem;"><span class="n">02</span> Column &amp; Metrics Guide</h2>
+    <p>Quick reference explaining how rankings, benchmarks, and costs are computed.</p>
+  </div>
+
+  <div class="guide-grid">
+    <div class="guide-card">
+      <span class="guide-badge"># &amp; Model</span>
+      <strong>Rank &amp; Identity</strong>
+      <p>Overall leaderboard standing by Vibe Score, with vendor logos and official model denominations.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Score</span>
+      <strong>Vibe Score</strong>
+      <p>Core performance index for agentic coding: <code>0.30×CS + 0.30×Steer + 0.30×Praise + 0.10×Bash</code>.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">CS 30%</span>
+      <strong>Confirmed Success</strong>
+      <p>Percentage of code generation tasks explicitly completed and accepted without errors or defects.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Steer 30%</span>
+      <strong>Steerability</strong>
+      <p>Ability to adapt to user course-corrections, feedback, and revised instructions mid-turn.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Praise 30%</span>
+      <strong>User Praise</strong>
+      <p>Positive sentiment ratio expressed by developers during real multi-turn coding sessions.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Bash 10%</span>
+      <strong>Terminal Recovery</strong>
+      <p>Resilience in diagnosing CLI/test errors and autonomously fixing shell commands and broken builds.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Score / $</span>
+      <strong>Cost Efficiency</strong>
+      <p>Score points per dollar spent (<code>Score / Cost/Task</code>). Higher value means better bang for your buck.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Cost/Task</span>
+      <strong>Estimated Cost</strong>
+      <p>Estimated USD expense to complete a typical task, using live OpenRouter rates or Arena baselines.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Time/Task</span>
+      <strong>Turnaround Time</strong>
+      <p>Average minutes per task, combining token throughput (tok/s) and time-to-first-token latency.</p>
+    </div>
+
+    <div class="guide-card">
+      <span class="guide-badge">Price $/M</span>
+      <strong>Token List Price</strong>
+      <p>Input and output pricing per million tokens from active OpenRouter routes or vendor catalogs.</p>
+    </div>
+
+    <div class="guide-card" style="grid-column: 1 / -1;">
+      <span class="guide-badge">Colors &amp; Sorting</span>
+      <strong>Visual Legend</strong>
+      <div class="guide-colors">
+        <span><strong style="color:var(--good)">Green:</strong> High score, fast speed, low cost</span>
+        <span><strong style="color:var(--bad)">Red:</strong> Low score, slow turnaround, high cost</span>
+        <span><strong style="color:#0284c7">Blue:</strong> Live OpenRouter price difference</span>
+        <span><strong>Sorting:</strong> Click any column header to sort (▲ Ascending / ▼ Descending)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer-box reveal">
+    <h3>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Disclaimer &amp; Legal Notice
+    </h3>
+    <p><strong>Personal &amp; Informational Project:</strong> This leaderboard is an independent, non-commercial research and evaluation project created strictly for informational and personal reference.</p>
+    <p><strong>No Affiliation:</strong> This project is not affiliated with, endorsed by, sponsored by, or officially associated with LMSYS Organization (LMArena), OpenRouter, or any benchmarked AI provider (such as Anthropic, OpenAI, Google, Meta, Mistral, xAI, etc.).</p>
+    <p><strong>Estimates &amp; Limitation of Liability:</strong> Benchmark signals, latencies, and pricing metrics are point-in-time public snapshots and algorithmic estimates that fluctuate continuously. No warranty or guarantee of accuracy, fitness for purpose, or pricing availability is provided. The creator accepts no liability for API expenses, service disruptions, code outputs, or technical decisions resulting from the use of this data.</p>
+    <p><strong>Trademarks:</strong> All trademarks, model identifiers, logos, and brand names are the intellectual property of their respective holders and are referenced under nominative fair use for descriptive, comparative, and identification purposes only.</p>
+  </div>
+</section>
 
 </main>
 
