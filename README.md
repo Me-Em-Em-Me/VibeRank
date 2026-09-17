@@ -78,6 +78,7 @@ When analyzing model behaviors for agentic vibe coding:
    - Star selections persist across sessions using `localStorage["vibe-lb-pins"]`.
 3. **Boxed Score Column (`.score-col`)**: The primary Vibe Score is highlighted with a persistent 2px accent outline framing the header down to the last visible row.
 4. **Per-Column Dynamic Tinting**: Score and signal cells use pure linear green/red scales, normalized separately for each column and sign. Cost/Task features a logarithmic diverging heatmap centered on median cost ($1.46), Score / $ features a logarithmic diverging heatmap centered dynamically on the geometric mean of positive efficiencies (~3.48), Time/Task features a linear diverging heatmap centered on median duration (25m), and values at the median remain unshaded.
+5. **Pure Flat Vendor Vector Logos**: Model cells render lightweight inline vector brand marks following OpenRouter and Arena standards (OpenAI, Anthropic Claude, Google 4-color G, DeepSeek, Qwen, Mistral, Meta, xAI Grok, Moonshot Kimi, Z.ai GLM black Z mark, etc.) as flat borderless SVGs directly alongside model names, eliminating visual clutter and external network dependencies.
 
 ---
 
