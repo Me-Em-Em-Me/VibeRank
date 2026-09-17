@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AI Leaderboard for Vibe Coding — Fast Updater
+VibeRank: AI Leaderboard for Vibe Coding — Fast Updater
 Fetches real-time signals from LMArena Agent -> Code and pricing from OpenRouter,
 computes the vibe score rankings, and surgically updates index.html.
 

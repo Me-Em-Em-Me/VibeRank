@@ -1,6 +1,6 @@
-# AI Leaderboard for Vibe Coding
+# VibeRank — AI Leaderboard for Vibe Coding
 
-A standalone, self-contained web application providing an empirical, actionable ranking of LLMs tailored specifically for agentic coding ("vibe coding"). It combines evaluation signals from LMArena's Agent → Code benchmark with real-time inference pricing from OpenRouter.
+**VibeRank** is a standalone, self-contained web application providing an empirical, actionable ranking of LLMs tailored specifically for agentic coding ("vibe coding"). It combines evaluation signals from LMArena's Agent → Code benchmark with real-time inference pricing from OpenRouter.
 
 ## Overview
 

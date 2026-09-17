@@ -4,10 +4,10 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="color-scheme" content="dark light"/>
-<title>AI Leaderboard for Vibe Coding — 2026 Edition</title>
+<title>VibeRank — AI Leaderboard for Vibe Coding</title>
 <style>
 /* ============================================================
-   VIBE ARENA — 2026 EDITION
+   VIBERANK — 2026 EDITION
    A premium restyle. All original behaviour hooks are preserved:
    .wrap table, #lbTools/#lbCount/#lbHint/#lbCompareBtn/#lbClearBtn,
    #lbFloat/#lbFloatCount/#lbFloatCompare/#lbFloatClear,
@@ -150,6 +150,10 @@ h1 .grad {
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 html[data-theme="light"] h1 .grad { background: linear-gradient(92deg, #4f46e5, #0891b2 55%, #c026d3); -webkit-background-clip: text; background-clip: text; }
+.hero-sub {
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem); font-weight: 700; color: var(--accent-ink);
+  letter-spacing: -0.015em; margin: -6px auto 16px;
+}
 .lede { max-width: 720px; margin: 0 auto; color: var(--muted); font-size: 1.02rem; }
 .lede strong { color: var(--text); }
 .formula-hero {
@@ -399,7 +403,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
     <span class="brand-mark" aria-hidden="true">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
     </span>
-    <span>Vibe Arena<small>AI Leaderboard · 2026</small></span>
+    <span>VibeRank<small>AI Leaderboard for Vibe Coding</small></span>
   </div>
   <div class="nav-links">
     <a class="hide-sm" href="https://arena.ai/leaderboard/agent/code">LMArena · Agent → Code</a>
@@ -416,7 +420,8 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 
 <header class="hero">
   <span class="eyebrow"><span class="pulse"></span>Live snapshot · Agent → Code only</span>
-  <h1>AI Leaderboard for <span class="grad">Vibe Coding</span></h1>
+  <h1><span class="grad">VibeRank</span></h1>
+  <p class="hero-sub">AI Leaderboard for Vibe Coding</p>
   <p class="lede">Which models actually <strong>ship working code</strong> with you in the loop? Ranked on real
     <a href="https://arena.ai/leaderboard/agent/code">LMArena</a> vibe-coding sessions — success, steerability,
     praise and error recovery — with live <a href="https://openrouter.ai/models">OpenRouter</a> cost overlays.</p>
@@ -1111,7 +1116,7 @@ footer .fbrand { display: flex; align-items: center; gap: 8px; font-weight: 700;
 <footer>
   <span class="fbrand">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-    Vibe Arena · 2026 Edition
+    VibeRank · AI Leaderboard for Vibe Coding
   </span>
   <span>Snapshot Sep 15, 2026 · Signals: <a href="https://arena.ai/leaderboard/agent/code">LMArena Agent → Code</a> · Prices: <a href="https://openrouter.ai/models">OpenRouter</a> real-time 2026-09-16 UTC</span>
 </footer>
